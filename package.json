@@ -1,0 +1,25 @@
+{
+  "name": "vue-snapshot-serializer",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Vue 3 Snapshot Serializer website",
+  "main": "index.html",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "vitepress": "^1.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheJaredWilcurt/vue-snapshot-serializer.git"
+  },
+  "author": "The Jared Wilcurt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheJaredWilcurt/vue-snapshot-serializer/issues"
+  },
+  "homepage": "https://github.com/TheJaredWilcurt/vue-snapshot-serializer#readme",
+  "volta": {
+    "node": "22.10.0"
+  }
+}
