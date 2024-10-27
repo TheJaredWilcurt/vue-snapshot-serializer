@@ -3,7 +3,7 @@
     <aside class="playground-controls">
       <label>
         Font size ({{ fontSize }}%)
-        <input v-model="fontSize" type="range" min="68" max="200">
+        <input v-model.number="fontSize" type="range" min="50" max="200">
       </label>
       <label>
         <input v-model="stacked" type="checkbox">
@@ -11,42 +11,42 @@
       </label>
       <label>
         Formatter:
-        <select v-model="formatter">
+        <select v-model="vueSnapshots.formatter">
           <option value="none">None</option>
           <option value="diffable">Diffable</option>
           <option value="custom">Custom Function</option>
         </select>
       </label>
-      <template v-if="formatter === 'diffable'">
+      <template v-if="vueSnapshots.formatter === 'diffable'">
         <label>
           Void Elements:
-          <select v-model="voidElements">
+          <select v-model="vueSnapshots.formatting.voidElements">
             <option value="html">&lt;input&gt;</option>
             <option value="xhtml">&lt;input /&gt;</option>
             <option value="closingTag">&lt;input&gt;&lt;/input&gt;</option>
           </select>
         </label>
         <label>
-          <input v-model="emptyAttributes" type="checkbox">
+          <input v-model="vueSnapshots.formatting.emptyAttributes" type="checkbox">
           Show Empty Attributes
         </label>
         <label>
-          <input v-model="selfClosingTag" type="checkbox">
+          <input v-model="vueSnapshots.formatting.selfClosingTag" type="checkbox">
           Non-Void Self Closing Tags
         </label>
         <label>
           Attributes Per Line:
-          <input v-model.number="attributesPerLine" type="number" min="0">
+          <input v-model.number="vueSnapshots.formatting.attributesPerLine" type="number" min="0">
         </label>
         <label>
           Preserve Whitespace in Tags:
-          <select v-model="tagsWithWhitespacePreserved">
+          <select v-model="vueSnapshots.formatting.tagsWithWhitespacePreserved">
             <option :value="true">All tags</option>
             <option value="custom">Specific tags</option>
             <option :value="false">No tags</option>
           </select>
         </label>
-        <label v-if="tagsWithWhitespacePreserved === 'custom'">
+        <label v-if="vueSnapshots.formatting.tagsWithWhitespacePreserved === 'custom'">
           Tags to preserve whitespace in:
           <input v-model="whitespaceTagsList" placeholder="Comma separate list">
         </label>
@@ -87,6 +87,7 @@ const defaults = {
   emptyAttributes: true,
   formatter: 'diffable',
   selfClosingTag: false,
+  tagsWithWhitespacePreserved: ['a', 'pre'],
   voidElements: 'xhtml'
 };
 
@@ -112,18 +113,19 @@ export default {
   },
   data: function () {
     return {
-      attributesPerLine: 1,
-      emptyAttributes: true,
-      formatter: 'diffable',
       fontSize: 100,
       input: exampleCode,
-      selfClosingTag: false,
       stacked: false,
-      tagsWithWhitespacePreserved: 'custom',
       whitespaceTagsList: 'a, pre',
-      voidElements: 'xhtml',
       vueSnapshots: {
-        // move settings into here
+        formatter: 'diffable',
+        formatting: {
+          attributesPerLine: 1,
+          emptyAttributes: true,
+          selfClosingTag: false,
+          tagsWithWhitespacePreserved: 'custom',
+          voidElements: 'xhtml'
+        }
       }
     };
   },
@@ -137,50 +139,49 @@ export default {
         .filter(Boolean)));
     },
     diffableOptions: function () {
-      const settings = {
-        attributesPerLine: this.attributesPerLine,
-        emptyAttributes: this.emptyAttributes,
-        selfClosingTag: this.selfClosingTag,
-        tagsWithWhitespacePreserved: this.tagsWithWhitespacePreserved,
-        voidElements: this.voidElements
-      };
-      if (this.tagsWithWhitespacePreserved === 'custom') {
+      const settings = { ...this.vueSnapshots.formatting };
+      if (this.vueSnapshots.formatting.tagsWithWhitespacePreserved === 'custom') {
         settings.tagsWithWhitespacePreserved = this.whitespaceTags;
       }
       return settings;
     },
     printableSettings: function () {
       let snapshotSettings = {};
-      if (this.formatter !== defaults.formatter) {
-        snapshotSettings.formatter = this.formatter;
+      if (this.vueSnapshots.formatter !== defaults.formatter) {
+        snapshotSettings.formatter = this.vueSnapshots.formatter;
       }
-      if (this.formatter === 'diffable') {
-        if (this.attributesPerLine !== defaults.attributesPerLine) {
+      if (this.vueSnapshots.formatter === 'diffable') {
+        function setFormattingObject () {
           snapshotSettings.formatting = snapshotSettings.formatting || {};
-          snapshotSettings.formatting.attributesPerLine = this.attributesPerLine || 0;
         }
-        if (this.emptyAttributes !== defaults.emptyAttributes) {
-          snapshotSettings.formatting = snapshotSettings.formatting || {};
-          snapshotSettings.formatting.emptyAttributes = this.emptyAttributes;
+        if (this.vueSnapshots.formatting.attributesPerLine !== defaults.attributesPerLine) {
+          setFormattingObject();
+          snapshotSettings.formatting.attributesPerLine = this.vueSnapshots.formatting.attributesPerLine || 0;
         }
-        if (this.selfClosingTag !== defaults.selfClosingTag) {
-          snapshotSettings.formatting = snapshotSettings.formatting || {};
-          snapshotSettings.formatting.selfClosingTag = this.selfClosingTag;
+        if (this.vueSnapshots.formatting.emptyAttributes !== defaults.emptyAttributes) {
+          setFormattingObject();
+          snapshotSettings.formatting.emptyAttributes = this.vueSnapshots.formatting.emptyAttributes;
         }
-        if (this.voidElements !== defaults.voidElements) {
-          snapshotSettings.formatting = snapshotSettings.formatting || {};
-          snapshotSettings.formatting.voidElements = this.voidElements;
+        if (this.vueSnapshots.formatting.selfClosingTag !== defaults.selfClosingTag) {
+          setFormattingObject();
+          snapshotSettings.formatting.selfClosingTag = this.vueSnapshots.formatting.selfClosingTag;
         }
-        if (typeof(this.tagsWithWhitespacePreserved) === 'boolean') {
-          snapshotSettings.formatting = snapshotSettings.formatting || {};
-          snapshotSettings.formatting.tagsWithWhitespacePreserved = this.tagsWithWhitespacePreserved;
+        if (this.vueSnapshots.formatting.voidElements !== defaults.voidElements) {
+          setFormattingObject();
+          snapshotSettings.formatting.voidElements = this.vueSnapshots.formatting.voidElements;
+        }
+        if (typeof(this.vueSnapshots.formatting.tagsWithWhitespacePreserved) === 'boolean') {
+          setFormattingObject();
+          snapshotSettings.formatting.tagsWithWhitespacePreserved = this.vueSnapshots.formatting.tagsWithWhitespacePreserved;
         } else if (!this.whitespaceTags.length) {
-          snapshotSettings.formatting = snapshotSettings.formatting || {};
+          setFormattingObject();
           snapshotSettings.formatting.tagsWithWhitespacePreserved = false;
         } else if (
-          !['["a","pre"]','["pre","a"]'].includes(JSON.stringify(this.whitespaceTags))
+          this.whitespaceTags.length === 2 &&
+          defaults.tagsWithWhitespacePreserved.includes(this.whitespaceTags[0]) &&
+          defaults.tagsWithWhitespacePreserved.includes(this.whitespaceTags[1])
         ) {
-          snapshotSettings.formatting = snapshotSettings.formatting || {};
+          setFormattingObject();
           snapshotSettings.formatting.tagsWithWhitespacePreserved = this.whitespaceTags;
         }
       }
@@ -215,7 +216,7 @@ export default {
     },
     output: function () {
       let markup = this.input;
-      if (this.formatter === 'diffable') {
+      if (this.vueSnapshots.formatter === 'diffable') {
         window.vueSnapshots = {
           formatter: 'diffable',
           formatting: {
@@ -224,7 +225,7 @@ export default {
         };
         markup = vueMarkupFormatter(markup);
       }
-      if (this.formatter === 'custom') {
+      if (this.vueSnapshots.formatter === 'custom') {
         markup = markup.toUpperCase();
       }
       const language = 'html';
@@ -247,7 +248,7 @@ export default {
   width: 300px;
 }
 .playground-controls label {
-  margin: 0px 10px;
+  margin: 10px 10px 0px 10px;
 }
 .playground-content {
   width: 100%;
