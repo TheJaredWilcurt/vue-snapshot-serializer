@@ -1,6 +1,15 @@
+/**
+ * IMPORTS
+ */
+
 @import url('https://fonts.googleapis.com/css2?family=Iceberg&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/**
+ * BASE
+ */
 
 *,
 *:before,
@@ -22,6 +31,16 @@ body {
   color: #BEBCCA;
 }
 
+input,
+select,
+option,
+textarea {
+  background: #212128;
+  border: 0px;
+  padding: 4px;
+  color: #CECCDA;
+}
+
 h1 {
   font-family: 'Iceberg', Roboto, sans-serif;
   font-weight: 400;
@@ -34,4 +53,15 @@ pre,
 textarea {
   font-family: 'Azeret Mono', monospace !important;
   font-optical-sizing: auto;
+}
+
+
+/**
+ * LAYOUT
+ */
+
+.wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 0px auto;
 }

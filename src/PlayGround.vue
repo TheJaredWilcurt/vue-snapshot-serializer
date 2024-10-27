@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="controls" :style="size">
+  <div class="playground">
+    <aside class="playground-controls">
       <label>
         Font size ({{ fontSize }}%)
         <input v-model="fontSize" type="range" min="68" max="200">
@@ -51,23 +51,30 @@
           <input v-model="whitespaceTagsList" placeholder="Comma separate list">
         </label>
       </template>
-    </div>
-    <div class="container" :class="{ stacked }">
-      <textarea
-        v-model="input"
-        :rows="input.split('\n').length"
-        :style="size"
-      ></textarea>
+    </aside>
+    <main class="playground-content">
+      <div
+        class="playground-container"
+        :class="{ 'playground-stacked': stacked }"
+      >
+        <textarea
+          v-model="input"
+          class="playground-box playground-box-input"
+          :style="size"
+          :rows="input.split('\n').length"
+        ></textarea>
+        <DoxenCodeBox
+          class="playground-box playground-box-output"
+          :code="output"
+          :style="size"
+          :styleTokens="{ codeBox: 'playground-output' }"
+        />
+      </div>
       <DoxenCodeBox
-        :code="output"
+        :code="printableSettings"
         :style="size"
-        :styleTokens="styleTokens"
       />
-    </div>
-    <DoxenCodeBox
-      :code="printableSettings"
-      :styleTokens="styleTokens"
-    />
+    </main>
   </div>
 </template>
 
@@ -165,13 +172,16 @@ export default {
           snapshotSettings.formatting.voidElements = this.voidElements;
         }
         if (typeof(this.tagsWithWhitespacePreserved) === 'boolean') {
-          snapshotSettings.tagsWithWhitespacePreserved = this.tagsWithWhitespacePreserved;
+          snapshotSettings.formatting = snapshotSettings.formatting || {};
+          snapshotSettings.formatting.tagsWithWhitespacePreserved = this.tagsWithWhitespacePreserved;
         } else if (!this.whitespaceTags.length) {
-          snapshotSettings.tagsWithWhitespacePreserved = false;
+          snapshotSettings.formatting = snapshotSettings.formatting || {};
+          snapshotSettings.formatting.tagsWithWhitespacePreserved = false;
         } else if (
           !['["a","pre"]','["pre","a"]'].includes(JSON.stringify(this.whitespaceTags))
         ) {
-          snapshotSettings.tagsWithWhitespacePreserved = this.whitespaceTags;
+          snapshotSettings.formatting = snapshotSettings.formatting || {};
+          snapshotSettings.formatting.tagsWithWhitespacePreserved = this.whitespaceTags;
         }
       }
       snapshotSettings = JSON
@@ -191,7 +201,7 @@ export default {
         )
         .replaceAll('"', '\'');
       snapshotSettings = 'global.vueSnapshots = ' + snapshotSettings;
-      snapshotSettings = '// Based on your above settings, excluding those that match the defaults\n' + snapshotSettings;
+      snapshotSettings = '// Based on your settings (excluding those that match the defaults)\n' + snapshotSettings;
       return snapshotSettings;
     },
     size: function () {
@@ -224,34 +234,48 @@ export default {
 };
 </script>
 
-<style scoped>
-label {
+<style>
+.playground {
+  display: flex;
+}
+.playground-controls {
+  display: flex;
+  align-content: start;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+  width: 300px;
+}
+.playground-controls label {
   margin: 0px 10px;
 }
-
-.controls {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+.playground-content {
+  width: 100%;
 }
-.container {
+.playground-content,
+.playground-box {
+  line-height: 1.38;
+}
+.playground-container {
   display: flex;
   flex-direction: row;
 }
-.container > * {
+.playground-box {
   width: 50%;
 }
-.stacked {
+.playground-box-input {
+  padding: 0.5em;
+}
+.playground-stacked {
   flex-direction: column;
 }
-.stacked > * {
+.playground-stacked .playground-box {
   width: 100%;
 }
-.stacked textarea {
+.playground-stacked textarea {
   min-height: 10em;
 }
-
-.hljs {
-  border-radius: 6px;
+.playground-output {
+  margin: 0px;
 }
 </style>
