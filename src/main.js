@@ -4,6 +4,7 @@ import constantsPlugin from 'vue-options-api-constants-plugin';
 import App from '@/App.vue';
 
 import 'normalize.css/normalize.css';
+import 'simpledotcss/simple.min.css';
 import 'highlightjs/styles/tomorrow-night-bright.css';
 import '@/styles/main.css';
 

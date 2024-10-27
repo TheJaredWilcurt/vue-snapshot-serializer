@@ -11,23 +11,22 @@
       proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </p>
 
-    <DoxenCodeBox
-      code="console.log('some text');"
-      :styleTokens="{
-        codeBoxContainer: '',
-        codeBox: ''
-      }"
-    />
+    <PlayGround />
   </div>
 </template>
 
 <script>
-import { DoxenCodeBox } from 'vue-doxen';
+import PlayGround from '@/PlayGround.vue';
 
 export default {
   name: 'App',
   components: {
-    DoxenCodeBox
+    PlayGround
+  },
+  computed: {
+    code: function () {
+      return vueMarkupFormatter('<div class="active" id title="Active">Text</div>');
+    }
   }
 };
 </script>
