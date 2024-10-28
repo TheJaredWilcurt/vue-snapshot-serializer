@@ -5,6 +5,22 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   base: '/vue-snapshot-serializer',
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          cheerio: ['cheerio'],
+          htmlparser2: ['htmlparser2'],
+          'lodash': ['lodash.xor'],
+          'normalize.css': ['normalize.css'],
+          parse5: ['parse5'],
+          vue: ['vue'],
+          'vue-doxen': ['vue-doxen'],
+          'vue3-snapshot-serializer': ['vue3-snapshot-serializer']
+        }
+      }
+    }
+  },
   plugins: [vue()],
   resolve: {
     alias: {
