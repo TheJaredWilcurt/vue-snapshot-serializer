@@ -5,9 +5,6 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   base: '/vue-snapshot-serializer',
-  build: {
-    outDir: 'docs'
-  },
   plugins: [vue()],
   resolve: {
     alias: {
