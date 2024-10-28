@@ -12,16 +12,19 @@
   </section>
 
   <LibraryUsage />
+  <ApiFeatures />
   <PlayGround />
 </template>
 
 <script>
+import ApiFeatures from '@/ApiFeatures.vue';
 import LibraryUsage from '@/LibraryUsage.vue';
 import PlayGround from '@/PlayGround.vue';
 
 export default {
   name: 'App',
   components: {
+    ApiFeatures,
     LibraryUsage,
     PlayGround
   }

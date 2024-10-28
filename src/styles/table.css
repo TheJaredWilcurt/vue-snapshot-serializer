@@ -1,0 +1,117 @@
+table {
+  display: block;
+  background: #2C3845;
+}
+
+tr,
+td,
+tbody,
+tfoot {
+  display: block;
+}
+
+thead {
+  display: none;
+}
+
+tr {
+  padding-bottom: 10px;
+}
+tr:nth-of-type(even) {
+  background: #242E39;
+}
+
+td {
+  padding: 10px 10px 0;
+  text-align: center;
+}
+td:before {
+  content: attr(data-title);
+  display: block;
+  padding-right: 10px;
+  color: #92A5BA;
+  font-weight: 700;
+}
+td code {
+  font-size: 14px;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  font-weight: 700;
+  text-align: left;
+}
+
+thead th {
+  background-color: #202932;
+  border: 1px solid #202932;
+  color: #FFF;
+}
+
+tfoot th {
+  display: block;
+  padding: 10px;
+  color: #B8C4D2;
+  text-align: center;
+}
+
+@media (min-width: 460px) {
+  td {
+    text-align: left;
+  }
+  td:before {
+    display: inline-block;
+    width: 140px;
+    text-align: right;
+  }
+}
+
+@media (min-width: 720px) {
+  table {
+    display: table;
+  }
+
+  tr {
+    display: table-row;
+  }
+
+  td,
+  th {
+    display: table-cell;
+  }
+
+  tbody {
+    display: table-row-group;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+
+  td {
+    border: 1px solid #28333F;
+  }
+  td:before {
+    display: none;
+  }
+
+  td,
+  th {
+    padding: 10px;
+  }
+
+  tr:nth-child(2n+2) td {
+    background-color: #242E39;
+  }
+
+  tfoot th {
+    display: table-cell;
+  }
+}
