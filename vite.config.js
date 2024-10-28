@@ -12,7 +12,6 @@ export default defineConfig({
           cheerio: ['cheerio'],
           htmlparser2: ['htmlparser2'],
           lodash: ['lodash.xor'],
-          'normalize.css': ['normalize.css'],
           parse5: ['parse5'],
           vue: ['vue'],
           'vue-doxen': ['vue-doxen'],
