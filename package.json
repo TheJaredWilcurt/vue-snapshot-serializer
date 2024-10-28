@@ -12,6 +12,9 @@
     "fix": "npm run lint -- --fix"
   },
   "dependencies": {
+    "@fontsource/fira-mono": "^5.1.0",
+    "@fontsource/iceberg": "^5.1.0",
+    "@fontsource/lato": "^5.1.0",
     "highlightjs": "^9.16.2",
     "lodash.xor": "^4.5.0",
     "normalize.css": "^8.0.1",

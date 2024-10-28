@@ -16,7 +16,7 @@
         v-model="vueSnapshots[key]"
         :name="value"
       />
-      <p><strong>*</strong> Requires a Vue-Test-Utils wrapper, not HTML</p>
+      <p><strong>*</strong> Requires a Vue-Test-Utils wrapper, not HTML string.</p>
       <fieldset>
         <label>
           Attributes to clear:

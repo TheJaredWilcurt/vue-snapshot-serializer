@@ -5,6 +5,7 @@ import App from '@/App.vue';
 
 import 'normalize.css/normalize.css';
 import 'highlightjs/styles/tomorrow-night-bright.css';
+import '@/styles/fonts.js';
 import '@/styles/main.css';
 
 const app = createApp(App);

@@ -11,7 +11,7 @@ export default defineConfig({
         manualChunks: {
           cheerio: ['cheerio'],
           htmlparser2: ['htmlparser2'],
-          'lodash': ['lodash.xor'],
+          lodash: ['lodash.xor'],
           'normalize.css': ['normalize.css'],
           parse5: ['parse5'],
           vue: ['vue'],
