@@ -1,105 +1,110 @@
 <template>
-  <div class="playground">
-    <aside class="playground-controls">
-      <fieldset>
-        <label>
-          Font size ({{ fontSize }}%)
-          <input v-model.number="fontSize" type="range" min="50" max="200">
-        </label>
-      </fieldset>
-      <DoxenCheckbox
-        v-model="stacked"
-        name="Stacked"
-      />
-      <DoxenCheckbox
-        v-for="(value, key) in TOP_LEVEL_BOOLEANS"
-        v-model="vueSnapshots[key]"
-        :name="value"
-      />
-      <p><strong>*</strong> Requires a Vue-Test-Utils wrapper, not HTML string.</p>
-      <fieldset>
-        <label>
-          Attributes to clear:
-          <input v-model="vueSnapshots.attributesToClear" placeholder="Comma separated list of attributes">
-        </label>
-      </fieldset>
-      <fieldset>
-        <label>
-          Formatter:
-          <select v-model="vueSnapshots.formatter">
-            <option value="none">None</option>
-            <option value="diffable">Diffable</option>
-            <option value="custom">Custom Function</option>
-          </select>
-        </label>
-      </fieldset>
-      <template v-if="vueSnapshots.formatter === 'diffable'">
+  <section>
+    <div class="wrapper">
+      <h2>Playground</h2>
+    </div>
+    <div class="playground">
+      <aside class="playground-controls">
         <fieldset>
           <label>
-            Void Elements:
-            <select v-model="vueSnapshots.formatting.voidElements">
-              <option value="html">&lt;input&gt;</option>
-              <option value="xhtml">&lt;input /&gt;</option>
-              <option value="closingTag">&lt;input&gt;&lt;/input&gt;</option>
-            </select>
+            Font size ({{ fontSize }}%)
+            <input v-model.number="fontSize" type="range" min="50" max="200">
           </label>
         </fieldset>
         <DoxenCheckbox
-          v-model="vueSnapshots.formatting.emptyAttributes"
-          name="Show Empty Attributes"
+          v-model="stacked"
+          name="Stacked"
         />
         <DoxenCheckbox
-          v-model="vueSnapshots.formatting.selfClosingTag"
-          name="Non-Void Self Closing Tags"
+          v-for="(value, key) in TOP_LEVEL_BOOLEANS"
+          v-model="vueSnapshots[key]"
+          :name="value"
         />
+        <p><strong>*</strong> Requires a Vue-Test-Utils wrapper, not HTML string.</p>
         <fieldset>
           <label>
-            Attributes Per Line:
-            <input v-model.number="vueSnapshots.formatting.attributesPerLine" type="number" min="0">
+            Attributes to clear:
+            <input v-model="vueSnapshots.attributesToClear" placeholder="Comma separated list of attributes">
           </label>
         </fieldset>
         <fieldset>
           <label>
-            Preserve Whitespace in Tags:
-            <select v-model="vueSnapshots.formatting.tagsWithWhitespacePreserved">
-              <option :value="true">All tags</option>
-              <option value="custom">Specific tags</option>
-              <option :value="false">No tags</option>
+            Formatter:
+            <select v-model="vueSnapshots.formatter">
+              <option value="none">None</option>
+              <option value="diffable">Diffable</option>
+              <option value="custom">Custom Function</option>
             </select>
           </label>
         </fieldset>
-        <fieldset>
-          <label v-if="vueSnapshots.formatting.tagsWithWhitespacePreserved === 'custom'">
-            Tags to preserve whitespace in:
-            <input v-model="whitespaceTagsList" placeholder="Comma separated list of tags">
-          </label>
-        </fieldset>
-      </template>
-    </aside>
-    <main class="playground-content">
-      <div
-        class="playground-container"
-        :class="{ 'playground-stacked': stacked }"
-      >
-        <textarea
-          v-model="input"
-          class="playground-box playground-box-input"
-          :style="size"
-          :rows="input.split('\n').length"
-        ></textarea>
+        <template v-if="vueSnapshots.formatter === 'diffable'">
+          <fieldset>
+            <label>
+              Void Elements:
+              <select v-model="vueSnapshots.formatting.voidElements">
+                <option value="html">&lt;input&gt;</option>
+                <option value="xhtml">&lt;input /&gt;</option>
+                <option value="closingTag">&lt;input&gt;&lt;/input&gt;</option>
+              </select>
+            </label>
+          </fieldset>
+          <DoxenCheckbox
+            v-model="vueSnapshots.formatting.emptyAttributes"
+            name="Show Empty Attributes"
+          />
+          <DoxenCheckbox
+            v-model="vueSnapshots.formatting.selfClosingTag"
+            name="Non-Void Self Closing Tags"
+          />
+          <fieldset>
+            <label>
+              Attributes Per Line:
+              <input v-model.number="vueSnapshots.formatting.attributesPerLine" type="number" min="0">
+            </label>
+          </fieldset>
+          <fieldset>
+            <label>
+              Preserve Whitespace in Tags:
+              <select v-model="vueSnapshots.formatting.tagsWithWhitespacePreserved">
+                <option :value="true">All tags</option>
+                <option value="custom">Specific tags</option>
+                <option :value="false">No tags</option>
+              </select>
+            </label>
+          </fieldset>
+          <fieldset>
+            <label v-if="vueSnapshots.formatting.tagsWithWhitespacePreserved === 'custom'">
+              Tags to preserve whitespace in:
+              <input v-model="whitespaceTagsList" placeholder="Comma separated list of tags">
+            </label>
+          </fieldset>
+        </template>
+      </aside>
+      <main class="playground-content">
+        <div
+          class="playground-container"
+          :class="{ 'playground-stacked': stacked }"
+        >
+          <textarea
+            v-model="input"
+            class="playground-box playground-box-input"
+            :style="size"
+            :rows="input.split('\n').length"
+          ></textarea>
+          <DoxenCodeBox
+            class="playground-box playground-box-output"
+            :code="output"
+            :style="size"
+            :styleTokens="{ codeBox: 'playground-output' }"
+          />
+        </div>
         <DoxenCodeBox
-          class="playground-box playground-box-output"
-          :code="output"
+          :code="printableSettings"
           :style="size"
-          :styleTokens="{ codeBox: 'playground-output' }"
         />
-      </div>
-      <DoxenCodeBox
-        :code="printableSettings"
-        :style="size"
-      />
-    </main>
-  </div>
+      </main>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -112,6 +117,7 @@ import { vueMarkupFormatter } from 'vue3-snapshot-serializer';
 
 const exampleCode = `
 <div id="header" data-server-rendered>
+  <!--v-if-->
   <label data-test="input" data-v-1ae75a9f="">
     Void and Attributes per line Example:
     <input>

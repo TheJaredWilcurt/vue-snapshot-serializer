@@ -22,6 +22,27 @@ body {
   color: #BEBCCA;
 }
 
+a,
+a:active,
+a:hover,
+a:visited {
+  color: #9393DE;
+}
+
+button {
+  border: 0px;
+  margin: 12px 8px 0px 0px;
+  padding: 7px 20px;
+  color: #CCD;
+  background: #121238;
+}
+
+p,
+li {
+  margin-top: 6px;
+  font-size: 1.2rem;
+}
+
 input,
 select,
 option,
@@ -34,8 +55,9 @@ textarea {
 
 h1 {
   font-family: 'Iceberg', Roboto, sans-serif;
-  font-weight: 400;
+  font-size: 5rem;
   font-style: normal;
+  font-weight: 400;
 }
 
 [class^="hljs"],
@@ -51,8 +73,27 @@ textarea {
  * LAYOUT
  */
 
+section {
+  margin-top: 5rem;
+}
+
 .wrapper {
   width: 100%;
   max-width: 900px;
   margin: 0px auto;
+}
+
+
+/**
+ * Doxen components
+ */
+
+[data-applied-style-tokens="tabsHeader"] {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+
+[data-applied-style-tokens="tabButton tabButtonSelected"] {
+  font-weight: 900;
 }
