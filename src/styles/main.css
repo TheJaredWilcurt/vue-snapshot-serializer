@@ -18,6 +18,8 @@ body {
 
 body {
   background: #313138;
+  background-image: linear-gradient(180deg, #121238 50px, #00D4FF00 100%);
+  background-repeat: no-repeat;
   font-family: Lato, sans-serif;
   color: #BEBCCA;
   scroll-behavior: smooth;

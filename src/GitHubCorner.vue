@@ -46,22 +46,23 @@ export default {
 }
 .github-corner-link {
   position: absolute;
-  top: 35px;
+  top: 0px;
   right: 0px;
   border: 0px;
   width: 80px;
   height: 80px;
   fill: #BEBCCA;
+  z-index: 10;
 }
 .github-corner-link:hover .github-octo-arm {
   animation: octocat-wave 560ms ease-in-out;
 }
 .github-octo-arm {
-  fill: #242E39;
+  fill: #121238;
   transform-origin: 130px 106px;
 }
 .github-octo-body {
-  fill: #242E39;
+  fill: #121238;
 }
 @media (max-width:500px) {
   .github-corner-link:hover .github-octo-arm {
