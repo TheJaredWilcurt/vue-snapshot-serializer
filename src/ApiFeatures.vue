@@ -41,7 +41,8 @@ import {
 export default {
   name: 'ApiFeatures',
   components: {
-    ApiTable
+    ApiTable,
+    DoxenCodeBox
   },
   constants: {
     ALL_SETTINGS_OBJECT,
