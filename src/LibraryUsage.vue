@@ -12,10 +12,6 @@
       <li>
         Register the serializer:
         <DoxenCodeSwapper
-          :fileName="{
-            Vitest: 'vite.config.js or vitest.config.js:',
-           Jest: 'package.json or Jest config file'
-          }"
           :codeTypes="{
             Vitest: VITEST_CONFIG_EXAMPLE,
             Jest: JEST_CONFIG_EXAMPLE
@@ -60,5 +56,4 @@ export default {
     WRAPPER_TEST_EXAMPLE
   }
 };
-
 </script>

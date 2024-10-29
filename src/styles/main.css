@@ -37,6 +37,11 @@ button {
   background: #121238;
 }
 
+hr {
+  width: 900px;
+  margin-top: 4rem;
+}
+
 p,
 li {
   margin-top: 6px;
@@ -58,6 +63,9 @@ h1 {
   font-size: 5rem;
   font-style: normal;
   font-weight: 400;
+}
+h2 {
+  margin-top: 5rem;
 }
 
 [class^="hljs"],
@@ -94,6 +102,12 @@ section {
   margin: 0px auto;
 }
 
+footer {
+  background: #121238;
+  margin-top: 100px;
+  padding: 100px 0px 120px 0px;
+  text-align: center;
+}
 
 /**
  * Doxen components

@@ -39,6 +39,9 @@ td code {
 table {
   width: 100%;
 }
+table + p {
+  margin-top: 2rem;
+}
 
 th {
   font-weight: 700;
