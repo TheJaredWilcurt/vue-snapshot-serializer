@@ -20,6 +20,7 @@ body {
   background: #313138;
   font-family: Lato, sans-serif;
   color: #BEBCCA;
+  scroll-behavior: smooth;
 }
 
 a,
@@ -59,6 +60,7 @@ textarea {
 }
 
 h1 {
+  margin-top: 6rem;
   font-family: 'Iceberg', Roboto, sans-serif;
   font-size: 5rem;
   font-style: normal;
@@ -66,6 +68,9 @@ h1 {
 }
 h2 {
   margin-top: 5rem;
+}
+h1 + h2 {
+  margin-top: 2rem;
 }
 
 [class^="hljs"],
@@ -91,6 +96,20 @@ textarea {
 /**
  * LAYOUT
  */
+
+
+nav {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  background: #121238;
+  font-size: 1.1rem;
+  line-height: 2;
+}
+nav .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
 
 section {
   margin-top: 5rem;

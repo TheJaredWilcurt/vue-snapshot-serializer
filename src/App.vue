@@ -1,6 +1,15 @@
 <template>
   <GitHubCorner />
 
+  <nav>
+    <div class="wrapper">
+      <a href="#">Intro</a>
+      <a href="#usage">Usage</a>
+      <a href="#api">API/Features</a>
+      <a href="#playground">Playground</a>
+    </div>
+  </nav>
+
   <section class="wrapper">
     <h1>Vue 3 Snapshot Serializer</h1>
 
@@ -9,19 +18,22 @@
     <p>This is the successor to <a href="https://github.com/tjw-lint/jest-serializer-vue-tjw">Jest-Serializer-Vue-TJW</a> (Vue 2, Jest, CJS).</p>
 
     <p>
-      Provides the best snapshots possible for Vue components, with a simple API of powerful features and nuanced formatting control. <strong>Try the playground below</strong>.
+      Provides the best snapshots possible for Vue components, with a simple API of powerful features and nuanced formatting control.
+    </p>
+    <p>
+      <strong>Try the playground below!</strong>
     </p>
   </section>
 
-  <hr>
+  <hr id="usage">
 
   <LibraryUsage />
 
-  <hr>
+  <hr id="api">
 
   <ApiFeatures />
 
-  <hr>
+  <hr id="playground">
 
   <PlayGround />
 

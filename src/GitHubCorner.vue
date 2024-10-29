@@ -46,7 +46,7 @@ export default {
 }
 .github-corner-link {
   position: absolute;
-  top: 0px;
+  top: 35px;
   right: 0px;
   border: 0px;
   width: 80px;
