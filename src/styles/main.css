@@ -75,10 +75,11 @@ textarea {
 
 :not(pre) > code {
   background: #FFF1;
-  padding: 2px;
-  border-radius: 4px;
-  line-height: 1.8;
   border: 1px solid #FFF2;
+  border-radius: 4px;
+  padding: 2px;
+  font-size: 1rem;
+  line-height: 1.8;
 }
 .hljs {
   border: 0px;
@@ -97,6 +98,7 @@ nav {
   background: #121238;
   font-size: 1.1rem;
   line-height: 2;
+  z-index: 100;
 }
 nav .wrapper {
   display: flex;

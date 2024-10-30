@@ -22,7 +22,7 @@
     <DoxenCodeBox :code="ALL_SETTINGS_OBJECT" />
 
     <p>
-      <strong>Note:</strong> You can set the global defaults for your entire project in your global <code>beforeEach</code>, so it aways resets to those defaults before each test. Then in a specific test you can override those defaults as needed if a test works better with a setting changed.
+      <strong>Note:</strong> In your global <code>beforeEach</code>, you can add any settings you want to apply across your entire project. So before each test it will reset the snapshot settings. Then in specific tests you can override those settings as needed if the test works better with a setting changed.
     </p>
   </section>
 </template>
