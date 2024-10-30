@@ -1,7 +1,7 @@
 <template>
   <section>
     <div class="wrapper">
-      <h2>Playground</h2>
+      <h2>Try it out</h2>
     </div>
     <div class="playground">
       <aside class="playground-controls">

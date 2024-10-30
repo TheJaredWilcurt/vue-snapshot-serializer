@@ -4,69 +4,42 @@
   <nav>
     <div class="wrapper">
       <a href="#">Intro</a>
-      <a href="#usage">Usage</a>
-      <a href="#api">API/Features</a>
       <a href="#playground">Playground</a>
+      <a href="#getting-started">Getting Started</a>
+      <a href="#api">API/Features</a>
     </div>
   </nav>
 
-  <section class="wrapper">
-    <h1>Vue 3 Snapshot Serializer</h1>
-
-    <h2>...for Vitest and Jest.</h2>
-
-    <p>This is the successor to <a href="https://github.com/tjw-lint/jest-serializer-vue-tjw">Jest-Serializer-Vue-TJW</a> (Vue 2, Jest, CJS).</p>
-
-    <p>
-      Provides the best snapshots possible for Vue components, with a simple API of powerful features and nuanced formatting control.
-    </p>
-    <p>
-      <strong>Try the playground below!</strong>
-    </p>
-  </section>
-
-  <hr id="usage">
-
-  <LibraryUsage />
-
-  <hr id="api">
-
-  <ApiFeatures />
+  <IntroSection />
 
   <hr id="playground">
-
   <PlayGround />
 
-  <footer>
-    <GitHubCircle />
-    <div style="font-size: 125%">
-      Made by <strong style="font-weight: 900;">The Jared Wilcurt</strong>
-    </div>
-    <em>
-      in sunny Indianapolis, Indiana.
-    </em>
+  <hr id="getting-started">
+  <GettingStarted />
 
-    <div style="margin-top: 14px; font-size: 80%; line-height: 1.6;">
-      MIT Licensed<br>
-      &copy;2024
-    </div>
-  </footer>
+  <hr id="api">
+  <ApiFeatures />
+
+  <FooterSection />
 </template>
 
 <script>
-import ApiFeatures from '@/ApiFeatures.vue';
-import GitHubCircle from '@/GitHubCircle.vue';
-import GitHubCorner from '@/GitHubCorner.vue';
-import LibraryUsage from '@/LibraryUsage.vue';
-import PlayGround from '@/PlayGround.vue';
+import GitHubCorner from '@/components/GitHubCorner.vue';
+import ApiFeatures from '@/sections/ApiFeatures.vue';
+import FooterSection from '@/sections/FooterSection.vue';
+import GettingStarted from '@/sections/GettingStarted.vue';
+import IntroSection from '@/sections/IntroSection.vue';
+import PlayGround from '@/sections/PlayGround.vue';
 
 export default {
   name: 'App',
   components: {
     ApiFeatures,
-    GitHubCircle,
+    FooterSection,
     GitHubCorner,
-    LibraryUsage,
+    IntroSection,
+    GettingStarted,
     PlayGround
   }
 };

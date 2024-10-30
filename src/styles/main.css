@@ -61,18 +61,8 @@ textarea {
   color: #CECCDA;
 }
 
-h1 {
-  margin-top: 6rem;
-  font-family: Lora, Georgia, sans-serif;
-  font-size: 4.76rem;
-  font-style: italic;
-  font-weight: 625;
-}
 h2 {
   margin-top: 5rem;
-}
-h1 + h2 {
-  margin-top: 2rem;
 }
 
 [class^="hljs"],

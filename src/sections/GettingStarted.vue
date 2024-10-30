@@ -1,6 +1,6 @@
 <template>
   <section class="wrapper">
-    <h2>Usage</h2>
+    <h2>Getting Started</h2>
 
     <ol>
       <li>
@@ -44,7 +44,7 @@ import {
 } from '@/helpers/codeSnippets.js';
 
 export default {
-  name: 'LibraryUsage',
+  name: 'GettingStarted',
   components: {
     DoxenCodeBox,
     DoxenCodeSwapper

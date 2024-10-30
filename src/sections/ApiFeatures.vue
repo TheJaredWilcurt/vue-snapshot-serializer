@@ -30,7 +30,7 @@
 <script>
 import { DoxenCodeBox } from 'vue-doxen';
 
-import ApiTable from '@/ApiTable.vue';
+import ApiTable from '@/components/ApiTable.vue';
 
 import {
   ALL_SETTINGS_OBJECT,
