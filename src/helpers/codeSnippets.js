@@ -68,7 +68,7 @@ export const TOP_LEVEL_API_DETAILS = [
   {
     setting: '<code>addInputValues</code>',
     default: '<code>true</code>',
-    description: 'Display current internal element value on <code>input</code>, <code>textarea</code>, and <code>select</code> fields. <code>&lt;input&gt;</code> becomes <code>&lt;input value="\'whatever\'"&gt;</code>. <strong>Requires passing in the VTU wrapper</strong>, not <code>wrapper.html()</code>.'
+    description: 'Display current internal element value on <code>input</code>, <code>textarea</code>, and <code>select</code> fields. <code>&lt;input&gt;</code> becomes <code>&lt;input value="\'whatever\'"&gt;</code>. <strong>Requires passing in the VTU <code>wrapper</code></strong>, not <code>wrapper.html()</code>.'
   },
   {
     setting: '<code>sortAttributes</code>',
@@ -78,7 +78,7 @@ export const TOP_LEVEL_API_DETAILS = [
   {
     setting: '<code>stringifyAttributes</code>',
     default: '<code>true</code>',
-    description: 'Injects the real values of dynamic attributes/props into the snapshot. <code>to="[object Object]"</code> becomes <code>to="{ name: \'home\' }"</code>. <strong>Requires passing in the VTU wrapper</strong>, not <code>wrapper.html()</code>.'
+    description: 'Injects the real values of dynamic attributes/props into the snapshot. <code>to="[object Object]"</code> becomes <code>to="{ name: \'home\' }"</code>. <strong>Requires passing in the VTU <code>wrapper</code></strong>, not <code>wrapper.html()</code>.'
   },
   {
     setting: '<code>removeServerRendered</code>',
@@ -138,17 +138,17 @@ export const TOP_LEVEL_API_DETAILS = [
   {
     setting: '<code>clearInlineFunctions</code>',
     default: '<code>false</code>',
-    description: 'Replaces <code>&lt;div title="function () { return true; }">&lt;/div></code> or this <code>&lt;div title="(x) => !x">&lt;/div></code> with this placeholder <code>&ltdiv title="[function]">&lt/div></code>.'
+    description: 'Replaces <code>&lt;div title="function () { return true; }">&lt;/div></code> or <code>&lt;div title="(x) => !x">&lt;/div></code> with this placeholder <code>&ltdiv title="[function]">&lt/div></code>.'
   },
   {
     setting: '<code>formatter</code>',
     default: '<code>\'diffable\'</code>',
-    description: 'Function to use for formatting the markup output. See examples below. Accepts <code>\'none\'</code>, <code>\'diffable\'</code>, or a function.'
+    description: 'Function to use for formatting the markup output. See examples below. Accepts <code>\'none\'</code>, <code>\'diffable\'</code>, or a function. If using a custom function it will be handed a string of markup and must return a string (not a promise).'
   },
   {
     setting: '<code>formatting</code>',
-    default: 'See below',
-    description: 'An object containing settings specific to the diffable formatter.'
+    default: 'See table below',
+    description: 'An object containing settings specific to the "diffable" formatter.'
   }
 ];
 
