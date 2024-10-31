@@ -52,7 +52,7 @@ export default {
   width: 80px;
   height: 80px;
   fill: #BEBCCA;
-  z-index: 10;
+  z-index: 200;
 }
 .github-corner-link:hover .github-octo-arm {
   animation: octocat-wave 560ms ease-in-out;
