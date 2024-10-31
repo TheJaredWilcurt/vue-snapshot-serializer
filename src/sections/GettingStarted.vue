@@ -62,9 +62,10 @@ export default {
 
 <style>
 .getting-started-section {
-  background: #738B65;
-  border-top: 1px solid transparent;
+  background: #272865;
+  border: 1px solid #111129;
+  border-width: 1px 0px;
   padding-bottom: 1rem;
-  color: #212141;
+  color: #CCD;
 }
 </style>
