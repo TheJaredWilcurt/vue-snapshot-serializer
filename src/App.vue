@@ -7,6 +7,7 @@
       <a href="#playground">Playground</a>
       <a href="#getting-started">Getting Started</a>
       <a href="#api">API/Features</a>
+      <a href="#advanced">Advanced Usage</a>
     </div>
   </nav>
 
@@ -21,11 +22,15 @@
   <hr id="api">
   <ApiFeatures />
 
+  <hr id="advanced">
+  <AdvancedUsage />
+
   <FooterSection />
 </template>
 
 <script>
 import GitHubCorner from '@/components/GitHubCorner.vue';
+import AdvancedUsage from '@/sections/AdvancedUsage.vue';
 import ApiFeatures from '@/sections/ApiFeatures.vue';
 import FooterSection from '@/sections/FooterSection.vue';
 import GettingStarted from '@/sections/GettingStarted.vue';
@@ -35,6 +40,7 @@ import PlayGround from '@/sections/PlayGround.vue';
 export default {
   name: 'App',
   components: {
+    AdvancedUsage,
     ApiFeatures,
     FooterSection,
     GitHubCorner,

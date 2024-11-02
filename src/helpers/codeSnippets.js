@@ -1,58 +1,68 @@
-export const GLOBAL_BEFORE_EACH_EXAMPLE = `
-// /tests/unit/setup.js
-global.beforeEach(() => {
-  global.vueSnapshots = {
-    // Your settings
-  };
-});
-`.trim();
-
-export const JEST_CONFIG_EXAMPLE = `
-// package.json or Jest config file
-{
-  "jest": {
-    "snapshotSerializers": [
-      "./node_modules/vue3-snapshot-serializer/index.js"
-    ]
+function unindent (value) {
+  if (
+    !value.startsWith('  ') &&
+    !value.startsWith('\n  ')
+  ) {
+    return value;
   }
+  return value
+    .split('\n')
+    .map((line) => {
+      if (line.startsWith('  ')) {
+        return line.replace('  ', '');
+      }
+      return line;
+    })
+    .join('\n')
+    .trim();
 }
-`.trim();
 
-export const VITEST_CONFIG_EXAMPLE = `
-// vite.config.js or vitest.config.js
-import { defineConfig } from 'vite'; // or 'vitest'
-
-export default defineConfig({
-  test: {
-    snapshotSerializers: [
-      './node_modules/vue3-snapshot-serializer/index.js'
-    ]
+export const JEST_CONFIG_EXAMPLE = unindent(`
+  // package.json or Jest config file
+  {
+    "jest": {
+      "snapshotSerializers": [
+        "./node_modules/vue3-snapshot-serializer/index.js"
+      ]
+    }
   }
-});
-`.trim();
+`);
 
-export const WRAPPER_TEST_EXAMPLE = `
-test('My test', async () => {
-  const wrapper = await mount(MyComponent);
-  const button = wrapper.find('[data-test="myButton"]');
+export const VITEST_CONFIG_EXAMPLE = unindent(`
+  // vite.config.js or vitest.config.js
+  import { defineConfig } from 'vite'; // or 'vitest'
 
-  // GOOD
-  expect(wrapper)
-    .toMatchSanpshot();
+  export default defineConfig({
+    test: {
+      snapshotSerializers: [
+        './node_modules/vue3-snapshot-serializer/index.js'
+      ]
+    }
+  });
+`);
 
-  // GOOD
-  expect(button)
-    .toMatchSanpshot();
+export const WRAPPER_TEST_EXAMPLE = unindent(`
+  test('My test', async () => {
+    const wrapper = await mount(MyComponent);
+    const button = wrapper.find('[data-test="myButton"]');
 
-  // BAD
-  expect(wrapper.html())
-    .toMatchSanpshot();
+    // GOOD
+    expect(wrapper)
+      .toMatchSanpshot();
 
-  // BAD
-  expect(button.html())
-    .toMatchSanpshot();
-});
-`.trim();
+    // GOOD
+    expect(button)
+      .toMatchSanpshot();
+
+    // BAD
+    expect(wrapper.html())
+      .toMatchSanpshot();
+
+    // BAD
+    expect(button.html())
+      .toMatchSanpshot();
+  });
+`);
 
 export const TOP_LEVEL_API_DETAILS = [
   {
@@ -175,31 +185,73 @@ export const FORMATTING_API_DETAILS = [
   }
 ];
 
-export const ALL_SETTINGS_OBJECT = `
-global.vueSnapshots = {
-  verbose: true,
-  attributesToClear: [],
-  addInputValues: true,
-  sortAttributes: true,
-  stringifyAttributes: true,
-  removeServerRendered: true,
-  removeDataVId: true,
-  removeDataTest: true,
-  removeDataTestid: true,
-  removeDataTestId: true,
-  removeDataQa: false,
-  removeDataCy: false,
-  removeDataPw: false,
-  removeIdTest: false,
-  removeClassTest: false,
-  removeComments: false,
-  clearInlineFunctions: false,
-  formatter: 'diffable',
-  formatting: {
-    attributesPerLine: 1,
-    emptyAttributes: true,
-    selfClosingTag: false,
-    voidElements: 'xhtml'
-  }
-};
-`.trim();
+export const ALL_SETTINGS_OBJECT = unindent(`
+  global.vueSnapshots = {
+    verbose: true,
+    attributesToClear: [],
+    addInputValues: true,
+    sortAttributes: true,
+    stringifyAttributes: true,
+    removeServerRendered: true,
+    removeDataVId: true,
+    removeDataTest: true,
+    removeDataTestid: true,
+    removeDataTestId: true,
+    removeDataQa: false,
+    removeDataCy: false,
+    removeDataPw: false,
+    removeIdTest: false,
+    removeClassTest: false,
+    removeComments: false,
+    clearInlineFunctions: false,
+    formatter: 'diffable',
+    formatting: {
+      attributesPerLine: 1,
+      emptyAttributes: true,
+      selfClosingTag: false,
+      voidElements: 'xhtml'
+    }
+  };
+`);
+
+export const GLOBAL_SETUP_EXAMPLE = unindent(`
+  // /tests/setup.js
+  global.beforeEach(() => {
+    global.vueSnapshots = {
+      // Your default settings for all snapshots
+    };
+  });
+`);
+
+export const SPECIFIC_TEST_EXAMPLE = unindent(`
+  // /tests/components/MyComponent.test.js
+  import { mount } from '@vue/test-utils';
+
+  import MyComponent from '@/components/MyComponent.vue';
+
+  describe('MyComponent', () => {
+    test('My test', async () => {
+      const wrapper = await mount(MyComponent);
+
+      // Test-specific settings
+      global.vueSnapshots.attributesToClear = ['data-uuid'];
+
+      expect(wrapper)
+        .toMatchSnapshot();
+    });
+  });
+`);
+
+export const VUE_MARKUP_FORMATTER_EXAMPLE = unindent(`
+  import { vueMarkupFormatter } from 'vue3-snapshot-serializer';
+
+  globalThis.vueSnapshots = {
+    // Your settings
+  };
+
+  const formatted = vueMarkupFormatter('<div data-test="example">Text</div>');
+  console.log(formatted);
+  //\`<div>
+  //  Text
+  //</div>\`
+`);

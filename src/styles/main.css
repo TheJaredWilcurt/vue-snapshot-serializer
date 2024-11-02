@@ -73,6 +73,10 @@ textarea {
   font-optical-sizing: auto;
 }
 
+pre {
+  line-height: 1.38;
+}
+
 :not(pre) > code {
   background: #FFF1;
   border: 1px solid #FFF2;

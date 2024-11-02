@@ -21,7 +21,7 @@
         </li>
         <li>
           If you want to tweak any of the default settings for snapshots, put them in your <code>global.beforeEach()</code>
-          <DoxenCodeBox :code="GLOBAL_BEFORE_EACH_EXAMPLE" />
+          <DoxenCodeBox :code="GLOBAL_SETUP_EXAMPLE" />
         </li>
         <li>
           In tests, make sure to always pass in the Vue-Test-Utils wrapper containing the VNode so advanced features will work. If you pass in the HTML string instead, most features will still work, but not all.
@@ -39,7 +39,7 @@ import {
 } from 'vue-doxen';
 
 import {
-  GLOBAL_BEFORE_EACH_EXAMPLE,
+  GLOBAL_SETUP_EXAMPLE,
   JEST_CONFIG_EXAMPLE,
   VITEST_CONFIG_EXAMPLE,
   WRAPPER_TEST_EXAMPLE
@@ -52,7 +52,7 @@ export default {
     DoxenCodeSwapper
   },
   constants: {
-    GLOBAL_BEFORE_EACH_EXAMPLE,
+    GLOBAL_SETUP_EXAMPLE,
     JEST_CONFIG_EXAMPLE,
     VITEST_CONFIG_EXAMPLE,
     WRAPPER_TEST_EXAMPLE
