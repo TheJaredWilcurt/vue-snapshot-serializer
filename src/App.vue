@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import zenscroll from 'zenscroll';
+
 import GitHubCorner from '@/components/GitHubCorner.vue';
 import AdvancedUsage from '@/sections/AdvancedUsage.vue';
 import ApiFeatures from '@/sections/ApiFeatures.vue';
@@ -47,6 +49,9 @@ export default {
     IntroSection,
     GettingStarted,
     PlayGround
+  },
+  created: function () {
+    zenscroll.setup();
   }
 };
 </script>
