@@ -21,14 +21,14 @@
     "vue": "^3.5.12",
     "vue-doxen": "^0.4.4",
     "vue-options-api-constants-plugin": "^1.0.1",
-    "vue3-snapshot-serializer": "^0.2.1",
+    "vue3-snapshot-serializer": "^0.3.0",
     "zenscroll": "^4.0.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.13.0",
-    "@stylistic/eslint-plugin-js": "^2.9.0",
+    "@eslint/js": "^9.14.0",
+    "@stylistic/eslint-plugin-js": "^2.10.1",
     "@vitejs/plugin-vue": "^5.1.4",
-    "eslint": "^9.13.0",
+    "eslint": "^9.14.0",
     "eslint-config-tjw-base": "^3.0.1",
     "vite": "^5.4.10"
   },
