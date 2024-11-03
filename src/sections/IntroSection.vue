@@ -139,4 +139,15 @@ export default {
 .explainer strong {
   font-weight: 900;
 }
+
+@media (width < 360px) {
+  .title {
+    font-size: 3rem;
+  }
+}
+@media (width < 294px) {
+  .title {
+    margin-top: 8rem;
+  }
+}
 </style>

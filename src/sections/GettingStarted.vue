@@ -71,4 +71,14 @@ export default {
   padding-bottom: 1rem;
   color: #CCD;
 }
+@media (width < 900px) {
+  .getting-started-section ol,
+  .getting-started-section ul {
+    padding-left: 1.1rem;
+  }
+  .getting-started-section code,
+  .getting-started-section li {
+    font-size: 80%;
+  }
+}
 </style>

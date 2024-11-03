@@ -8,7 +8,7 @@
     </div>
     <div class="playground">
       <aside class="playground-controls">
-        <fieldset>
+        <fieldset class="playground-font-size">
           <label>
             Font size ({{ fontSize }}%)
             <input v-model.number="fontSize" type="range" min="50" max="200">
@@ -389,5 +389,28 @@ export default {
 }
 .playground-output {
   margin: 0px;
+}
+@media (width < 900px) {
+  .playground {
+    flex-direction: column;
+    align-items: center;
+  }
+  .playground-controls {
+    width: 100%;
+    font-size: 85%;
+  }
+  .playground-font-size {
+    margin: 0px;
+  }
+  .playground-font-size label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px;
+  }
+  .playground-font-size input {
+    margin: 0px 0px 0px 0.5rem;
+  }
+
 }
 </style>

@@ -10,10 +10,10 @@
 
 html,
 body {
-  height: 100%;
   border: 0px;
   margin: 0px;
   padding: 0px;
+  overflow-x: hidden;
 }
 
 body {
@@ -40,7 +40,8 @@ button {
 }
 
 hr {
-  width: 900px;
+  width: 100%;
+  max-width: 900px;
   margin-top: 4rem;
 }
 
@@ -100,6 +101,7 @@ pre {
 nav {
   position: fixed;
   top: 0px;
+  left: 0px;
   width: 100%;
   background: #121238;
   font-size: 1.1rem;
@@ -108,7 +110,11 @@ nav {
 }
 nav .wrapper {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+nav a {
+  margin: 0.25rem 0.5rem;
 }
 
 section {

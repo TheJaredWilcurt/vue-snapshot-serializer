@@ -1,6 +1,6 @@
 table {
   display: block;
-  background: #2C3845;
+  background: #2C2C45;
 }
 
 tr,
@@ -18,7 +18,7 @@ tr {
   padding-bottom: 10px;
 }
 tr:nth-of-type(even) {
-  background: #242E39;
+  background: #242439;
 }
 
 td {
@@ -28,7 +28,7 @@ td {
 td:before {
   content: attr(data-title);
   display: block;
-  padding-right: 10px;
+  padding-right: 0px;
   color: #92A5BA;
   font-weight: 700;
 }
@@ -68,6 +68,7 @@ tfoot th {
   td:before {
     display: inline-block;
     width: 140px;
+    padding-right: 10px;
     text-align: right;
   }
 }
@@ -111,7 +112,7 @@ tfoot th {
   }
 
   tr:nth-child(2n+2) td {
-    background-color: #242E39;
+    background-color: #242439;
   }
 
   tfoot th {
