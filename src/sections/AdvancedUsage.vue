@@ -1,6 +1,9 @@
 <template>
   <section class="wrapper">
-    <h2>Advanced Usage</h2>
+    <h2>
+      Advanced Usage
+      <a href="#advanced">#</a>
+    </h2>
 
     <hr id="settings" />
 

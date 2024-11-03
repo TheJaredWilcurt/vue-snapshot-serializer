@@ -1,7 +1,10 @@
 <template>
   <section class="getting-started-section">
     <div class="wrapper">
-      <h2>Getting Started</h2>
+      <h2>
+        Getting Started
+        <a href="#getting-started">#</a>
+      </h2>
 
       <ol>
         <li>

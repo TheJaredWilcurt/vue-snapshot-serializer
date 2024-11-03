@@ -1,6 +1,9 @@
 <template>
   <section class="wrapper">
-    <h2>API/Features</h2>
+    <h2>
+      API/Features
+      <a href="#api">#</a>
+    </h2>
 
     <p>
       <code>global.vueSnapshots</code> options:

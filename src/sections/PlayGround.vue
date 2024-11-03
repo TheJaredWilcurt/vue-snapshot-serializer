@@ -1,7 +1,10 @@
 <template>
   <section>
     <div class="wrapper">
-      <h2>Try it out</h2>
+      <h2>
+        Try it out
+        <a href="#playground">#</a>
+      </h2>
     </div>
     <div class="playground">
       <aside class="playground-controls">

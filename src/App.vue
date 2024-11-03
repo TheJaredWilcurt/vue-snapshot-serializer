@@ -25,6 +25,10 @@
   <hr id="advanced">
   <AdvancedUsage />
 
+  <hr id="contributors" />
+
+  <GitHubContributors />
+
   <FooterSection />
 </template>
 
@@ -36,6 +40,7 @@ import AdvancedUsage from '@/sections/AdvancedUsage.vue';
 import ApiFeatures from '@/sections/ApiFeatures.vue';
 import FooterSection from '@/sections/FooterSection.vue';
 import GettingStarted from '@/sections/GettingStarted.vue';
+import GitHubContributors from '@/sections/GitHubContributors.vue';
 import IntroSection from '@/sections/IntroSection.vue';
 import PlayGround from '@/sections/PlayGround.vue';
 
@@ -45,6 +50,7 @@ export default {
     AdvancedUsage,
     ApiFeatures,
     FooterSection,
+    GitHubContributors,
     GitHubCorner,
     IntroSection,
     GettingStarted,
