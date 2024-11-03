@@ -255,3 +255,15 @@ export const VUE_MARKUP_FORMATTER_EXAMPLE = unindent(`
   //  Text
   //</div>\`
 `);
+
+export const TYPES_IMPORT_EXAMPLE = unindent(`
+  /** @typedef {import('vue3-snapshot-serializer/types').SETTINGS} SETTINGS */
+
+  global.beforeEach(() => {
+    /** @type {SETTINGS} */
+    const settings = {
+      // Your settings
+    };
+    globalThis.vueSnapshots = settings;
+  });
+`);

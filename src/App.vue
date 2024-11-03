@@ -51,7 +51,9 @@ export default {
     PlayGround
   },
   created: function () {
-    zenscroll.setup();
+    setTimeout(() => {
+      zenscroll.setup();
+    }, 0);
   }
 };
 </script>
