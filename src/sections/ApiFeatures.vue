@@ -22,7 +22,10 @@
 
     <p>The below settings are all the defaults, so if you like them, you don't need to pass them in.</p>
 
-    <DoxenCodeBox :code="ALL_SETTINGS_OBJECT" />
+    <DoxenCodeBox
+      :code="ALL_SETTINGS_OBJECT"
+      :copy="false"
+    />
 
     <p>
       <strong>Note:</strong> In your global <code>beforeEach</code>, you can add any settings you want to apply across your entire project. So before each test it will reset the snapshot settings. Then in specific tests you can override those settings as needed if the test works better with a setting changed.

@@ -8,7 +8,10 @@
     </div>
     <div class="playground">
       <aside class="playground-controls">
-        <fieldset class="playground-font-size">
+        <fieldset
+          class="playground-font-size"
+          :title="descriptions.fontSize"
+        >
           <label>
             Font size ({{ fontSize }}%)
             <input v-model.number="fontSize" type="range" min="50" max="200">
@@ -17,20 +20,22 @@
         <DoxenCheckbox
           v-model="stacked"
           name="Stacked"
+          :title="descriptions.stacked"
         />
         <DoxenCheckbox
           v-for="(value, key) in TOP_LEVEL_BOOLEANS"
           v-model="vueSnapshots[key]"
           :name="value"
+          :title="descriptions[key]"
         />
         <p><strong>*</strong> Requires a Vue-Test-Utils wrapper, not HTML string.</p>
-        <fieldset>
+        <fieldset :title="descriptions.attributesToClear">
           <label>
             Attributes to clear:
             <input v-model="vueSnapshots.attributesToClear" placeholder="Comma separated list of attributes">
           </label>
         </fieldset>
-        <fieldset>
+        <fieldset :title="descriptions.formatter">
           <label>
             Formatter:
             <select v-model="vueSnapshots.formatter">
@@ -41,7 +46,7 @@
           </label>
         </fieldset>
         <template v-if="vueSnapshots.formatter === 'diffable'">
-          <fieldset>
+          <fieldset :title="descriptions.voidElements">
             <label>
               Void Elements:
               <select v-model="vueSnapshots.formatting.voidElements">
@@ -54,18 +59,20 @@
           <DoxenCheckbox
             v-model="vueSnapshots.formatting.emptyAttributes"
             name="Show Empty Attributes"
+            :title="descriptions.emptyAttributes"
           />
           <DoxenCheckbox
             v-model="vueSnapshots.formatting.selfClosingTag"
             name="Non-Void Self Closing Tags"
+            :title="descriptions.selfClosingTag"
           />
-          <fieldset>
+          <fieldset :title="descriptions.attributesPerLine">
             <label>
               Attributes Per Line:
               <input v-model.number="vueSnapshots.formatting.attributesPerLine" type="number" min="0">
             </label>
           </fieldset>
-          <fieldset>
+          <fieldset :title="descriptions.tagsWithWhitespacePreserved">
             <label>
               Preserve Whitespace in Tags:
               <select v-model="vueSnapshots.formatting.tagsWithWhitespacePreserved">
@@ -75,7 +82,7 @@
               </select>
             </label>
           </fieldset>
-          <fieldset>
+          <fieldset :title="descriptions.tagsWithWhitespacePreserved">
             <label v-if="vueSnapshots.formatting.tagsWithWhitespacePreserved === 'custom'">
               Tags to preserve whitespace in:
               <input v-model="whitespaceTagsList" placeholder="Comma separated list of tags">
@@ -97,12 +104,14 @@
           <DoxenCodeBox
             class="playground-box playground-box-output"
             :code="output"
+            :copy="false"
             :style="size"
             :styleTokens="{ codeBox: 'playground-output' }"
           />
         </div>
         <DoxenCodeBox
           :code="printableSettings"
+          :copy="false"
           :style="size"
         />
       </main>
@@ -117,22 +126,10 @@ import {
   DoxenCodeBox
 } from 'vue-doxen';
 import { vueMarkupFormatter } from 'vue3-snapshot-serializer';
-
-const exampleCode = `
-<div id="header" data-server-rendered>
-  <!--v-if-->
-  <label data-test="input" data-v-1ae75a9f="">
-    Void and Attributes per line Example:
-    <input>
-    <input type="range">
-    <input type="range" max="50">
-    <input type="range" max="50" id="slider">
-  </label>
-  <p class="">Empty attribute example</p>
-  <div></div>
-  <ul><li><a href="#">Link text on same line</a></li></ul>
-</div>
-`.trim();
+import {
+  API_DESCRIPTIONS,
+  PLAYGROUND_EXAMPLE_CODE
+} from '@/helpers/codeSnippets.js';
 
 const defaults = Object.freeze({
   addInputValues: true,
@@ -167,6 +164,7 @@ export default {
     DoxenCodeBox
   },
   constants: {
+    descriptions: API_DESCRIPTIONS,
     TOP_LEVEL_BOOLEANS: {
       verbose: 'Verbose',
       removeServerRendered: 'Remove data-server-rendered',
@@ -189,7 +187,7 @@ export default {
   data: function () {
     return {
       fontSize: 100,
-      input: exampleCode,
+      input: PLAYGROUND_EXAMPLE_CODE,
       stacked: false,
       whitespaceTagsList: 'a, pre',
       vueSnapshots: {
@@ -390,6 +388,13 @@ export default {
 .playground-output {
   margin: 0px;
 }
+
+.playground-box [class^="hljs"],
+.playground-box code,
+.playground-box pre {
+  font-size: 1em;
+}
+
 @media (width < 900px) {
   .playground {
     flex-direction: column;

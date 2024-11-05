@@ -8,6 +8,24 @@
   box-sizing: border-box;
 }
 
+.backdrop {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 98vh;
+  display: block;
+  background-image: linear-gradient(180deg, #121238 50px, #00D4FF00 100%);
+  z-index: 0;
+}
+#app {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 1;
+}
+
 html,
 body {
   border: 0px;
@@ -17,8 +35,7 @@ body {
 }
 
 body {
-  background: #313138;
-  background-image: linear-gradient(180deg, #121238 50px, #00D4FF00 100%);
+  background: #2C2C3D;
   background-repeat: no-repeat;
   font-family: Lato, sans-serif;
   color: #BEBCCA;
@@ -41,7 +58,10 @@ button {
 
 hr {
   width: 100%;
+  height: 1px;
   max-width: 900px;
+  background: #BEBCCA;
+  border: 0px;
   margin-top: 4rem;
 }
 
@@ -75,6 +95,14 @@ textarea {
   font-family: 'Fira Mono', monospace !important;
   font-optical-sizing: auto;
 }
+@media (width < 900px) {
+  [class^="hljs"],
+  code,
+  pre,
+  textarea {
+    font-size: 0.69rem;
+  }
+}
 
 pre {
   line-height: 1.38;
@@ -93,10 +121,41 @@ pre {
   border-radius: 0px;
 }
 
+blockquote {
+  border-left: 4px solid #BEBCCA;
+  margin-left: 2rem;
+  padding: 1rem;
+  padding-bottom: 1px;
+  background: #1E1E1E;
+}
+blockquote > strong {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+blockquote p {
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+details {
+  background: #FFF1;
+  padding: 1rem;
+}
+details summary {
+  font-size: 1.2rem;
+}
+details li {
+  font-size: 1.1rem;
+}
+details p {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
 /**
  * LAYOUT
  */
-
 
 nav {
   position: fixed;
@@ -115,6 +174,7 @@ nav .wrapper {
 }
 nav a {
   margin: 0.25rem 0.5rem;
+  text-align: center;
 }
 
 section {

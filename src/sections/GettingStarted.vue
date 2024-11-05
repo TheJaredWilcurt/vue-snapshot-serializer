@@ -24,11 +24,17 @@
         </li>
         <li>
           If you want to tweak any of the default settings for snapshots, put them in your <code>global.beforeEach()</code>
-          <DoxenCodeBox :code="GLOBAL_SETUP_EXAMPLE" />
+          <DoxenCodeBox
+            :code="GLOBAL_SETUP_EXAMPLE"
+            :copy="false"
+          />
         </li>
         <li>
           In tests, make sure to always pass in the Vue-Test-Utils wrapper containing the VNode so advanced features will work. If you pass in the HTML string instead, most features will still work, but not all.
-          <DoxenCodeBox :code="WRAPPER_TEST_EXAMPLE" />
+          <DoxenCodeBox
+            :code="WRAPPER_TEST_EXAMPLE"
+            :copy="false"
+          />
         </li>
       </ol>
     </div>

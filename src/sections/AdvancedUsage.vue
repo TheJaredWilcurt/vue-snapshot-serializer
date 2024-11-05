@@ -14,14 +14,20 @@
 
     <p>In your <code>setup.js</code> file, I would recommend globally applying settings before every test run.</p>
 
-    <DoxenCodeBox :code="GLOBAL_SETUP_EXAMPLE" />
+    <DoxenCodeBox
+      :code="GLOBAL_SETUP_EXAMPLE"
+      :copy="false"
+    />
 
     <p>
       With this in place, your snapshot settings will be reset before each test runs.
       This means you can freely override these settings in specific tests, like so:
     </p>
 
-    <DoxenCodeBox :code="SPECIFIC_TEST_EXAMPLE" />
+    <DoxenCodeBox
+      :code="SPECIFIC_TEST_EXAMPLE"
+      :copy="false"
+    />
 
     <hr id="external-use" />
 
@@ -34,7 +40,10 @@
       This library has many great features for formatting and cleaning up markup. For example, you may want to create your own function to validate expected markup in an End-to-End (E2E) testing tool, like Playwright or Cypress.
     </p>
 
-    <DoxenCodeBox :code="VUE_MARKUP_FORMATTER_EXAMPLE" />
+    <DoxenCodeBox
+      :code="VUE_MARKUP_FORMATTER_EXAMPLE"
+      :copy="false"
+    />
 
     <p>
       The <code>vueMarkupFormatter</code> function expects a string starting with <code>&lt;</code>,
@@ -50,12 +59,61 @@
       <a href="#types">#</a>
     </h3>
 
-    <p>
-      The snapshot settings API is <strong>fully documented</strong>, <em>and less importantly</em>, <strong>typed</strong>, via <strong>JSDocs</strong>.
-      If you <em>still think it's 2019</em> and are using TypeScript, maybe it's time to level up and switch to JSDocs, which is 100%
-      compatible with the TypeScript engine built in to some editors. You can finally skip the slow recompilation step and nasty tooling.
-      Though if you want to enforce it, just use <a href="https://github.com/gajus/eslint-plugin-jsdoc#readme">ESLint-Plugin-JSDoc</a> (it's great).
-    </p>
+    <blockquote>
+      <strong>Public Service Announcment</strong>
+      <p>
+        This library (<em>like most made in 2024</em>), is moving away from the perils of TypeScript,
+        in favor of the much <strong>simpler</strong>, and <strong>more powerful</strong>, JSDocs approach.
+      </p>
+
+      <details>
+        <summary>
+          Why not stick with TypeScript?
+        </summary>
+        <ul>
+          <li>Debugging issues</li>
+          <li>Browser and editor incompatibility</li>
+          <li>Complex tooling</li>
+          <li>Segmented ecosystem</li>
+          <li>Slow recompilation</li>
+          <li>Learning curve/barrier to entry</li>
+          <li>
+            The umbrage of experienced folks that TS brings
+            <a
+              href="https://dev.to/thejaredwilcurt/quotes-about-typescript-2ohf"
+              target="_blank"
+              title="Dev.to - Quotes About TypeScript"
+            >
+              as the world's most contentious web technology
+            </a>
+          </li>
+          <li>
+            Syntax forces you to break the most important rule of writing readable code:
+            <ul>
+              <li><strong>"One idea, per line"</strong></li>
+            </ul>
+          </li>
+          <li>
+            TypeScript just does types, and has no solution for documenting the intent or context of the code, which is actually much more valuable. (Technically their solution is to use JSDocs... which, hey, that's what we're doing!)
+          </li>
+        </ul>
+        <p>
+          JSDocs has none of these issues, can do everything TS can (and more), and is fully supported &amp; recommended by the TS maintainers.
+        </p>
+      </details>
+
+      <p>
+        We encourage others to follow suit.
+        If you want to automate enforcing JSDocs, so your code and comments are always in sync, all you need is a simple linting plugin:
+      </p>
+      <ul>
+        <li>
+          <a href="https://github.com/gajus/eslint-plugin-jsdoc#readme">ESLint-Plugin-JSDoc</a>
+          (<em>it's great!</em>)
+        </li>
+        <li><a href="https://github.com/tjw-lint/eslint-config-tjw-jsdoc/blob/main/index.js#L9">The rules I use with it</a>.</li>
+      </ul>
+    </blockquote>
 
     <p>
       Below we add a comment to import the type definition for the library's API, into the <code>setup.js</code> file,
@@ -65,7 +123,10 @@
       you'll get type checking (if your editor has the TS Engine built in). All this with <strong>normal</strong> JavaScript.
     </p>
 
-    <DoxenCodeBox :code="TYPES_IMPORT_EXAMPLE" />
+    <DoxenCodeBox
+      :code="TYPES_IMPORT_EXAMPLE"
+      :copy="false"
+    />
 
     <p>
       Other available type definitions are

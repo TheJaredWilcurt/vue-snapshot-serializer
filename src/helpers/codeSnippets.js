@@ -179,6 +179,11 @@ export const FORMATTING_API_DETAILS = [
     description: 'Converts <code>&lt;div&gt;&lt;/div&gt;</code> to <code>&lt;div /&gt;</code> or <code>&lt;p class="x"&gt;&lt;/p&gt;</code> to <code>&lt;p class="x" /&gt;</code>. Does not affect void elements (like <code>&lt;input&gt;</code>), use the <code>voidElements</code> setting for them.'
   },
   {
+    setting: '<code>tagsWithWhitespacePreserved</code>',
+    default: '<code>[\'a\', \'pre\']</code>',
+    description: 'Does not add returns and indentation to the inner content of these tags when formatting. Accepts an array of tags, or <code>true</code> for all tags, or <code>false</code> for no tags.'
+  },
+  {
     setting: '<code>voidElements</code>',
     default: '<code>\'xhtml\'</code>',
     description: 'Determines how void elements are closed. Accepts <code>\'html\'</code> for <code>&lt;input&gt;</code>, <code>\'xhtml\'</code> for <code>&lt;input /&gt;</code>, and <code>\'closingTag\'</code> for <code>&lt;input&gt;&lt;/input&gt;</code>.'
@@ -266,4 +271,49 @@ export const TYPES_IMPORT_EXAMPLE = unindent(`
     };
     globalThis.vueSnapshots = settings;
   });
+`);
+
+export const API_DESCRIPTIONS = {
+  fontSize: 'Adjusts the font size of the playground input/output boxes.',
+  stacked: 'Changes the layout of the input/output boxes.',
+  verbose: 'Logs to the console errors or other messages if true.',
+  attributesToClear: 'Takes an array of attribute strings, like `[\'title\', \'id\']`, to remove the values from these attributes. `<i title="9:04:55 AM" id="uuid_48a50d28cb453f94" class="current-time"></i>` becomes `<i title id class="current-time"></i>`.',
+  addInputValues: 'Display current internal element value on `input`, `textarea`, and `select` fields. `<input>` becomes `<input value="\'whatever\'">`. **Requires passing in the VTU `wrapper`**, not `wrapper.html()`.',
+  sortAttributes: 'Sorts the attributes inside HTML elements in the snapshot. This greatly reduces snapshot noise, making diffs easier to read.',
+  stringifyAttributes: 'Injects the real values of dynamic attributes/props into the snapshot. `to="[object Object]"` becomes `to="{ name: \'home\' }"`. **Requires passing in the VTU `wrapper`**, not `wrapper.html()`.',
+  removeServerRendered: 'Removes `data-server-rendered="true"` from your snapshots if true.',
+  removeDataVId: 'Removes `data-v-1234abcd=""` from your snapshots if true. Useful if 3rd-party components use scoped styles to reduce snapshot noise when updating dependencies.',
+  removeDataTest: 'Removes `data-test="whatever"` from your snapshots if true. To also remove these from your production builds, <a href="https://github.com/cogor/vite-plugin-vue-remove-attributes">see here</a>.',
+  removeDataTestid: 'Removes `data-testid="whatever"` from your snapshots if true.',
+  removeDataTestId: 'Removes `data-test-id="whatever"` from your snapshots if true.',
+  removeDataQa: 'Removes `data-qa="whatever"` from your snapshots if true. `data-qa` is usually used by non-dev QA members. If they change in your snapshot, that indicates it may break someone else\'s E2E tests. So most using `data-qa` prefer they be left in by default.',
+  removeDataCy: 'Removes `data-cy="whatever"` from your snapshots if true. `data-cy` is used by Cypress end-to-end tests. If they change in your snapshot, that indicates it may break an E2E test. So most using `data-cy` prefer they be left in by default.',
+  removeDataPw: 'Removes `data-pw="whatever"` from your snapshots if true. `data-pw` is used by Playwright end-to-end tests. If they change in your snapshot, that indicates it may break an E2E test. So most using `data-pw` prefer they be left in by default.',
+  removeIdTest: 'Removes `id="test-whatever"` or `id="testWhatever"` from snapshots. **Warning:** You should never use ID\'s for test tokens, as they can also be used by JS and CSS, making them more brittle and their intent less clear. Use `data-test-id` instead.',
+  removeClassTest: 'Removes all CSS classes that start with "test", like `class="test-whatever"`. **Warning:** Don\'t use this approach. Use `data-test` instead. It is better suited for this because it doesn\'t conflate CSS and test tokens.',
+  removeComments: 'Removes all HTML comments from your snapshots. This is false by default, as sometimes these comments can infer important information about how your DOM was rendered. However, this is mostly just personal preference.',
+  clearInlineFunctions: 'Replaces `<div title="function () { return true; }"></div>` or `<div title="(x) => !x"></div>` with this placeholder `<div title="[function]"></div>`.',
+  formatter: 'Function to use for formatting the markup output. See examples below. Accepts `\'none\'`, `\'diffable\'`, or a function. If using a custom function it will be handed a string of markup and must return a string (not a promise).',
+  formatting: 'An object containing settings specific to the "diffable" formatter.',
+  attributesPerLine: 'How many attributes are allowed on the same line as the starting tag.',
+  emptyAttributes: 'Determines whether empty attributes will include `=""`. If `false` then `<span class="" id=""></span>` becomes `<span class id></span>`.',
+  selfClosingTag: 'Converts `<div></div>` to `<div />` or `<p class="x"></p>` to `<p class="x" />`. Does not affect void elements (like `<input>`), use the `voidElements` setting for them.',
+  tagsWithWhitespacePreserved: 'Does not add returns and indentation to the inner content of these tags. Accepts an array of tags, or `true` for all tags, or `false` for no tags.',
+  voidElements: 'Determines how void elements are closed. Accepts `\'html\'` for `<input>`, `\'xhtml\'` for `<input />`, and `\'closingTag\'` for `<input></input>`.'
+};
+
+export const PLAYGROUND_EXAMPLE_CODE = unindent(`
+  <div id="header" data-server-rendered>
+    <!--v-if-->
+    <label data-test="input" data-v-1ae75a9f="">
+      Void and Attributes per line Example:
+      <input>
+      <input type="range">
+      <input type="range" max="50">
+      <input type="range" max="50" id="slider">
+    </label>
+    <p class="">Empty attribute example</p>
+    <div></div>
+    <ul><li><a href="#">Link text on same line</a></li></ul>
+  </div>
 `);
