@@ -176,7 +176,7 @@ export const FORMATTING_API_DETAILS = [
   {
     setting: '<code>escapeInnerText</code>',
     default: '<code>true</code>',
-    description: 'Retains or discards named HTML entity encodings, like <code>&lt;</code> instead of <code><</code>.'
+    description: 'Retains or discards named HTML entity encodings, like <code>&amp;lt;</code> instead of <code><</code>.'
   },
   {
     setting: '<code>selfClosingTag</code>',
