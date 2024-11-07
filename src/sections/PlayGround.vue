@@ -62,6 +62,11 @@
             :title="descriptions.emptyAttributes"
           />
           <DoxenCheckbox
+            v-model="vueSnapshots.formatting.escapeInnerText"
+            name="Escape Inner Text"
+            :title="descriptions.escapeInnerText"
+          />
+          <DoxenCheckbox
             v-model="vueSnapshots.formatting.selfClosingTag"
             name="Non-Void Self Closing Tags"
             :title="descriptions.selfClosingTag"
@@ -137,6 +142,7 @@ const defaults = Object.freeze({
   attributesToClear: [],
   clearInlineFunctions: false,
   emptyAttributes: true,
+  escapeInnerText: true,
   formatter: 'diffable',
   removeComments: false,
   removeServerRendered: true,
@@ -212,6 +218,7 @@ export default {
         formatting: {
           attributesPerLine: defaults.attributesPerLine,
           emptyAttributes: defaults.emptyAttributes,
+          escapeInnerText: defaults.escapeInnerText,
           selfClosingTag: defaults.selfClosingTag,
           tagsWithWhitespacePreserved: 'custom',
           voidElements: defaults.voidElements
@@ -248,6 +255,10 @@ export default {
         if (this.vueSnapshots.formatting.attributesPerLine !== defaults.attributesPerLine) {
           setFormattingObject();
           snapshotSettings.formatting.attributesPerLine = this.vueSnapshots.formatting.attributesPerLine || 0;
+        }
+        if (this.vueSnapshots.formatting.escapeInnerText !== defaults.escapeInnerText) {
+          setFormattingObject();
+          snapshotSettings.formatting.escapeInnerText = this.vueSnapshots.formatting.escapeInnerText;
         }
         if (this.vueSnapshots.formatting.emptyAttributes !== defaults.emptyAttributes) {
           setFormattingObject();

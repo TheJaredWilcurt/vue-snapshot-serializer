@@ -174,6 +174,11 @@ export const FORMATTING_API_DETAILS = [
     description: 'Determines whether empty attributes will include <code>=""</code>. If <code>false</code> then <code>&lt;span class="" id=""&gt;&lt;/span&gt;</code> becomes <code>&lt;span class id&gt;&lt;/span&gt;</code>.'
   },
   {
+    setting: '<code>escapeInnerText</code>',
+    default: '<code>true</code>',
+    description: 'Retains or discards named HTML entity encodings, like <code>&lt;</code> instead of <code><</code>.'
+  },
+  {
     setting: '<code>selfClosingTag</code>',
     default: '<code>false</code>',
     description: 'Converts <code>&lt;div&gt;&lt;/div&gt;</code> to <code>&lt;div /&gt;</code> or <code>&lt;p class="x"&gt;&lt;/p&gt;</code> to <code>&lt;p class="x" /&gt;</code>. Does not affect void elements (like <code>&lt;input&gt;</code>), use the <code>voidElements</code> setting for them.'
@@ -213,6 +218,7 @@ export const ALL_SETTINGS_OBJECT = unindent(`
     formatting: {
       attributesPerLine: 1,
       emptyAttributes: true,
+      escapeInnerText: true,
       selfClosingTag: false,
       voidElements: 'xhtml'
     }
@@ -297,6 +303,7 @@ export const API_DESCRIPTIONS = {
   formatting: 'An object containing settings specific to the "diffable" formatter.',
   attributesPerLine: 'How many attributes are allowed on the same line as the starting tag.',
   emptyAttributes: 'Determines whether empty attributes will include `=""`. If `false` then `<span class="" id=""></span>` becomes `<span class id></span>`.',
+  escapeInnerText: 'Retains or discards named HTML entity encodings, like `&lt;` instead of `<`.',
   selfClosingTag: 'Converts `<div></div>` to `<div />` or `<p class="x"></p>` to `<p class="x" />`. Does not affect void elements (like `<input>`), use the `voidElements` setting for them.',
   tagsWithWhitespacePreserved: 'Does not add returns and indentation to the inner content of these tags. Accepts an array of tags, or `true` for all tags, or `false` for no tags.',
   voidElements: 'Determines how void elements are closed. Accepts `\'html\'` for `<input>`, `\'xhtml\'` for `<input />`, and `\'closingTag\'` for `<input></input>`.'
@@ -315,5 +322,12 @@ export const PLAYGROUND_EXAMPLE_CODE = unindent(`
     <p class="">Empty attribute example</p>
     <div></div>
     <ul><li><a href="#">Link text on same line</a></li></ul>
+    <pre>
+      <code>
+        &lt;div class=&quot;active&quot;&gt;
+          Escaped Text
+        &lt;/div&gt;
+      </code>
+    </pre>
   </div>
 `);
