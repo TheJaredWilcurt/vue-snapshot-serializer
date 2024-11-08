@@ -52,7 +52,7 @@
               <select v-model="vueSnapshots.formatting.voidElements">
                 <option value="html">&lt;input&gt;</option>
                 <option value="xhtml">&lt;input /&gt;</option>
-                <option value="closingTag">&lt;input&gt;&lt;/input&gt;</option>
+                <option value="xml">&lt;input&gt;&lt;/input&gt;</option>
               </select>
             </label>
           </fieldset>
