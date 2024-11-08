@@ -191,7 +191,7 @@ export const FORMATTING_API_DETAILS = [
   {
     setting: '<code>voidElements</code>',
     default: '<code>\'xhtml\'</code>',
-    description: 'Determines how void elements are closed. Accepts <code>\'html\'</code> for <code>&lt;input&gt;</code>, <code>\'xhtml\'</code> for <code>&lt;input /&gt;</code>, and <code>\'closingTag\'</code> for <code>&lt;input&gt;&lt;/input&gt;</code>.'
+    description: 'Determines how void elements are closed. Accepts <code>\'html\'</code> for <code>&lt;input&gt;</code>, <code>\'xhtml\'</code> for <code>&lt;input /&gt;</code>, and <code>\'xml\'</code> for <code>&lt;input&gt;&lt;/input&gt;</code>.'
   }
 ];
 
@@ -306,7 +306,7 @@ export const API_DESCRIPTIONS = {
   escapeInnerText: 'Retains or discards named HTML entity encodings, like `&lt;` instead of `<`.',
   selfClosingTag: 'Converts `<div></div>` to `<div />` or `<p class="x"></p>` to `<p class="x" />`. Does not affect void elements (like `<input>`), use the `voidElements` setting for them.',
   tagsWithWhitespacePreserved: 'Does not add returns and indentation to the inner content of these tags. Accepts an array of tags, or `true` for all tags, or `false` for no tags.',
-  voidElements: 'Determines how void elements are closed. Accepts `\'html\'` for `<input>`, `\'xhtml\'` for `<input />`, and `\'closingTag\'` for `<input></input>`.'
+  voidElements: 'Determines how void elements are closed. Accepts `\'html\'` for `<input>`, `\'xhtml\'` for `<input />`, and `\'xml\'` for `<input></input>`.'
 };
 
 export const PLAYGROUND_EXAMPLE_CODE = unindent(`
