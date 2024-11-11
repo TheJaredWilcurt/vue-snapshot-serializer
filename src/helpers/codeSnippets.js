@@ -83,7 +83,7 @@ export const TOP_LEVEL_API_DETAILS = [
   {
     setting: '<code>sortAttributes</code>',
     default: '<code>true</code>',
-    description: 'Sorts the attributes inside HTML elements in the snapshot. This greatly reduces snapshot noise, making diffs easier to read.'
+    description: 'Sorts the attributes inside HTML elements in the snapshot. This greatly reduces snapshot noise, making diffs easier to read and more meaningful.'
   },
   {
     setting: '<code>stringifyAttributes</code>',
@@ -176,7 +176,7 @@ export const FORMATTING_API_DETAILS = [
   {
     setting: '<code>escapeInnerText</code>',
     default: '<code>true</code>',
-    description: 'Retains or discards named HTML entity encodings, like <code>&amp;lt;</code> instead of <code><</code>.'
+    description: 'Retains (if <code>true</code>) or discards (if <code>false</code>) named HTML entity encodings, like <code>&amp;lt;</code> instead of <code><</code>.'
   },
   {
     setting: '<code>selfClosingTag</code>',
