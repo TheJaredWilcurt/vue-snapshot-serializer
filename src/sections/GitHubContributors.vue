@@ -44,7 +44,9 @@ export default {
           return response.json();
         })
         .then((data) => {
-          this.contributors = data;
+          this.contributors = data.filter((contributor) => {
+            return !contributor.login.startsWith('dependabot');
+          });
         })
         .catch((error) => {
           if (error) {

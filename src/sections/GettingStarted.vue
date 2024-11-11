@@ -23,7 +23,7 @@
           />
         </li>
         <li>
-          If you want to tweak any of the default settings for snapshots, put them in your <code>global.beforeEach()</code>
+          If you want to tweak any of the default settings for snapshots, put them in your <code class="hljs"><span class="hljs-variable">global</span>.beforeEach()</code>
           <DoxenCodeBox
             :code="GLOBAL_SETUP_EXAMPLE"
             :copy="false"

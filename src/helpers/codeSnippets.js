@@ -73,12 +73,33 @@ export const TOP_LEVEL_API_DETAILS = [
   {
     setting: '<code>attributesToClear</code>',
     default: '<code>[]</code>',
-    description: 'Takes an array of attribute strings, like <code>[\'title\', \'id\']</code>, to remove the values from these attributes. <code>&lt;i title="9:04:55 AM" id="uuid_48a50d28cb453f94" class="current-time"&gt;&lt;/i&gt;</code> becomes <code>&lt;i title id class="current-time"&gt;&lt;/i&gt;</code>.'
+    description: [
+      'Takes an array of attribute strings,',
+      'like',
+      '<code class="hljs" tabindex="0">[<span class="hljs-string">\'title\'</span>, <span class="hljs-string">\'id\'</span>]</code>,',
+      'to remove the values from these attributes.',
+      '<code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"9:04:55 AM"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"uuid_48a50d28cb453f94"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"current-time"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></code>',
+      'becomes',
+      '<code class="hljs" tabindex="0"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">title</span> <span class="hljs-attr">id</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"current-time"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></code>.'
+    ].join(' ')
   },
   {
     setting: '<code>addInputValues</code>',
     default: '<code class="hljs-literal">true</code>',
-    description: 'Display current internal element value on <code>input</code>, <code>textarea</code>, and <code>select</code> fields. <code>&lt;input&gt;</code> becomes <code>&lt;input value="\'whatever\'"&gt;</code>. <strong>Requires passing in the VTU <code>wrapper</code></strong>, not <code>wrapper.html()</code>.'
+    description: [
+      'Display current internal element value on',
+      '<code class="hljs hljs-attr">input</code>,',
+      '<code class="hljs hljs-attr">textarea</code>,',
+      'and',
+      '<code class="hljs hljs-attr">select</code>',
+      'fields.',
+      '<code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></code>',
+      'becomes',
+      '<code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"\'whatever\'"</span>&gt;</span></code>.',
+      '<strong>Requires passing in the VTU <code class="hljs hljs-attr">wrapper</code></strong>,',
+      'not',
+      '<code class="hljs hljs-attr">wrapper.html()</code>.'
+    ].join(' ')
   },
   {
     setting: '<code>sortAttributes</code>',
@@ -88,57 +109,133 @@ export const TOP_LEVEL_API_DETAILS = [
   {
     setting: '<code>stringifyAttributes</code>',
     default: '<code class="hljs-literal">true</code>',
-    description: 'Injects the real values of dynamic attributes/props into the snapshot. <code>to="[object Object]"</code> becomes <code>to="{ name: \'home\' }"</code>. <strong>Requires passing in the VTU <code>wrapper</code></strong>, not <code>wrapper.html()</code>.'
+    description: [
+      'Injects the real values of dynamic attributes/props into the snapshot.',
+      '<code class="hljs"><span class="hljs-tag"><span class="hljs-attr">to</span>=<span class="hljs-string">"[object Object]"</span></span></code>',
+      'becomes',
+      '<code class="hljs xml" tabindex="0"><span class="hljs-tag"><span class="hljs-attr">to</span>=<span class="hljs-string">"{ name: \'home\' }"</span></span></code>.',
+      '<strong>Requires passing in the VTU <code class="hljs hljs-attr">wrapper</code></strong>, not',
+      '<code class="hljs hljs-attr">wrapper.html()</code>.'
+    ].join(' ')
   },
   {
     setting: '<code>removeServerRendered</code>',
     default: '<code class="hljs-literal">true</code>',
-    description: 'Removes <code>data-server-rendered="true"</code> from your snapshots if true.'
+    description: [
+      'Removes',
+      '<code class="hljs"><span class="hljs-attr">data-server-rendered</span>=<span class="hljs-string">"true"</span></code>',
+      'from your snapshots if true.'
+    ].join(' ')
   },
   {
     setting: '<code>removeDataVId</code>',
     default: '<code class="hljs-literal">true</code>',
-    description: 'Removes <code>data-v-1234abcd=""</code> from your snapshots if true. Useful if 3rd-party components use scoped styles to reduce snapshot noise when updating dependencies.'
+    description: [
+      'Removes',
+      '<code class="hljs"><span class="hljs-attr">data-v-1234abcd</span>=<span class="hljs-string">""</span></code>',
+      'from your snapshots if true. Useful if 3rd-party components use scoped styles to reduce snapshot noise when updating dependencies.'
+    ].join(' ')
   },
   {
     setting: '<code>removeDataTest</code>',
     default: '<code class="hljs-literal">true</code>',
-    description: 'Removes <code>data-test="whatever"</code> from your snapshots if true. To also remove these from your production builds, <a href="https://github.com/cogor/vite-plugin-vue-remove-attributes">see here</a>.'
+    description: [
+      'Removes',
+      '<code class="hljs"><span class="hljs-attr">data-test</span>=<span class="hljs-string">"whatever"</span></code>',
+      'from your snapshots if true. To also remove these from your production builds,',
+      '<a href="https://github.com/cogor/vite-plugin-vue-remove-attributes">see here</a>.'
+    ].join(' ')
   },
   {
     setting: '<code>removeDataTestid</code>',
     default: '<code class="hljs-literal">true</code>',
-    description: 'Removes <code>data-testid="whatever"</code> from your snapshots if true.'
+    description: [
+      'Removes',
+      '<code class="hljs"><span class="hljs-attr">data-testid</span>=<span class="hljs-string">"whatever"</span></code>',
+      'from your snapshots if true.'
+    ].join(' ')
   },
   {
     setting: '<code>removeDataTestId</code>',
     default: '<code class="hljs-literal">true</code>',
-    description: 'Removes <code>data-test-id="whatever"</code> from your snapshots if true.'
+    description: [
+      'Removes',
+      '<code class="hljs"><span class="hljs-attr">data-test-id</span>=<span class="hljs-string">"whatever"</span></code>',
+      'from your snapshots if true.'
+    ].join(' ')
   },
   {
     setting: '<code>removeDataQa</code>',
     default: '<code class="hljs-literal">false</code>',
-    description: 'Removes <code>data-qa="whatever"</code> from your snapshots if true. <code>data-qa</code> is usually used by non-dev QA members. If they change in your snapshot, that indicates it may break someone else\'s E2E tests. So most using <code>data-qa</code> prefer they be left in by default.'
+    description: [
+      'Removes',
+      '<code class="hljs"><span class="hljs-attr">data-qa</span>=<span class="hljs-string">"whatever"</span></code>',
+      'from your snapshots if true.',
+      '<code class="hljs hljs-attr">data-qa</code>',
+      'is usually used by non-dev QA members.',
+      'If they change in your snapshot, that indicates it may break someone else\'s E2E tests.',
+      'So most using',
+      '<code class="hljs hljs-attr">data-qa</code>',
+      'prefer they be left in by default.'
+    ].join(' ')
   },
   {
     setting: '<code>removeDataCy</code>',
     default: '<code class="hljs-literal">false</code>',
-    description: 'Removes <code>data-cy="whatever"</code> from your snapshots if true. <code>data-cy</code> is used by Cypress end-to-end tests. If they change in your snapshot, that indicates it may break an E2E test. So most using <code>data-cy</code> prefer they be left in by default.'
+    description: [
+      'Removes',
+      '<code class="hljs"><span class="hljs-attr">data-cy</span>=<span class="hljs-string">"whatever"</span></code>',
+      'from your snapshots if true.',
+      '<code class="hljs hljs-attr">data-cy</code>',
+      'is used by Cypress end-to-end tests.',
+      'If they change in your snapshot, that indicates it may break an E2E test.',
+      'So most using',
+      '<code class="hljs hljs-attr">data-cy</code>',
+      'prefer they be left in by default.'
+    ].join(' ')
   },
   {
     setting: '<code>removeDataPw</code>',
     default: '<code class="hljs-literal">false</code>',
-    description: 'Removes <code>data-pw="whatever"</code> from your snapshots if true. <code>data-pw</code> is used by Playwright end-to-end tests. If they change in your snapshot, that indicates it may break an E2E test. So most using <code>data-pw</code> prefer they be left in by default.'
+    description: [
+      'Removes',
+      '<code class="hljs"><span class="hljs-attr">data-pw</span>=<span class="hljs-string">"whatever"</span></code>',
+      'from your snapshots if true.',
+      '<code class="hljs hljs-attr">data-pw</code>',
+      'is used by Playwright end-to-end tests.',
+      'If they change in your snapshot, that indicates it may break an E2E test.',
+      'So most using',
+      '<code class="hljs hljs-attr">data-pw</code>',
+      'prefer they be left in by default.'
+    ].join(' ')
   },
   {
     setting: '<code>removeIdTest</code>',
     default: '<code class="hljs-literal">false</code>',
-    description: 'Removes <code>id="test-whatever"</code> or <code>id="testWhatever"</code> from snapshots. <strong>Warning:</strong> You should never use ID\'s for test tokens, as they can also be used by JS and CSS, making them more brittle and their intent less clear. Use <code>data-test-id</code> instead.'
+    description: [
+      'Removes',
+      '<code class="hljs"><span class="hljs-attr">id</span>=<span class="hljs-string">"test-whatever"</span></code>',
+      'or',
+      '<code class="hljs"><span class="hljs-attr">id</span>=<span class="hljs-string">"testWhatever"</span></code>',
+      'from snapshots.',
+      '<strong>Warning:</strong> You should never use ID\'s for test tokens,',
+      'as they can also be used by JS and CSS,',
+      'making them more brittle and their intent less clear.',
+      'Use',
+      '<code class="hljs hljs-attr">data-test-id</code>',
+      'instead.'
+    ].join(' ')
   },
   {
     setting: '<code>removeClassTest</code>',
     default: '<code class="hljs-literal">false</code>',
-    description: 'Removes all CSS classes that start with "test", like <code>class="test-whatever"</code>. <strong>Warning:</strong> Don\'t use this approach. Use <code>data-test</code> instead. It is better suited for this because it doesn\'t conflate CSS and test tokens.'
+    description: [
+      'Removes all CSS classes that start with "test", like',
+      '<code class="hljs"><span class="hljs-attr">class</span>=<span class="hljs-string">"test-whatever"</span></code>.',
+      '<strong>Warning:</strong> Don\'t use this approach.',
+      'Use <code class="hljs hljs-attr">data-test</code> instead.',
+      'It is better suited for this because it doesn\'t conflate CSS and test tokens.'
+    ].join(' ')
   },
   {
     setting: '<code>removeComments</code>',
@@ -148,12 +245,26 @@ export const TOP_LEVEL_API_DETAILS = [
   {
     setting: '<code>clearInlineFunctions</code>',
     default: '<code class="hljs-literal">false</code>',
-    description: 'Replaces <code>&lt;div title="function () { return true; }">&lt;/div></code> or <code>&lt;div title="(x) => !x">&lt;/div></code> with this placeholder <code>&ltdiv title="[function]">&lt/div></code>.'
+    description: [
+      'Replaces',
+      '<code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"function () { return true; }"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code>',
+      'or',
+      '<code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"(x) =&gt; !x"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code>',
+      'with this placeholder',
+      '<code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"[function]"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code>.'
+    ].join(' ')
   },
   {
     setting: '<code>formatter</code>',
     default: '<code class="hljs-string">\'diffable\'</code>',
-    description: 'Function to use for formatting the markup output. See examples below. Accepts <code>\'none\'</code>, <code>\'diffable\'</code>, or a function. If using a custom function it will be handed a string of markup and must return a string (not a promise).'
+    description: [
+      'Function to use for formatting the markup output.',
+      'See examples below. Accepts',
+      '<code class="hljs hljs-string">\'none\'</code>,',
+      '<code class="hljs hljs-string">\'diffable\'</code>,',
+      'or a function.',
+      'If using a custom function it will be handed a string of markup and must return a string (not a promise).'
+    ].join(' ')
   },
   {
     setting: '<code>formatting</code>',
@@ -171,28 +282,87 @@ export const FORMATTING_API_DETAILS = [
   {
     setting: '<code>emptyAttributes</code>',
     default: '<code class="hljs-literal">true</code>',
-    description: 'Determines whether empty attributes will include <code>=""</code>. If <code>false</code> then <code>&lt;span class="" id=""&gt;&lt;/span&gt;</code> becomes <code>&lt;span class id&gt;&lt;/span&gt;</code>.'
+    description: [
+      'Determines whether empty attributes will include',
+      '<code class="hljs">=<span class="hljs-string">""</span></code>.',
+      'If',
+      '<code class="hljs hljs-literal">false</code>',
+      'then',
+      '<code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&nbsp;<span class="hljs-attr">class</span>=<span class="hljs-string">""</span>&nbsp;<span class="hljs-attr">id</span>=<span class="hljs-string">""</span>&gt;&lt;/<span class="hljs-name">span</span>&gt;</span></code>',
+      'becomes',
+      '<code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&nbsp;<span class="hljs-attr">class</span>&nbsp;<span class="hljs-attr">id</span>&gt;&lt;/<span class="hljs-name">span</span>&gt;</span></code>.'
+    ].join(' ')
   },
   {
     setting: '<code>escapeInnerText</code>',
     default: '<code class="hljs-literal">true</code>',
-    description: 'Retains (if <code>true</code>) or discards (if <code>false</code>) named HTML entity encodings, like <code>&amp;lt;</code> instead of <code><</code>.'
+    description: [
+      'Retains (if',
+      '<code class="hljs hljs-literal">true</code>)',
+      'or discards (if',
+      '<code class="hljs hljs-literal">false</code>)',
+      'named HTML entity encodings, like',
+      '<code class="hljs hljs-string">&amp;lt;</code>',
+      'instead of',
+      '<code class="hljs hljs-string"><</code>.'
+    ].join(' ')
   },
   {
     setting: '<code>selfClosingTag</code>',
     default: '<code class="hljs-literal">false</code>',
-    description: 'Converts <code>&lt;div&gt;&lt;/div&gt;</code> to <code>&lt;div /&gt;</code> or <code>&lt;p class="x"&gt;&lt;/p&gt;</code> to <code>&lt;p class="x" /&gt;</code>. Does not affect void elements (like <code>&lt;input&gt;</code>), use the <code>voidElements</code> setting for them.'
+    description: [
+      'Converts',
+      '<code class="hljs hljs-tag">&lt;<span class="hljs-name">div</span>&gt;&lt;/<span class="hljs-name">div</span>&gt;</code>',
+      'to',
+      '<code class="hljs hljs-tag">&lt;<span class="hljs-name">div</span>&nbsp;/&gt;</code>',
+      'or',
+      '<code class="hljs hljs-tag">&lt;<span class="hljs-name">p</span>&nbsp;<span class="hljs-attr">class</span>=<span class="hljs-string">"x"</span>&gt;&lt;/<span class="hljs-name">p</span>&gt;</code>',
+      'to',
+      '<code class="hljs hljs-tag">&lt;<span class="hljs-name">p</span>&nbsp;<span class="hljs-attr">class</span>=<span class="hljs-string">"x"</span>&nbsp;/&gt;</code>.',
+      'Does not affect void elements (like',
+      '<code class="hljs hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</code>),',
+      'use the',
+      '<code class="hljs hljs-variable">voidElements</code>',
+      'setting for them.'
+    ].join(' ')
   },
   {
     setting: '<code>tagsWithWhitespacePreserved</code>',
     d0efault: '<code>[\'a\', \'pre\']</code>',
     default: '<code style="white-space: pre;">[<span class="hljs-string">\'a\'</span>, <span class="hljs-string">\'pre\'</span>]</code>',
-    description: 'Does not add returns and indentation to the inner content of these tags when formatting. Accepts an array of tags, or <code>true</code> for all tags, or <code>false</code> for no tags.'
+    description: [
+      'Does not add returns and indentation to the inner content of these tags when formatting.',
+      'Accepts an array of tags, or',
+      '<code class="hljs hljs-literal">true</code>',
+      'for all tags, or',
+      '<code class="hljs hljs-literal">false</code>',
+      'for no tags.'
+    ].join(' ')
   },
   {
     setting: '<code>voidElements</code>',
     default: '<code class="hljs-string">\'xhtml\'</code>',
-    description: 'Determines how void elements are closed. Accepts <code>\'html\'</code> for <code>&lt;input&gt;</code>, <code>\'xhtml\'</code> for <code>&lt;input /&gt;</code>, and <code>\'xml\'</code> for <code>&lt;input&gt;&lt;/input&gt;</code>.'
+    description: [
+      'Determines how <a href="https://developer.mozilla.org/en-US/docs/Glossary/Void_element" target="_blank">void elements</a> are closed.',
+      '<br><br><strong>Accepts:</strong>',
+      '<ul>',
+      '  <li>',
+      '    <code class="hljs hljs-string">\'html\'</code>',
+      '    for',
+      '    <code class="hljs hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</code>',
+      '  </li>',
+      '  <li>',
+      '    <code class="hljs hljs-string">\'xhtml\'</code>',
+      '    for',
+      '    <code class="hljs hljs-tag">&lt;<span class="hljs hljs-name">input</span>&nbsp;/&gt;</code>',
+      '  </li>',
+      '  <li>',
+      '    <code class="hljs hljs-string">\'xml\'</code>',
+      '    for',
+      '    <code class="hljs hljs-tag" style="white-space: pre;">&lt;<span class="hljs-name">input</span>&gt;&lt;/<span class="hljs-name">input</span>&gt;</code>',
+      '  </li>',
+      '</ul>'
+    ].join(' ')
   }
 ];
 

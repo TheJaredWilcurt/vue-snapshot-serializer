@@ -12,7 +12,7 @@
       <a href="#settings">#</a>
     </h3>
 
-    <p>In your <code>setup.js</code> file, I would recommend globally applying settings before every test run.</p>
+    <p>In your <code class="hljs hljs-number">setup.js</code> file, I would recommend globally applying settings before every test run.</p>
 
     <DoxenCodeBox
       :code="GLOBAL_SETUP_EXAMPLE"
@@ -46,10 +46,10 @@
     />
 
     <p>
-      The <code>vueMarkupFormatter</code> function expects a string starting with <code>&lt;</code>,
-      and will return a formatted string based on your <code>globalThis.vueSnapshots</code> settings.
-      You can use <code>global</code>, <code>globalThis</code>, or <code>window</code> to set the
-      <code>vueSnapshots</code> settings object depending on your JavaScript environment.
+      The <code class="hljs hljs-name">vueMarkupFormatter</code> function expects a string starting with <code class="hljs hljs-string">&lt;</code>,
+      and will return a formatted string based on your <code class="hljs"><span class="hljs-variable">globalThis</span>.vueSnapshots</code> settings.
+      You can use <code class="hljs hljs-variable">global</code>, <code class="hljs hljs-variable">globalThis</code>, or <code class="hljs hljs-variable">window</code> to set the
+      <code class="hljs hljs-name">vueSnapshots</code> settings object depending on your JavaScript environment.
     </p>
 
     <hr id="types">
@@ -116,10 +116,10 @@
     </blockquote>
 
     <p>
-      Below we add a comment to import the type definition for the library's API, into the <code>setup.js</code> file,
-      and store the type definition in the <code>SETTINGS</code> name space.
-      Then we create a variable for our desired settings, and assign the <code>SETTINGS</code> type to it.
-      At this point you can get hover text, auto-complete and if you add <code>//&nbsp;@ts&#8209;check</code> to the top of the file
+      Below we add a comment to import the type definition for the library's API, into the <code class="hljs hljs-number">setup.js</code> file,
+      and store the type definition in the <code class="hljs hljs-variable">SETTINGS</code> name space.
+      Then we create a variable for our desired settings, and assign the <code class="hljs hljs-variable">SETTINGS</code> type to it.
+      At this point you can get hover text, auto-complete and if you add <code class="hljs hljs-comment">//&nbsp;@ts&#8209;check</code> to the top of the file
       you'll get type checking (if your editor has the TS Engine built in). All this with <strong>normal</strong> JavaScript.
     </p>
 
@@ -130,14 +130,14 @@
 
     <p>
       Other available type definitions are
-      <code>SETTINGS</code>,
-      <code>FORMATTER</code>,
-      <code>FORMATTING</code>,
-      <code>FORMATTERCB</code>,
+      <code class="hljs hljs-variable">SETTINGS</code>,
+      <code class="hljs hljs-variable">FORMATTER</code>,
+      <code class="hljs hljs-variable">FORMATTING</code>,
+      <code class="hljs hljs-variable">FORMATTERCB</code>,
       and
-      <code>VOIDELEMENTS</code>.
+      <code class="hljs hljs-variable">VOIDELEMENTS</code>.
       To learn more about them, read the
-      <a href="https://github.com/tjw-lint/vue3-snapshot-serializer/blob/main/types.js">types.js</a>
+      <code class="hljs"><a href="https://github.com/tjw-lint/vue3-snapshot-serializer/blob/main/types.js" class="hljs-number">types.js</a></code>
       file.
     </p>
   </section>

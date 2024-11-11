@@ -115,10 +115,17 @@ pre {
   padding: 2px;
   font-size: 1rem;
   line-height: 1.8;
+  white-space: preserve-spaces;
 }
 .hljs {
   border: 0px;
   border-radius: 0px;
+}
+a.hljs-number {
+  color: #B8D7A3;
+}
+a.hljs-number:hover {
+  color: #C8E7B3;
 }
 
 blockquote {
