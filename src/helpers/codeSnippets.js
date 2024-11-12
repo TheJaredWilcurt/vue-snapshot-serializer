@@ -76,11 +76,11 @@ export const TOP_LEVEL_API_DETAILS = [
     description: [
       'Takes an array of attribute strings,',
       'like',
-      '<code class="hljs" tabindex="0">[<span class="hljs-string">\'title\'</span>, <span class="hljs-string">\'id\'</span>]</code>,',
+      '<code class="hljs">[<span class="hljs-string">\'title\'</span>, <span class="hljs-string">\'id\'</span>]</code>,',
       'to remove the values from these attributes.',
       '<code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">title</span>=<span class="hljs-string">"9:04:55 AM"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"uuid_48a50d28cb453f94"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"current-time"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></code>',
       'becomes',
-      '<code class="hljs" tabindex="0"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">title</span> <span class="hljs-attr">id</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"current-time"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></code>.'
+      '<code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">i</span> <span class="hljs-attr">title</span> <span class="hljs-attr">id</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"current-time"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">i</span>&gt;</span></code>.'
     ].join(' ')
   },
   {
@@ -113,7 +113,7 @@ export const TOP_LEVEL_API_DETAILS = [
       'Injects the real values of dynamic attributes/props into the snapshot.',
       '<code class="hljs"><span class="hljs-tag"><span class="hljs-attr">to</span>=<span class="hljs-string">"[object Object]"</span></span></code>',
       'becomes',
-      '<code class="hljs xml" tabindex="0"><span class="hljs-tag"><span class="hljs-attr">to</span>=<span class="hljs-string">"{ name: \'home\' }"</span></span></code>.',
+      '<code class="hljs"><span class="hljs-tag"><span class="hljs-attr">to</span>=<span class="hljs-string">"{ name: \'home\' }"</span></span></code>.',
       '<strong>Requires passing in the VTU <code class="hljs hljs-attr">wrapper</code></strong>, not',
       '<code class="hljs hljs-attr">wrapper.html()</code>.'
     ].join(' ')
