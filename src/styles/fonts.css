@@ -12,5 +12,5 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('sometype-mono-at.woff2') format('woff2');
+  src: url('/vue-snapshot-serializer/sometype-mono-at.woff2') format('woff2');
 }
