@@ -79,16 +79,6 @@
           </fieldset>
           <fieldset :title="descriptions.tagsWithWhitespacePreserved">
             <label>
-              Preserve Whitespace in Tags:
-              <select v-model="vueSnapshots.formatting.tagsWithWhitespacePreserved">
-                <option :value="true">All tags</option>
-                <option value="custom">Specific tags</option>
-                <option :value="false">No tags</option>
-              </select>
-            </label>
-          </fieldset>
-          <fieldset :title="descriptions.tagsWithWhitespacePreserved">
-            <label v-if="vueSnapshots.formatting.tagsWithWhitespacePreserved === 'custom'">
               Tags to preserve whitespace in:
               <input v-model="whitespaceTagsList" placeholder="Comma separated list of tags">
             </label>
@@ -220,7 +210,6 @@ export default {
           emptyAttributes: defaults.emptyAttributes,
           escapeInnerText: defaults.escapeInnerText,
           selfClosingTag: defaults.selfClosingTag,
-          tagsWithWhitespacePreserved: 'custom',
           voidElements: defaults.voidElements
         }
       }
@@ -231,9 +220,16 @@ export default {
       return Array.from(new Set(this.whitespaceTagsList
         .split(',')
         .map((tag) => {
-          return tag.trim();
+          return tag
+            .replaceAll('[', '')
+            .replaceAll(']', '')
+            .replaceAll('"', '')
+            .replaceAll('\'', '')
+            .replaceAll('`', '')
+            .trim();
         })
-        .filter(Boolean)));
+        .filter(Boolean)
+      ));
     },
     clearableAttributes: function () {
       return Array.from(new Set(this.vueSnapshots.attributesToClear
@@ -272,13 +268,7 @@ export default {
           setFormattingObject();
           snapshotSettings.formatting.voidElements = this.vueSnapshots.formatting.voidElements;
         }
-        if (typeof(this.vueSnapshots.formatting.tagsWithWhitespacePreserved) === 'boolean') {
-          setFormattingObject();
-          snapshotSettings.formatting.tagsWithWhitespacePreserved = this.vueSnapshots.formatting.tagsWithWhitespacePreserved;
-        } else if (!this.whitespaceTags.length) {
-          setFormattingObject();
-          snapshotSettings.formatting.tagsWithWhitespacePreserved = false;
-        } else if (_xor(this.whitespaceTags, defaults.tagsWithWhitespacePreserved).length) {
+        if (_xor(this.whitespaceTags, defaults.tagsWithWhitespacePreserved).length) {
           setFormattingObject();
           snapshotSettings.formatting.tagsWithWhitespacePreserved = this.whitespaceTags;
         }
@@ -330,10 +320,8 @@ export default {
       };
       if (this.vueSnapshots.formatter === 'diffable') {
         window.vueSnapshots.formatting = {
-          ...this.vueSnapshots.formatting
-        }
-        if (this.vueSnapshots.formatting.tagsWithWhitespacePreserved === 'custom') {
-          window.vueSnapshots.formatting.tagsWithWhitespacePreserved = this.whitespaceTags;
+          ...this.vueSnapshots.formatting,
+          tagsWithWhitespacePreserved: this.whitespaceTags
         }
       } else if (this.vueSnapshots.formatter === 'custom') {
         window.vueSnapshots.formatter = function (markup) {
