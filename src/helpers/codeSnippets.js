@@ -64,7 +64,7 @@ export const WRAPPER_TEST_EXAMPLE = unindent(`
   });
 `);
 
-export const TOP_LEVEL_API_DETAILS = [
+export const TOP_LEVEL_API_DETAILS = Object.freeze([
   {
     setting: '<code>verbose</code>',
     default: '<code class="hljs-literal">true</code>',
@@ -271,9 +271,9 @@ export const TOP_LEVEL_API_DETAILS = [
     default: 'See table below',
     description: 'An object containing settings specific to the "diffable" formatter.'
   }
-];
+]);
 
-export const FORMATTING_API_DETAILS = [
+export const FORMATTING_API_DETAILS = Object.freeze([
   {
     setting: '<code>attributesPerLine</code>',
     default: '<code class="hljs-number">1</code>',
@@ -328,15 +328,10 @@ export const FORMATTING_API_DETAILS = [
   },
   {
     setting: '<code>tagsWithWhitespacePreserved</code>',
-    d0efault: '<code>[\'a\', \'pre\']</code>',
     default: '<code style="white-space: pre;">[<span class="hljs-string">\'a\'</span>, <span class="hljs-string">\'pre\'</span>]</code>',
     description: [
       'Does not add returns and indentation to the inner content of these tags when formatting.',
-      'Accepts an array of tags, or',
-      '<code class="hljs hljs-literal">true</code>',
-      'for all tags, or',
-      '<code class="hljs hljs-literal">false</code>',
-      'for no tags.'
+      'Accepts an array of tags.'
     ].join(' ')
   },
   {
@@ -364,7 +359,7 @@ export const FORMATTING_API_DETAILS = [
       '</ul>'
     ].join(' ')
   }
-];
+]);
 
 export const ALL_SETTINGS_OBJECT = unindent(`
   global.vueSnapshots = {
@@ -400,12 +395,14 @@ export const ALL_SETTINGS_OBJECT = unindent(`
 export const GLOBAL_SETUP_EXAMPLE = unindent(`
   // /tests/setup.js
   global.beforeEach(() => {
+    // Your default settings for all snapshots
     global.vueSnapshots = {
-      // Your default settings for all snapshots
+      formatting: {}
     };
   });
 `);
 
+/*
 export const SPECIFIC_TEST_EXAMPLE = unindent(`
   // /tests/components/MyComponent.test.js
   import { mount } from '@vue/test-utils';
@@ -416,7 +413,7 @@ export const SPECIFIC_TEST_EXAMPLE = unindent(`
     test('My test', async () => {
       const wrapper = await mount(MyComponent);
 
-      // Test-specific settings
+      // Test-specific settings that override the defaults in setup.js
       global.vueSnapshots.attributesToClear = ['data-uuid'];
 
       expect(wrapper)
@@ -424,12 +421,35 @@ export const SPECIFIC_TEST_EXAMPLE = unindent(`
     });
   });
 `);
+*/
+export const SPECIFIC_TEST_EXAMPLE = unindent(`
+  <pre
+    data-applied-style-tokens="codeBox"
+    data-style-tokens="codeBox"
+  ><code class="hljs javascript"><span class="hljs-comment">// /tests/components/MyComponent.test.js</span>
+  <span class="hljs-keyword">import</span> { mount } <span class="hljs-keyword">from</span> <span class="hljs-string">'<span class="at">@</span>vue/test-utils'</span>;
+
+  <span class="hljs-keyword">import</span> <span class="hljs-title class_">MyComponent</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'<span class="at">@</span>/components/MyComponent.vue'</span>;
+
+  <span class="hljs-title function_">describe</span>(<span class="hljs-string">'MyComponent'</span>, <span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-title function_">test</span>(<span class="hljs-string">'My test'</span>, <span class="hljs-title function_">async</span> () =&gt; {
+      <span class="hljs-keyword">const</span> wrapper = <span class="hljs-keyword">await</span> <span class="hljs-title function_">mount</span>(<span class="hljs-title class_">MyComponent</span>);
+
+      <span class="hljs-comment">// Test-specific settings that override the defaults in setup.js</span>
+      <span class="hljs-variable language_">global</span>.<span class="hljs-property">vueSnapshots</span>.<span class="hljs-property">attributesToClear</span> = [<span class="hljs-string">'data-uuid'</span>];
+
+      <span class="hljs-title function_">expect</span>(wrapper)
+        .<span class="hljs-title function_">toMatchSnapshot</span>();
+    });
+  });</code></pre>
+`);
 
 export const VUE_MARKUP_FORMATTER_EXAMPLE = unindent(`
   import { vueMarkupFormatter } from 'vue3-snapshot-serializer';
 
+  // Your settings
   globalThis.vueSnapshots = {
-    // Your settings
+    formatting: {}
   };
 
   const formatted = vueMarkupFormatter('<div data-test="example">Text</div>');
@@ -439,19 +459,30 @@ export const VUE_MARKUP_FORMATTER_EXAMPLE = unindent(`
   //</div>\`
 `);
 
+// export const TYPES_IMPORT_EXAMPLE = unindent(`
+//   /** @typedef {import('vue3-snapshot-serializer/types').SETTINGS} SETTINGS */
+//
+//   global.beforeEach(() => {
+//     /** @type {SETTINGS} */
+//     const settings = {
+//       // Your settings
+//     };
+//     globalThis.vueSnapshots = settings;
+//   });
+// `);
 export const TYPES_IMPORT_EXAMPLE = unindent(`
-  /** @typedef {import('vue3-snapshot-serializer/types').SETTINGS} SETTINGS */
+  <pre data-applied-style-tokens="codeBox"><code class="hljs javascript"><span class="hljs-comment">/** <span class="hljs-doctag"><span class="at">@</span>typedef</span> {<span class="hljs-type">import('vue3-snapshot-serializer/types').SETTINGS</span>} SETTINGS */</span>
 
-  global.beforeEach(() => {
-    /** @type {SETTINGS} */
-    const settings = {
-      // Your settings
+  <span class="hljs-variable language_">global</span>.<span class="hljs-title function_">beforeEach</span>(<span class="hljs-function">() =&gt;</span> {
+    <span class="hljs-comment">/** <span class="hljs-doctag"><span class="at">@</span>type</span> {<span class="hljs-type">SETTINGS</span>} */</span>
+    <span class="hljs-keyword">const</span> settings = {
+      <span class="hljs-comment">// Your settings</span>
     };
-    globalThis.vueSnapshots = settings;
-  });
+    globalThis.<span class="hljs-property">vueSnapshots</span> = settings;
+  });</code></pre>
 `);
 
-export const API_DESCRIPTIONS = {
+export const API_DESCRIPTIONS = Object.freeze({
   fontSize: 'Adjusts the font size of the playground input/output boxes.',
   stacked: 'Changes the layout of the input/output boxes.',
   verbose: 'Logs to the console errors or other messages if true.',
@@ -477,9 +508,9 @@ export const API_DESCRIPTIONS = {
   emptyAttributes: 'Determines whether empty attributes will include `=""`. If `false` then `<span class="" id=""></span>` becomes `<span class id></span>`.',
   escapeInnerText: 'Retains or discards named HTML entity encodings, like `&lt;` instead of `<`.',
   selfClosingTag: 'Converts `<div></div>` to `<div />` or `<p class="x"></p>` to `<p class="x" />`. Does not affect void elements (like `<input>`), use the `voidElements` setting for them.',
-  tagsWithWhitespacePreserved: 'Does not add returns and indentation to the inner content of these tags. Accepts an array of tags, or `true` for all tags, or `false` for no tags.',
+  tagsWithWhitespacePreserved: 'Does not add returns and indentation to the inner content of these tags. Accepts an array of tags, like `[\'a\', \'pre\']`',
   voidElements: 'Determines how void elements are closed. Accepts `\'html\'` for `<input>`, `\'xhtml\'` for `<input />`, and `\'xml\'` for `<input></input>`.'
-};
+});
 
 export const PLAYGROUND_EXAMPLE_CODE = unindent(`
   <div id="header" data-server-rendered>
