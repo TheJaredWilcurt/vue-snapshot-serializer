@@ -103,6 +103,9 @@ textarea {
     font-size: 0.69rem;
   }
 }
+.at {
+  font-family: 'Sometype Mono', monospace !important;
+}
 
 pre {
   line-height: 1.38;
