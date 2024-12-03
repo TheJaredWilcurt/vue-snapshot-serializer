@@ -98,7 +98,7 @@
           ></textarea>
           <DoxenCodeBox
             class="playground-box playground-box-output"
-            :code="output.trim()"
+            :code="output"
             :copy="false"
             :style="size"
             :styleTokens="{ codeBox: 'playground-output' }"
@@ -328,7 +328,7 @@ export default {
           return markup.toUpperCase();
         };
       }
-      return vueMarkupFormatter(this.input);
+      return vueMarkupFormatter(this.input.trim());
     }
   }
 };
