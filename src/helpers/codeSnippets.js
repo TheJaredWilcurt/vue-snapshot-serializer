@@ -525,12 +525,10 @@ export const PLAYGROUND_EXAMPLE_CODE = unindent(`
     <p class="">Empty attribute example</p>
     <div></div>
     <ul><li><a href="#">Link text on same line</a></li></ul>
-    <pre>
-      <code>
-        &lt;div class=&quot;active&quot;&gt;
-          Escaped Text
-        &lt;/div&gt;
-      </code>
-    </pre>
+    <pre><code>
+      &lt;div class=&quot;active&quot;&gt;
+        Escaped Text
+      &lt;/div&gt;
+    </code></pre>
   </div>
 `);
