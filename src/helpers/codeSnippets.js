@@ -48,19 +48,19 @@ export const WRAPPER_TEST_EXAMPLE = unindent(`
 
     // GOOD
     expect(wrapper)
-      .toMatchSanpshot();
+      .toMatchSnapshot();
 
     // GOOD
     expect(button)
-      .toMatchSanpshot();
+      .toMatchSnapshot();
 
     // BAD
     expect(wrapper.html())
-      .toMatchSanpshot();
+      .toMatchSnapshot();
 
     // BAD
     expect(button.html())
-      .toMatchSanpshot();
+      .toMatchSnapshot();
   });
 `);
 
