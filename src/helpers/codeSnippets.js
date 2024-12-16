@@ -267,7 +267,7 @@ export const TOP_LEVEL_API_DETAILS = Object.freeze([
       'See examples below. Accepts',
       '<code class="hljs hljs-string">\'none\'</code>',
       'and',
-      '<code class="hljs hljs-string">\'diffable\'</code>.',
+      '<code class="hljs hljs-string">\'diffable\'</code>.'
     ].join(' ')
   },
   {
