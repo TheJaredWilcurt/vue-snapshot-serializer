@@ -35,13 +35,17 @@
             <input v-model="vueSnapshots.attributesToClear" placeholder="Comma separated list of attributes">
           </label>
         </fieldset>
+        <DoxenCheckbox
+          v-model="vueSnapshots.postProcessor"
+          name="Post Processor"
+          :title="descriptions.postProcessor"
+        />
         <fieldset :title="descriptions.formatter">
           <label>
             Formatter:
             <select v-model="vueSnapshots.formatter">
               <option value="none">None</option>
               <option value="diffable">Diffable</option>
-              <option value="custom">Custom Function</option>
             </select>
           </label>
         </fieldset>
@@ -134,6 +138,7 @@ const defaults = Object.freeze({
   emptyAttributes: true,
   escapeInnerText: true,
   formatter: 'diffable',
+  postProcessor: false,
   removeComments: false,
   removeServerRendered: true,
   removeDataVId: true,
@@ -205,6 +210,7 @@ export default {
         removeServerRendered: defaults.removeServerRendered,
         sortAttributes: defaults.sortAttributes,
         verbose: defaults.verbose,
+        postProcessor: defaults.postProcessor,
         formatting: {
           attributesPerLine: defaults.attributesPerLine,
           emptyAttributes: defaults.emptyAttributes,
@@ -283,6 +289,9 @@ export default {
       if (this.clearableAttributes.length) {
         snapshotSettings.attributesToClear = this.clearableAttributes;
       }
+      if (this.vueSnapshots.postProcessor) {
+        snapshotSettings.postProcessor = true;
+      }
 
       snapshotSettings = JSON
         .stringify(snapshotSettings, null, 2)
@@ -296,10 +305,10 @@ export default {
         })
         .join('\n')
         .replace(
-          '"custom"',
+          'postProcessor: true',
           [
-            'function (markup) {',
-            '    // Your custom logic to format the markup',
+            'postProcessor: function (markup) {',
+            '    // Your custom logic goes here',
             '    return markup.toUpperCase();',
             '  }'
           ].join('\n')
@@ -323,8 +332,9 @@ export default {
           ...this.vueSnapshots.formatting,
           tagsWithWhitespacePreserved: this.whitespaceTags
         }
-      } else if (this.vueSnapshots.formatter === 'custom') {
-        window.vueSnapshots.formatter = function (markup) {
+      }
+      if (this.vueSnapshots.postProcessor) {
+        window.vueSnapshots.postProcessor = function (markup) {
           return markup.toUpperCase();
         };
       }
