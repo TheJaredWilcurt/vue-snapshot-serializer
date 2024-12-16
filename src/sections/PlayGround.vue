@@ -295,15 +295,6 @@ export default {
           return line;
         })
         .join('\n')
-        .replace(
-          '"custom"',
-          [
-            'function (markup) {',
-            '    // Your custom logic to format the markup',
-            '    return markup.toUpperCase();',
-            '  }'
-          ].join('\n')
-        )
         .replaceAll('"', '\'');
       snapshotSettings = 'globalThis.vueSnapshots = ' + snapshotSettings + ';';
       snapshotSettings = '// Based on your settings (excluding those that match the defaults)\n' + snapshotSettings;

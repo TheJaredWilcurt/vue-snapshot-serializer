@@ -255,15 +255,19 @@ export const TOP_LEVEL_API_DETAILS = Object.freeze([
     ].join(' ')
   },
   {
+    setting: '<code>postProcessor</code>',
+    default: '<code>undefined</code>',
+    description: 'This is a custom function you can pass it. It will be handed a string of markup and must return a string (not a promise). It runs right after the formatter.'
+  },
+  {
     setting: '<code>formatter</code>',
     default: '<code class="hljs-string">\'diffable\'</code>',
     description: [
       'Function to use for formatting the markup output.',
       'See examples below. Accepts',
-      '<code class="hljs hljs-string">\'none\'</code>,',
-      '<code class="hljs hljs-string">\'diffable\'</code>,',
-      'or a function.',
-      'If using a custom function it will be handed a string of markup and must return a string (not a promise).'
+      '<code class="hljs hljs-string">\'none\'</code>',
+      'and',
+      '<code class="hljs hljs-string">\'diffable\'</code>.',
     ].join(' ')
   },
   {
@@ -380,6 +384,9 @@ export const ALL_SETTINGS_OBJECT = unindent(`
     removeClassTest: false,
     removeComments: false,
     clearInlineFunctions: false,
+    postProcessor: function (markup) {
+      return markup;
+    },
     formatter: 'diffable',
     formatting: {
       attributesPerLine: 1,
@@ -502,6 +509,7 @@ export const API_DESCRIPTIONS = Object.freeze({
   removeClassTest: 'Removes all CSS classes that start with "test", like `class="test-whatever"`. **Warning:** Don\'t use this approach. Use `data-test` instead. It is better suited for this because it doesn\'t conflate CSS and test tokens.',
   removeComments: 'Removes all HTML comments from your snapshots. This is false by default, as sometimes these comments can infer important information about how your DOM was rendered. However, this is mostly just personal preference.',
   clearInlineFunctions: 'Replaces `<div title="function () { return true; }"></div>` or `<div title="(x) => !x"></div>` with this placeholder `<div title="[function]"></div>`.',
+  postProcessor: 'This is a custom function you can pass it. It will be handed a string of markup and must return a string (not a promise). It runs right after the formatter.',
   formatter: 'Function to use for formatting the markup output. See examples below. Accepts `\'none\'`, `\'diffable\'`, or a function. If using a custom function it will be handed a string of markup and must return a string (not a promise).',
   formatting: 'An object containing settings specific to the "diffable" formatter.',
   attributesPerLine: 'How many attributes are allowed on the same line as the starting tag.',
