@@ -66,6 +66,11 @@
             :title="descriptions.emptyAttributes"
           />
           <DoxenCheckbox
+            v-model="vueSnapshots.formatting.escapeAttributes"
+            name="Escape Attributes"
+            :title="descriptions.escapeAttributes"
+          />
+          <DoxenCheckbox
             v-model="vueSnapshots.formatting.escapeInnerText"
             name="Escape Inner Text"
             :title="descriptions.escapeInnerText"
@@ -136,6 +141,7 @@ const defaults = Object.freeze({
   attributesToClear: [],
   clearInlineFunctions: false,
   emptyAttributes: true,
+  escapeAttributes: false,
   escapeInnerText: true,
   formatter: 'diffable',
   postProcessor: false,
@@ -214,6 +220,7 @@ export default {
         formatting: {
           attributesPerLine: defaults.attributesPerLine,
           emptyAttributes: defaults.emptyAttributes,
+          escapeAttributes: defaults.escapeAttributes,
           escapeInnerText: defaults.escapeInnerText,
           selfClosingTag: defaults.selfClosingTag,
           voidElements: defaults.voidElements
@@ -257,6 +264,10 @@ export default {
         if (this.vueSnapshots.formatting.attributesPerLine !== defaults.attributesPerLine) {
           setFormattingObject();
           snapshotSettings.formatting.attributesPerLine = this.vueSnapshots.formatting.attributesPerLine || 0;
+        }
+        if (this.vueSnapshots.formatting.escapeAttributes !== defaults.escapeAttributes) {
+          setFormattingObject();
+          snapshotSettings.formatting.escapeAttributes = this.vueSnapshots.formatting.escapeAttributes;
         }
         if (this.vueSnapshots.formatting.escapeInnerText !== defaults.escapeInnerText) {
           setFormattingObject();

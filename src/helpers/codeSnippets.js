@@ -298,6 +298,21 @@ export const FORMATTING_API_DETAILS = Object.freeze([
     ].join(' ')
   },
   {
+    setting: '<code>escapeAttributes</code>',
+    default: '<code class="hljs-literal">false</code>',
+    description: [
+      'Retains (if',
+      '<code class="hljs hljs-literal">true</code>)',
+      'or discards (if',
+      '<code class="hljs hljs-literal">false</code>)',
+      'named HTML entity encodings, like',
+      '<code class="hljs hljs-string">&amp;lt;</code>',
+      'instead of',
+      '<code class="hljs hljs-string"><</code>',
+      'in HTML attributes.'
+    ].join(' ')
+  },
+  {
     setting: '<code>escapeInnerText</code>',
     default: '<code class="hljs-literal">true</code>',
     description: [
@@ -308,7 +323,8 @@ export const FORMATTING_API_DETAILS = Object.freeze([
       'named HTML entity encodings, like',
       '<code class="hljs hljs-string">&amp;lt;</code>',
       'instead of',
-      '<code class="hljs hljs-string"><</code>.'
+      '<code class="hljs hljs-string"><</code>',
+      'in HTML text nodes.'
     ].join(' ')
   },
   {
@@ -392,6 +408,7 @@ export const ALL_SETTINGS_OBJECT = unindent(`
     formatting: {
       attributesPerLine: 1,
       emptyAttributes: true,
+      escapeAttributes: false,
       escapeInnerText: true,
       selfClosingTag: false,
       tagsWithWhitespacePreserved: ['a', 'pre'],
@@ -515,7 +532,8 @@ export const API_DESCRIPTIONS = Object.freeze({
   formatting: 'An object containing settings specific to the "diffable" formatter.',
   attributesPerLine: 'How many attributes are allowed on the same line as the starting tag.',
   emptyAttributes: 'Determines whether empty attributes will include `=""`. If `false` then `<span class="" id=""></span>` becomes `<span class id></span>`.',
-  escapeInnerText: 'Retains or discards named HTML entity encodings, like `&lt;` instead of `<`.',
+  escapeAttributes: 'Retains or discards named HTML entity encodings, like `&lt;` instead of `<` in HTML attributes.',
+  escapeInnerText: 'Retains or discards named HTML entity encodings, like `&lt;` instead of `<` in HTML text nodes.',
   selfClosingTag: 'Converts `<div></div>` to `<div />` or `<p class="x"></p>` to `<p class="x" />`. Does not affect void elements (like `<input>`), use the `voidElements` setting for them.',
   tagsWithWhitespacePreserved: 'Does not add returns and indentation to the inner content of these tags. Accepts an array of tags, like `[\'a\', \'pre\']`',
   voidElements: 'Determines how void elements are closed. Accepts `\'html\'` for `<input>`, `\'xhtml\'` for `<input />`, and `\'xml\'` for `<input></input>`.'
@@ -533,7 +551,7 @@ export const PLAYGROUND_EXAMPLE_CODE = unindent(`
     </label>
     <p class="">Empty attribute example</p>
     <div></div>
-    <ul><li><a href="#">Link text on same line</a></li></ul>
+    <ul><li><a href="#?a=1&amp;b=2">Link text on same line</a></li></ul>
     <pre><code>
       &lt;div class=&quot;active&quot;&gt;
         Escaped Text
