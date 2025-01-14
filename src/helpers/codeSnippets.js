@@ -107,6 +107,11 @@ export const TOP_LEVEL_API_DETAILS = Object.freeze([
     description: 'Sorts the attributes inside HTML elements in the snapshot. This greatly reduces snapshot noise, making diffs easier to read and more meaningful.'
   },
   {
+    setting: '<code>sortClasses</code>',
+    default: '<code class="hljs-literal">true</code>',
+    description: 'Sorts the classes inside the <span class="hljs-attr">class</span> attribute on all HTML elements in the snapshot. This reduces snapshot noise, making diffs easier to read.'
+  },
+  {
     setting: '<code>stringifyAttributes</code>',
     default: '<code class="hljs-literal">true</code>',
     description: [
@@ -284,6 +289,11 @@ export const FORMATTING_API_DETAILS = Object.freeze([
     description: 'How many attributes are allowed on the same line as the starting tag.'
   },
   {
+    setting: '<code>classesPerLine</code>',
+    default: '<code class="hljs-number">1</code>',
+    description: 'How many classes are allowed on the same line as the <span class="hljs-attr">class</span> attribute.'
+  },
+  {
     setting: '<code>emptyAttributes</code>',
     default: '<code class="hljs-literal">true</code>',
     description: [
@@ -387,6 +397,7 @@ export const ALL_SETTINGS_OBJECT = unindent(`
     attributesToClear: [],
     addInputValues: true,
     sortAttributes: true,
+    sortClasses: true,
     stringifyAttributes: true,
     removeServerRendered: true,
     removeDataVId: true,
@@ -407,6 +418,7 @@ export const ALL_SETTINGS_OBJECT = unindent(`
     formatter: 'diffable',
     formatting: {
       attributesPerLine: 1,
+      classesPerLine: 1,
       emptyAttributes: true,
       escapeAttributes: false,
       escapeInnerText: true,
@@ -509,11 +521,13 @@ export const TYPES_IMPORT_EXAMPLE = unindent(`
 
 export const API_DESCRIPTIONS = Object.freeze({
   fontSize: 'Adjusts the font size of the playground input/output boxes.',
+  heightSize: 'Adjusts the height offset of the playground input/output boxes.',
   stacked: 'Changes the layout of the input/output boxes.',
   verbose: 'Logs to the console errors or other messages if true.',
   attributesToClear: 'Takes an array of attribute strings, like `[\'title\', \'id\']`, to remove the values from these attributes. `<i title="9:04:55 AM" id="uuid_48a50d28cb453f94" class="current-time"></i>` becomes `<i title id class="current-time"></i>`.',
   addInputValues: 'Display current internal element value on `input`, `textarea`, and `select` fields. `<input>` becomes `<input value="\'whatever\'">`. **Requires passing in the VTU `wrapper`**, not `wrapper.html()`.',
   sortAttributes: 'Sorts the attributes inside HTML elements in the snapshot. This greatly reduces snapshot noise, making diffs easier to read.',
+  sortClasses: 'Sorts the classes inside the `class` attribute on all HTML elements in the snapshot. This greatly reduces snapshot noise, making diffs easier to read.',
   stringifyAttributes: 'Injects the real values of dynamic attributes/props into the snapshot. `to="[object Object]"` becomes `to="{ name: \'home\' }"`. **Requires passing in the VTU `wrapper`**, not `wrapper.html()`.',
   removeServerRendered: 'Removes `data-server-rendered="true"` from your snapshots if true.',
   removeDataVId: 'Removes `data-v-1234abcd=""` from your snapshots if true. Useful if 3rd-party components use scoped styles to reduce snapshot noise when updating dependencies.',
@@ -531,6 +545,7 @@ export const API_DESCRIPTIONS = Object.freeze({
   formatter: 'Function to use for formatting the markup output. See examples below. Accepts `\'none\'`, `\'diffable\'`, or a function. If using a custom function it will be handed a string of markup and must return a string (not a promise).',
   formatting: 'An object containing settings specific to the "diffable" formatter.',
   attributesPerLine: 'How many attributes are allowed on the same line as the starting tag.',
+  classesPerLine: 'How many classes are allowed on the same line as the `class` attribute.',
   emptyAttributes: 'Determines whether empty attributes will include `=""`. If `false` then `<span class="" id=""></span>` becomes `<span class id></span>`.',
   escapeAttributes: 'Retains or discards named HTML entity encodings, like `&lt;` instead of `<` in HTML attributes.',
   escapeInnerText: 'Retains or discards named HTML entity encodings, like `&lt;` instead of `<` in HTML text nodes.',
@@ -549,7 +564,6 @@ export const PLAYGROUND_EXAMPLE_CODE = unindent(`
       <input type="range" max="50">
       <input type="range" max="50" id="slider">
     </label>
-    <p class="">Empty attribute example</p>
     <div></div>
     <ul><li><a href="#?a=1&amp;b=2">Link text on same line</a></li></ul>
     <pre><code>
@@ -557,5 +571,12 @@ export const PLAYGROUND_EXAMPLE_CODE = unindent(`
         Escaped Text
       &lt;/div&gt;
     </code></pre>
+    <p class="">Empty attribute example</p>
+    <button class="bg-blue-500" disabled>
+      1 class
+    </button>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" disabled>
+      9 classes
+    </button>
   </div>
 `);

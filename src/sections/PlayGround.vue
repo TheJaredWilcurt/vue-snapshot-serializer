@@ -17,6 +17,15 @@
             <input v-model.number="fontSize" type="range" min="50" max="200">
           </label>
         </fieldset>
+        <fieldset
+          class="playground-font-size"
+          :title="descriptions.heightSize"
+        >
+          <label>
+            <code class="playground-height-offset-label">height: calc(100vh - {{ heightSize }}px)</code>
+            <input v-model.number="heightSize" type="range" min="50" max="600">
+          </label>
+        </fieldset>
         <DoxenCheckbox
           v-model="stacked"
           name="Stacked"
@@ -86,6 +95,12 @@
               <input v-model.number="vueSnapshots.formatting.attributesPerLine" type="number" min="0">
             </label>
           </fieldset>
+          <fieldset :title="descriptions.classesPerLine">
+            <label>
+              Classes Per Line:
+              <input v-model.number="vueSnapshots.formatting.classesPerLine" type="number" min="0">
+            </label>
+          </fieldset>
           <fieldset :title="descriptions.tagsWithWhitespacePreserved">
             <label>
               Tags to preserve whitespace in:
@@ -139,6 +154,7 @@ const defaults = Object.freeze({
   addInputValues: true,
   attributesPerLine: 1,
   attributesToClear: [],
+  classesPerLine: 1,
   clearInlineFunctions: false,
   emptyAttributes: true,
   escapeAttributes: false,
@@ -158,6 +174,7 @@ const defaults = Object.freeze({
   removeClassTest: false,
   selfClosingTag: false,
   sortAttributes: true,
+  sortClasses: true,
   stringifyAttributes: true,
   tagsWithWhitespacePreserved: ['a', 'pre'],
   verbose: true,
@@ -187,6 +204,7 @@ export default {
       removeClassTest: 'Remove class="test..."',
       clearInlineFunctions: 'Clear inline functions',
       sortAttributes: 'Sort Attributes',
+      sortClasses: 'Sort Classes',
       addInputValues: 'Add Input Values*',
       stringifyAttributes: 'Stringify Attributes*'
     }
@@ -194,6 +212,7 @@ export default {
   data: function () {
     return {
       fontSize: 100,
+      heightSize: 200,
       input: PLAYGROUND_EXAMPLE_CODE,
       stacked: false,
       whitespaceTagsList: 'a, pre',
@@ -215,10 +234,12 @@ export default {
         removeIdTest: defaults.removeIdTest,
         removeServerRendered: defaults.removeServerRendered,
         sortAttributes: defaults.sortAttributes,
+        sortClasses: defaults.sortClasses,
         verbose: defaults.verbose,
         postProcessor: defaults.postProcessor,
         formatting: {
           attributesPerLine: defaults.attributesPerLine,
+          classesPerLine: defaults.classesPerLine,
           emptyAttributes: defaults.emptyAttributes,
           escapeAttributes: defaults.escapeAttributes,
           escapeInnerText: defaults.escapeInnerText,
@@ -264,6 +285,10 @@ export default {
         if (this.vueSnapshots.formatting.attributesPerLine !== defaults.attributesPerLine) {
           setFormattingObject();
           snapshotSettings.formatting.attributesPerLine = this.vueSnapshots.formatting.attributesPerLine || 0;
+        }
+        if (this.vueSnapshots.formatting.classesPerLine !== defaults.classesPerLine) {
+          setFormattingObject();
+          snapshotSettings.formatting.classesPerLine = this.vueSnapshots.formatting.classesPerLine || 0;
         }
         if (this.vueSnapshots.formatting.escapeAttributes !== defaults.escapeAttributes) {
           setFormattingObject();
@@ -330,7 +355,10 @@ export default {
       return snapshotSettings;
     },
     size: function () {
-      return 'font-size: ' + this.fontSize + '%';
+      return [
+        'font-size: ' + this.fontSize + '%',
+        'height: calc(100vh - ' + this.heightSize + 'px)'
+      ].join(';');
     },
     output: function () {
       window.vueSnapshots = {
@@ -392,9 +420,11 @@ export default {
 }
 .playground-box {
   width: 50%;
+  overflow: auto;
 }
 .playground-box-input {
   padding: 0.5em;
+  resize: none;
 }
 .playground-stacked {
   flex-direction: column;
@@ -407,6 +437,10 @@ export default {
 }
 .playground-output {
   margin: 0px;
+}
+.playground-height-offset-label {
+  margin-left: -5px;
+  font-size: 13px;
 }
 
 .playground-box [class^="hljs"],
@@ -436,6 +470,5 @@ export default {
   .playground-font-size input {
     margin: 0px 0px 0px 0.5rem;
   }
-
 }
 </style>
