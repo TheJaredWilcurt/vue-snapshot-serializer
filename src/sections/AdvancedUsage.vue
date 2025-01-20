@@ -135,6 +135,7 @@
       <code class="hljs hljs-variable">SETTINGS</code>,
       <code class="hljs hljs-variable">FORMATTER</code>,
       <code class="hljs hljs-variable">FORMATTING</code>,
+      <code class="hljs hljs-variable">CLASSICFORMATTING</code>,
       <code class="hljs hljs-variable">POSTPROCESSOR</code>,
       and
       <code class="hljs hljs-variable">VOIDELEMENTS</code>.

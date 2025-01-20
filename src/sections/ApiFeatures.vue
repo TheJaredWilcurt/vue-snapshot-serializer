@@ -34,6 +34,39 @@
 
     <ApiTable :features="FORMATTING_API_DETAILS" />
 
+    <div class="box">
+      <p>
+        For the <code class="hljs hljs-string">'classic'</code> formatter,
+        you can use
+        <code class="hljs">
+          <span class="hljs-variable">global</span>
+          <span>.</span>
+          <span class="hljs-property">vueSnapshots</span>
+          <span>.</span>
+          <span class="hljs-property">classicFormmatting</span>
+        </code>
+        to pass in an object of settings.
+        The default settings object is:
+      </p>
+
+      <DoxenCodeBox
+        :code="CLASSIC_FORMATTING_DEFAULTS"
+        :copy="false"
+      />
+
+      <p>
+        Additional details about the
+        <code class="hljs"><span class="hljs-property">classicFormmatting</span></code>
+        options can be seen in the
+        <code class="hljs"><a href="https://github.com/tjw-lint/vue3-snapshot-serializer/blob/main/types.js" class="hljs-number">types.js</a></code>
+        file.
+      </p>
+      <p>
+        <strong>Note:</strong> The classic formatter is only intended to be used as migration tool from <code>jest-serializer-vue-tjw</code>.
+        Once migrated, it is recommanded to switch the the "diffable" formatter.
+      </p>
+    </div>
+
     <p>
       The below settings are all the defaults,
       so if you like them, you don't need to pass them in.
@@ -62,6 +95,7 @@ import ApiTable from '@/components/ApiTable.vue';
 
 import {
   ALL_SETTINGS_OBJECT,
+  CLASSIC_FORMATTING_DEFAULTS,
   FORMATTING_API_DETAILS,
   TOP_LEVEL_API_DETAILS
 } from '@/helpers/codeSnippets.js';
@@ -74,6 +108,7 @@ export default {
   },
   constants: {
     ALL_SETTINGS_OBJECT,
+    CLASSIC_FORMATTING_DEFAULTS,
     FORMATTING_API_DETAILS,
     TOP_LEVEL_API_DETAILS
   }

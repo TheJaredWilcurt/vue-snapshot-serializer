@@ -204,6 +204,13 @@ footer {
   text-align: center;
 }
 
+.box {
+  background: #2C2C45;
+  border: 1px solid #1E1E1E;
+  margin: 10px 0px;
+  padding: 5px 15px;
+}
+
 /**
  * Doxen components
  */
