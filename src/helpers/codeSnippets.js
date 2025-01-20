@@ -598,3 +598,28 @@ export const PLAYGROUND_EXAMPLE_CODE = unindent(`
     </button>
   </div>
 `);
+
+export const EXAMPLE_COMPONENT_TEMPLATE = unindent(`
+  <template>
+    <div>
+      <label>
+        <input
+          v-model="toggle"
+          data-test="toggle"
+          type="checkbox"
+        />
+        Example Component
+      </label>
+      <p>
+        <label for="example-component-textarea">Textarea example:</label>
+        <br>
+        <textarea
+          v-model="content"
+          id="example-component-textarea"
+          data-test="content"
+          :title="{ stringifyAttributes: 'example' }"
+        ></textarea>
+      </p>
+    </div>
+  </template>
+`);
