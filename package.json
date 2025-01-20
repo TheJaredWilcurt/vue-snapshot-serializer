@@ -29,8 +29,8 @@
     "@vitejs/plugin-vue": "^5.2.1",
     "eslint": "^9.18.0",
     "eslint-config-tjw-base": "^3.1.0",
-    "vite": "^6.0.7",
-    "vue3-snapshot-serializer": "^2.2.0"
+    "vite": "^6.0.9",
+    "vue3-snapshot-serializer": "^2.3.0"
   },
   "repository": {
     "type": "git",
