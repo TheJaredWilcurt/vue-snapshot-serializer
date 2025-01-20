@@ -55,6 +55,7 @@
             <select v-model="vueSnapshots.formatter">
               <option value="none">None</option>
               <option value="diffable">Diffable</option>
+              <option value="classic">Classic</option>
             </select>
           </label>
         </fieldset>
@@ -278,6 +279,9 @@ export default {
       if (this.vueSnapshots.formatter !== defaults.formatter) {
         snapshotSettings.formatter = this.vueSnapshots.formatter;
       }
+      if (this.vueSnapshots.formatter === 'classic') {
+        snapshotSettings.classicFormatting = {};
+      }
       if (this.vueSnapshots.formatter === 'diffable') {
         function setFormattingObject () {
           snapshotSettings.formatting = snapshotSettings.formatting || {};
@@ -348,6 +352,14 @@ export default {
             '    return markup.toUpperCase();',
             '  }'
           ].join('\n')
+        )
+        .replace(
+          'formatter: "classic"',
+          '// This is the formatter used by jest-serializer-vue-tjw,\n  // to help with migrating to vue3-snapshot-serializer\n  formatter: "classic"'
+        )
+        .replace(
+          'classicFormatting: {}',
+          'classicFormatting: {\n    // Pass in js-beautify.html settings here\n  }'
         )
         .replaceAll('"', '\'');
       snapshotSettings = 'globalThis.vueSnapshots = ' + snapshotSettings + ';';

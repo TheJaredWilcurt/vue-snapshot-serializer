@@ -270,15 +270,21 @@ export const TOP_LEVEL_API_DETAILS = Object.freeze([
     description: [
       'Function to use for formatting the markup output.',
       'See examples below. Accepts',
-      '<code class="hljs hljs-string">\'none\'</code>',
+      '<code class="hljs hljs-string">\'none\'</code>,',
+      '<code class="hljs hljs-string">\'diffable\'</code>,',
       'and',
-      '<code class="hljs hljs-string">\'diffable\'</code>.'
+      '<code class="hljs hljs-string">\'classic\'</code>.'
     ].join(' ')
   },
   {
     setting: '<code>formatting</code>',
     default: 'See table below',
     description: 'An object containing settings specific to the "diffable" formatter.'
+  },
+  {
+    setting: '<code>classicFormatting</code>',
+    default: 'See table below',
+    description: 'An object containing settings specific to the "classic" formatter. Exists to help migrate from <code>jest-serializer-vue-tjw</code>.'
   }
 ]);
 
@@ -390,6 +396,17 @@ export const FORMATTING_API_DETAILS = Object.freeze([
     ].join(' ')
   }
 ]);
+
+export const CLASSIC_FORMATTING_DEFAULTS = unindent(`
+  globalThis.vueSnapshots.classicFormatting = {
+    indent_char: ' ',
+    indent_inner_html: true,
+    indent_size: 2,
+    inline: [],
+    sep: '\\n',
+    unformatted: ['code', 'pre']
+  };
+`);
 
 export const ALL_SETTINGS_OBJECT = unindent(`
   global.vueSnapshots = {
@@ -542,8 +559,9 @@ export const API_DESCRIPTIONS = Object.freeze({
   removeComments: 'Removes all HTML comments from your snapshots. This is false by default, as sometimes these comments can infer important information about how your DOM was rendered. However, this is mostly just personal preference.',
   clearInlineFunctions: 'Replaces `<div title="function () { return true; }"></div>` or `<div title="(x) => !x"></div>` with this placeholder `<div title="[function]"></div>`.',
   postProcessor: 'This is a custom function you can pass in. It will be handed a string of markup and must return a string (not a promise). It runs right after the formatter.',
-  formatter: 'Function to use for formatting the markup output. See examples below. Accepts `\'none\'`, `\'diffable\'`, or a function. If using a custom function it will be handed a string of markup and must return a string (not a promise).',
+  formatter: 'Function to use for formatting the markup output. See examples below. Accepts `\'none\'`, `\'diffable\'`, or \'classic\'.',
   formatting: 'An object containing settings specific to the "diffable" formatter.',
+  classicFormatting: 'An object containing settings specific to the "classic" formatter.',
   attributesPerLine: 'How many attributes are allowed on the same line as the starting tag.',
   classesPerLine: 'How many classes are allowed on the same line as the `class` attribute.',
   emptyAttributes: 'Determines whether empty attributes will include `=""`. If `false` then `<span class="" id=""></span>` becomes `<span class id></span>`.',
