@@ -1,10 +1,26 @@
 <template>
   <section>
-    <div class="wrapper">
+    <div class="wrapper wrapper-flex">
       <h2>
         Try it out
         <a href="#playground">#</a>
       </h2>
+      <div>
+        <button
+          class="tab-button"
+          :class="{ active: !showComponent }"
+          @click="showComponent = false"
+        >
+          Playground
+        </button>
+        <button
+          class="tab-button"
+          :class="{ active: showComponent }"
+          @click="showComponent = true"
+        >
+          Live component demo
+        </button>
+      </div>
     </div>
     <div class="playground">
       <aside class="playground-controls">
@@ -118,19 +134,21 @@
           <div
             v-if="showComponent"
             class="playground-box playground-box-input"
+            :style="size"
           >
-            <ExampleComponent
-              name="Component Example"
-              @content="exampleContentChanged"
-              @toggle="exampleToggled"
-            />
+            <p>Example component template:</p>
             <DoxenCodeBox
               class="playground-box-example-code"
               :code="EXAMPLE_COMPONENT_TEMPLATE"
               :copy="false"
-              :style="size"
               :styleTokens="{ codeBox: 'playground-output' }"
               :key="outputKey"
+            />
+            <p>Live component demo</p>
+            <ExampleComponent
+              name="Component Example"
+              @content="exampleContentChanged"
+              @toggle="exampleToggled"
             />
           </div>
           <textarea
@@ -453,6 +471,9 @@ export default {
     },
     whitespaceTagsList: function () {
       this.updateOutput();
+    },
+    showComponent: function () {
+      this.updateOutput();
     }
   },
   created: function () {
@@ -462,6 +483,20 @@ export default {
 </script>
 
 <style>
+.wrapper-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.wrapper-flex button {
+  margin-bottom: 6px;
+}
+.tab-button {
+  background: #15152A;
+}
+.tab-button.active {
+  background: #383871;
+}
 .playground {
   display: flex;
 }
@@ -471,7 +506,8 @@ export default {
   align-items: start;
   justify-content: start;
   flex-wrap: wrap;
-  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
 }
 .playground-controls fieldset {
   border: 0px;
@@ -497,7 +533,8 @@ export default {
   flex-direction: row;
 }
 .playground-box {
-  width: 50%;
+  min-width: calc(50% - 150px);
+  max-width: calc(50% - 150px);
   overflow: auto;
 }
 .playground-box-input {
@@ -525,6 +562,22 @@ export default {
 .playground-box code,
 .playground-box pre {
   font-size: 1em;
+}
+
+.playground-box-output {
+  position: relative;
+}
+.playground-box-output:before {
+  content: 'Snapshot Preview';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #2C2C3D;
+  border: 1px solid #121238;
+  border-radius: 4px;
+  padding: 3px 7px;
+  color: #FFF;
+  opacity: 0.8;
 }
 
 @media (width < 900px) {
