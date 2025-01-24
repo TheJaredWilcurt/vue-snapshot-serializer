@@ -260,6 +260,11 @@ export const TOP_LEVEL_API_DETAILS = Object.freeze([
     ].join(' ')
   },
   {
+    setting: '<code>stubs</code>',
+    default: '<code class="hljs-literal">{}</code>',
+    description: 'Allows targeting specific DOM nodes in the snapshot to optionally replace their tag name and/or remove attributes and/or innerHTML.'
+  },
+  {
     setting: '<code>postProcessor</code>',
     default: '<code>undefined</code>',
     description: 'This is a custom function you can pass in. It will be handed a string of markup and must return a string (not a promise). It runs right after the formatter.'
@@ -428,6 +433,7 @@ export const ALL_SETTINGS_OBJECT = unindent(`
     removeClassTest: false,
     removeComments: false,
     clearInlineFunctions: false,
+    stubs: {},
     postProcessor: function (markup) {
       // Your custom code goes here
       return markup;
@@ -558,6 +564,7 @@ export const API_DESCRIPTIONS = Object.freeze({
   removeClassTest: 'Removes all CSS classes that start with "test", like `class="test-whatever"`. **Warning:** Don\'t use this approach. Use `data-test` instead. It is better suited for this because it doesn\'t conflate CSS and test tokens.',
   removeComments: 'Removes all HTML comments from your snapshots. This is false by default, as sometimes these comments can infer important information about how your DOM was rendered. However, this is mostly just personal preference.',
   clearInlineFunctions: 'Replaces `<div title="function () { return true; }"></div>` or `<div title="(x) => !x"></div>` with this placeholder `<div title="[function]"></div>`.',
+  stubs: 'Allows targeting specific DOM nodes in the snapshot to optionally replace their tag name and/or remove attributes and/or innerHTML.',
   postProcessor: 'This is a custom function you can pass in. It will be handed a string of markup and must return a string (not a promise). It runs right after the formatter.',
   formatter: 'Function to use for formatting the markup output. See examples below. Accepts `\'none\'`, `\'diffable\'`, or \'classic\'.',
   formatting: 'An object containing settings specific to the "diffable" formatter.',
