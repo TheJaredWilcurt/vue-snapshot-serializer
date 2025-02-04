@@ -30,7 +30,7 @@
     "eslint": "^9.19.0",
     "eslint-config-tjw-base": "^3.1.0",
     "vite": "^6.0.11",
-    "vue3-snapshot-serializer": "^2.4.0"
+    "vue3-snapshot-serializer": "github:tjw-lint/vue3-snapshot-serializer#pull/95/head"
   },
   "repository": {
     "type": "git",
