@@ -157,6 +157,7 @@ const defaults = Object.freeze({
   attributesToClear: [],
   classesPerLine: 1,
   clearInlineFunctions: false,
+  debug: false,
   emptyAttributes: true,
   escapeAttributes: false,
   escapeInnerText: true,
@@ -192,6 +193,7 @@ export default {
     descriptions: API_DESCRIPTIONS,
     TOP_LEVEL_BOOLEANS: {
       verbose: 'Verbose',
+      debug: 'Debug',
       removeServerRendered: 'Remove data-server-rendered',
       removeComments: 'Remove Comments',
       removeDataVId: 'Remove data-v-...',
@@ -222,6 +224,7 @@ export default {
         attributesToClear: '',
         stringifyAttributes: defaults.stringifyAttributes,
         clearInlineFunctions: defaults.clearInlineFunctions,
+        debug: defaults.debug,
         formatter: defaults.formatter,
         removeClassTest: defaults.removeClassTest,
         removeComments: defaults.removeComments,

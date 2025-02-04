@@ -92,7 +92,7 @@ h3 {
 code,
 pre,
 textarea {
-  font-family: 'Fira Mono', monospace !important;
+  font-family: 'Sometype Mono', 'Fira Mono', monospace !important;
   font-optical-sizing: auto;
 }
 @media (width < 900px) {
@@ -102,9 +102,6 @@ textarea {
   textarea {
     font-size: 0.69rem;
   }
-}
-.at {
-  font-family: 'Sometype Mono', monospace !important;
 }
 
 pre {
