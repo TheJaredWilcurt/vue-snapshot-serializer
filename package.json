@@ -24,13 +24,13 @@
     "zenscroll": "^4.0.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.19.0",
-    "@stylistic/eslint-plugin-js": "^3.0.1",
+    "@eslint/js": "^9.20.0",
+    "@stylistic/eslint-plugin-js": "^3.1.0",
     "@vitejs/plugin-vue": "^5.2.1",
-    "eslint": "^9.19.0",
+    "eslint": "^9.20.1",
     "eslint-config-tjw-base": "^3.1.0",
-    "vite": "^6.0.11",
-    "vue3-snapshot-serializer": "github:tjw-lint/vue3-snapshot-serializer#pull/95/head"
+    "vite": "^6.1.0",
+    "vue3-snapshot-serializer": "^2.5.0"
   },
   "repository": {
     "type": "git",
