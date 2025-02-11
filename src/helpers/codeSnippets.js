@@ -42,6 +42,10 @@ export const VITEST_CONFIG_EXAMPLE = unindent(`
 `);
 
 export const WRAPPER_TEST_EXAMPLE = unindent(`
+  import { mount } from '@vue/test-utils';
+
+  import MyComponent from '@/components/MyComponent.vue';
+
   test('My test', async () => {
     const wrapper = await mount(MyComponent);
     const button = wrapper.find('[data-test="myButton"]');
@@ -69,6 +73,11 @@ export const TOP_LEVEL_API_DETAILS = Object.freeze([
     setting: '<code>verbose</code>',
     default: '<code class="hljs-literal">true</code>',
     description: 'Logs to the console errors or other messages if true.'
+  },
+  {
+    setting: '<code>debug</code>',
+    default: '<code class="hljs-literal">false</code>',
+    description: 'Logs to the console as internal functions are called, including relevant data to help in troubleshooting.'
   },
   {
     setting: '<code>attributesToClear</code>',
@@ -411,6 +420,7 @@ export const CLASSIC_FORMATTING_DEFAULTS = unindent(`
 export const ALL_SETTINGS_OBJECT = unindent(`
   global.vueSnapshots = {
     verbose: true,
+    debug: false,
     attributesToClear: [],
     addInputValues: true,
     sortAttributes: true,
@@ -456,7 +466,14 @@ export const GLOBAL_SETUP_EXAMPLE = unindent(`
   });
 `);
 
-/*
+export const DEBUG_EXAMPLE = unindent(`
+  global.beforeEach(() => {
+    globalThis.vueSnapshots = {
+      debug: true
+    };
+  });
+`);
+
 export const SPECIFIC_TEST_EXAMPLE = unindent(`
   // /tests/components/MyComponent.test.js
   import { mount } from '@vue/test-utils';
@@ -475,28 +492,6 @@ export const SPECIFIC_TEST_EXAMPLE = unindent(`
     });
   });
 `);
-*/
-export const SPECIFIC_TEST_EXAMPLE = unindent(`
-  <pre
-    data-applied-style-tokens="codeBox"
-    data-style-tokens="codeBox"
-  ><code class="hljs javascript"><span class="hljs-comment">// /tests/components/MyComponent.test.js</span>
-  <span class="hljs-keyword">import</span> { mount } <span class="hljs-keyword">from</span> <span class="hljs-string">'<span class="at">@</span>vue/test-utils'</span>;
-
-  <span class="hljs-keyword">import</span> <span class="hljs-title class_">MyComponent</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'<span class="at">@</span>/components/MyComponent.vue'</span>;
-
-  <span class="hljs-title function_">describe</span>(<span class="hljs-string">'MyComponent'</span>, <span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-title function_">test</span>(<span class="hljs-string">'My test'</span>, <span class="hljs-title function_">async</span> () =&gt; {
-      <span class="hljs-keyword">const</span> wrapper = <span class="hljs-keyword">await</span> <span class="hljs-title function_">mount</span>(<span class="hljs-title class_">MyComponent</span>);
-
-      <span class="hljs-comment">// Test-specific settings that override the defaults in setup.js</span>
-      <span class="hljs-variable language_">global</span>.<span class="hljs-property">vueSnapshots</span>.<span class="hljs-property">attributesToClear</span> = [<span class="hljs-string">'data-uuid'</span>];
-
-      <span class="hljs-title function_">expect</span>(wrapper)
-        .<span class="hljs-title function_">toMatchSnapshot</span>();
-    });
-  });</code></pre>
-`);
 
 export const VUE_MARKUP_FORMATTER_EXAMPLE = unindent(`
   import { vueMarkupFormatter } from 'vue3-snapshot-serializer';
@@ -513,27 +508,16 @@ export const VUE_MARKUP_FORMATTER_EXAMPLE = unindent(`
   //</div>\`
 `);
 
-// export const TYPES_IMPORT_EXAMPLE = unindent(`
-//   /** @typedef {import('vue3-snapshot-serializer/types').SETTINGS} SETTINGS */
-//
-//   global.beforeEach(() => {
-//     /** @type {SETTINGS} */
-//     const settings = {
-//       // Your settings
-//     };
-//     globalThis.vueSnapshots = settings;
-//   });
-// `);
 export const TYPES_IMPORT_EXAMPLE = unindent(`
-  <pre data-applied-style-tokens="codeBox"><code class="hljs javascript"><span class="hljs-comment">/** <span class="hljs-doctag"><span class="at">@</span>typedef</span> {<span class="hljs-type">import('vue3-snapshot-serializer/types').SETTINGS</span>} SETTINGS */</span>
+  /** @typedef {import('vue3-snapshot-serializer/types').SETTINGS} SETTINGS */
 
-  <span class="hljs-variable language_">global</span>.<span class="hljs-title function_">beforeEach</span>(<span class="hljs-function">() =&gt;</span> {
-    <span class="hljs-comment">/** <span class="hljs-doctag"><span class="at">@</span>type</span> {<span class="hljs-type">SETTINGS</span>} */</span>
-    <span class="hljs-keyword">const</span> settings = {
-      <span class="hljs-comment">// Your settings</span>
+  global.beforeEach(() => {
+    /** @type {SETTINGS} */
+    const settings = {
+      // Your settings
     };
-    globalThis.<span class="hljs-property">vueSnapshots</span> = settings;
-  });</code></pre>
+    globalThis.vueSnapshots = settings;
+  });
 `);
 
 export const API_DESCRIPTIONS = Object.freeze({
@@ -541,6 +525,7 @@ export const API_DESCRIPTIONS = Object.freeze({
   heightSize: 'Adjusts the height offset of the playground input/output boxes.',
   stacked: 'Changes the layout of the input/output boxes.',
   verbose: 'Logs to the console errors or other messages if true.',
+  debug: 'Logs to the console as internal functions are called, including relevant data to help in troubleshooting.',
   attributesToClear: 'Takes an array of attribute strings, like `[\'title\', \'id\']`, to remove the values from these attributes. `<i title="9:04:55 AM" id="uuid_48a50d28cb453f94" class="current-time"></i>` becomes `<i title id class="current-time"></i>`.',
   addInputValues: 'Display current internal element value on `input`, `textarea`, and `select` fields. `<input>` becomes `<input value="\'whatever\'">`. **Requires passing in the VTU `wrapper`**, not `wrapper.html()`.',
   sortAttributes: 'Sorts the attributes inside HTML elements in the snapshot. This greatly reduces snapshot noise, making diffs easier to read.',

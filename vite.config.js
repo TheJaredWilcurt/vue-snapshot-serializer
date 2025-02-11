@@ -20,7 +20,8 @@ export default defineConfig({
           'vue3-snapshot-serializer': ['vue3-snapshot-serializer']
         }
       }
-    }
+    },
+    sourcemap: true
   },
   plugins: [vue()],
   resolve: {

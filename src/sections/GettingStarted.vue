@@ -38,6 +38,24 @@
         </li>
       </ol>
     </div>
+
+    <hr id="troubleshooting" />
+
+    <div class="wrapper">
+      <h2>
+        Troubleshooting
+        <a href="#troubleshooting">#</a>
+      </h2>
+
+      <p>
+        If you are having issues getting Vue 3 Snapshot Serializer to work, try enabling the debugger.
+      </p>
+
+      <DoxenCodeBox
+        :code="DEBUG_EXAMPLE"
+        :copy="false"
+      />
+    </div>
   </section>
 </template>
 
@@ -48,6 +66,7 @@ import {
 } from 'vue-doxen';
 
 import {
+  DEBUG_EXAMPLE,
   GLOBAL_SETUP_EXAMPLE,
   JEST_CONFIG_EXAMPLE,
   VITEST_CONFIG_EXAMPLE,
@@ -61,6 +80,7 @@ export default {
     DoxenCodeSwapper
   },
   constants: {
+    DEBUG_EXAMPLE,
     GLOBAL_SETUP_EXAMPLE,
     JEST_CONFIG_EXAMPLE,
     VITEST_CONFIG_EXAMPLE,
