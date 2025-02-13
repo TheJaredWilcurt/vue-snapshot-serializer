@@ -116,7 +116,7 @@
               </li>
               <li>
                 <strong>Note:</strong>
-                All tag names will be lowercased in snapshots, kebab-case recommended.
+                Because all tag names are lowercased in snapshots, we recommended kebab-cased tag names.
               </li>
             </ul>
           </li>
