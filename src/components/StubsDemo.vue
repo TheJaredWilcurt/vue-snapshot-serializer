@@ -53,7 +53,7 @@
         />
 
         <p id="stubs-object-shorthand">
-          Using this approach, we will try to convert your CSS selector into a
+          When using this approach, we will try to convert your CSS selector into a
           reasonable string with <code>-stub</code> appended to the end.
           However, if you want to control the stubbed tag name, the next syntax is for you.
         </p>
