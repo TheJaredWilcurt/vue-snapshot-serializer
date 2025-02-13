@@ -22,6 +22,8 @@
   <hr id="api">
   <ApiFeatures />
 
+  <StubsDemo />
+
   <hr id="advanced">
   <AdvancedUsage />
 
@@ -36,6 +38,7 @@
 import zenscroll from 'zenscroll';
 
 import GitHubCorner from '@/components/GitHubCorner.vue';
+import StubsDemo from '@/components/StubsDemo.vue';
 import AdvancedUsage from '@/sections/AdvancedUsage.vue';
 import ApiFeatures from '@/sections/ApiFeatures.vue';
 import FooterSection from '@/sections/FooterSection.vue';
@@ -50,11 +53,12 @@ export default {
     AdvancedUsage,
     ApiFeatures,
     FooterSection,
+    GettingStarted,
     GitHubContributors,
     GitHubCorner,
     IntroSection,
-    GettingStarted,
-    PlayGround
+    PlayGround,
+    StubsDemo
   },
   created: function () {
     setTimeout(() => {

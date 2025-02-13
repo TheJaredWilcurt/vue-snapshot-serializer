@@ -131,6 +131,7 @@
     <p>
       Other available type definitions are
       <code class="hljs hljs-variable">SETTINGS</code>,
+      <code class="hljs hljs-variable">STUBS</code>,
       <code class="hljs hljs-variable">FORMATTER</code>,
       <code class="hljs hljs-variable">FORMATTING</code>,
       <code class="hljs hljs-variable">CLASSICFORMATTING</code>,
