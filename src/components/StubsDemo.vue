@@ -3,64 +3,194 @@
     <hr id="stubs" />
 
     <div class="wrapper">
-      <h3>
-        Stubs Demo
+      <h2 id="stubs-intro">
+        Stubbing parts of your snapshots
         <a href="#stubs">#</a>
-      </h3>
+      </h2>
 
-      <p>
-        Stubbing out child components can be useful if they have life-cycle hooks, mutate global state, or emits that you don't want to occur during your test.
-      </p>
-      <p>
-        But stubs can also be a pain to deal with. So if all you care about is removing child nodes from a snapshot to reduce noise, then we offer a simpler approach.
-      </p>
-      <p>
-        Vue-Snapshot-Serializer lets you target any DOM nodes in your snapshot with CSS selectors and clean them up.
-        Below is a live example you can play with to see the different APIs available for this feature:
-      </p>
+      <div>
+        <h3>
+          Stubs intro
+          <a href="#stubs-intro">#</a>
+        </h3>
 
-      <DoxenDropdown
-        v-model="syntax"
-        label="Syntax"
-        :options="syntaxOptions"
-        @input="generateSnapshot"
-      />
+        <p>
+          Stubbing out child components can be useful if they have life-cycle hooks, mutate global state, or emits that you don't want to occur during your test.
+        </p>
+        <p>
+          But stubs can also be a pain to deal with. So if all you care about is removing child nodes from a snapshot to reduce noise, then we offer a simpler approach.
+        </p>
+        <p id="stubs-array">
+          Vue-Snapshot-Serializer lets you target any DOM nodes in your snapshot with CSS selectors and clean them up.
+          There are different API's to balance convience and control, try the mini playground below to get a feel for what would work for your needs.
+        </p>
+      </div>
 
-      <div class="boxes">
-        <div
-          v-for="selector in selectors"
-          class="box"
-        >
-          <DoxenTextField
-            v-model="selector.selector"
-            label="CSS Selector"
-            :errorMessage="selector.selectorValid ? undefined : 'Must be a valid CSS Selector'"
-          />
+      <div>
+        <h3>
+          Stubs Shorthand Array Syntax
+          <a href="#stubs-array">#</a>
+        </h3>
 
-          <template v-if="syntax !== 'array'">
+        <p>
+          This is the simplest of the API's, just an array of CSS selectors.
+        </p>
+
+        <DoxenCodeBox
+          :code="'globalThis.vueSnapshots.stubs = [\n  \'.artichoke\'\n];'"
+          :copy="false"
+          class="code-box"
+        />
+
+        <p>
+          This will target any element with a matching selector in your snapshot and replace it with a stub, like so:
+        </p>
+
+        <DoxenCodeBox
+          :code="ARRAY_RESULT_EXAMPLE"
+          :copy="false"
+          class="code-box"
+        />
+
+        <p id="stubs-object-shorthand">
+          Using this approach, we will try to convert your CSS selector into a
+          reasonable string with <code>-stub</code> appended to the end.
+          However, if you want to control the stubbed tag name, the next syntax is for you.
+        </p>
+      </div>
+
+      <div>
+        <h3>
+          Stubs Shorthand Object Syntax
+          <a href="#stubs-object-shorthand">#</a>
+        </h3>
+
+        <p>
+          This syntax offers a good balance of convienence and control.
+          You can pass in an object, where the key is a CSS selector,
+          and the value is a string of the stubbed tag name.
+        </p>
+
+        <DoxenCodeBox
+          :code="OBJECT_SHORT_EXAMPLE"
+          :copy="false"
+          class="code-box"
+        />
+
+        <DoxenCodeBox
+          :code="OBJECT_SHORT_RESULT_EXAMPLE"
+          :copy="false"
+          class="code-box"
+        />
+
+        <p id="stubs-object-longform">
+          These first two approaches both completely replace any matching
+          elements, their attributes, and children. But if you want more
+          granular control, the next syntax is for you.
+        </p>
+      </div>
+
+      <div>
+        <h3>
+          Stubs Longform Object Syntax
+          <a href="#stubs-object-longform">#</a>
+        </h3>
+
+        <p>
+          The long form syntax gives you the most detailed level of control over your snapshot stubs.
+          There are 3 parts you can control:
+        </p>
+        <ul>
+          <li>
+            <strong>Tag Name:</strong>
+            <ul>
+              <li>
+                The name of the HTML tag to be used.
+              </li>
+              <li>
+                If you don't pass anything in for this, it will use the original tag name.
+              </li>
+              <li>
+                When using a custom name, it is good practice to always have it end with
+                <code>-stub</code>, to clearly communicate it was stubbed in the snapshot.
+              </li>
+              <li>
+                <strong>Note:</strong>
+                All tag names will be lowercased in snapshots, kebab-case recommended.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Inner HTML:</strong>
+            <ul>
+              <li>
+                You can retain or remove all of the child nodes on the selected element.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong>Attributes:</strong>
+            <ul>
+              <li>You can retain or remove all HTML attributes on the selected element.</li>
+              <li>You can also remove specific attributes, while the rest will remain.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <p id="stubs-live">
+          To see all the different Stub API's in action, with code examples, try the mini-playground below.
+        </p>
+      </div>
+
+      <div>
+        <h3>
+          Stubs mini-playground
+          <a href="#stubs-live">#</a>
+        </h3>
+
+        <DoxenDropdown
+          v-model="syntax"
+          label="Syntax"
+          :options="syntaxOptions"
+          @input="generateSnapshot"
+        />
+
+        <div class="boxes">
+          <div
+            v-for="selector in selectors"
+            class="box"
+          >
             <DoxenTextField
-              v-model="selector.tagName"
-              label="Tag"
+              v-model="selector.selector"
+              label="CSS Selector"
+              :errorMessage="selector.selectorValid ? undefined : 'Must be a valid CSS Selector'"
             />
 
-            <DoxenDropdown
-              v-model="selector.removeAttributes"
-              label="Attributes"
-              :options="attributeOptions"
-              @input="generateSnapshot"
-            />
+            <template v-if="syntax !== 'array'">
+              <DoxenTextField
+                v-model="selector.tagName"
+                label="Tag"
+              />
 
-            <DoxenTextField
-              v-if="selector.removeAttributes === 'specific'"
-              v-model="selector.attributesToRemoveString"
-              label="Specific attributes to remove"
-            />
+              <DoxenDropdown
+                v-model="selector.removeAttributes"
+                label="Attributes"
+                :options="attributeOptions"
+                @input="generateSnapshot"
+              />
 
-            <DoxenCheckbox
-              v-model="selector.removeInnerHtml"
-              name="Remove innerHTML"
-            />
-          </template>
+              <DoxenTextField
+                v-if="selector.removeAttributes === 'specific'"
+                v-model="selector.attributesToRemoveString"
+                label="Specific attributes to remove"
+              />
+
+              <DoxenCheckbox
+                v-model="selector.removeInnerHtml"
+                name="Remove innerHTML"
+              />
+            </template>
+          </div>
         </div>
       </div>
     </div>
@@ -104,6 +234,44 @@ import {
   DoxenTextField
 } from 'vue-doxen';
 import { print } from 'vue3-snapshot-serializer';
+
+const ARRAY_RESULT_EXAMPLE = `
+<a
+  class="artichoke"
+  href="#"
+  title="parent"
+>
+  <span class="child">
+    Vegatable
+  </span>
+</a>
+
+<!-- will become -->
+
+<artichoke-stub />
+`.trim()
+
+const OBJECT_SHORT_EXAMPLE = `
+globalThis.vueSnapshots.stubs = {
+  '.artichoke': 'my-vegetable-stub'
+};
+`.trim();
+
+const OBJECT_SHORT_RESULT_EXAMPLE = `
+<a
+  class="artichoke"
+  href="#"
+  title="parent"
+>
+  <span class="child">
+    Vegatable
+  </span>
+</a>
+
+<!-- will become -->
+
+<my-vegetable-stub />
+`.trim();
 
 const ORIGINAL_MARKUP = `
 <div>
@@ -160,6 +328,9 @@ export default {
     };
   },
   constants: {
+    ARRAY_RESULT_EXAMPLE,
+    OBJECT_SHORT_EXAMPLE,
+    OBJECT_SHORT_RESULT_EXAMPLE,
     ORIGINAL_MARKUP,
     attributeOptions: [
       {
@@ -240,13 +411,16 @@ export default {
         stub[SELECTOR].removeInnerHtml = true;
       }
       if (selectorGroup.removeAttributes === 'specific') {
-        stub[SELECTOR].removeAttributes = selectorGroup
+        let attributesList = selectorGroup
           .attributesToRemoveString
           .split(',')
           .map((attribute) => {
             return attribute.trim();
           })
           .filter(Boolean);
+        if (attributesList.length) {
+          stub[SELECTOR].removeAttributes = attributesList;
+        }
       }
       if (selectorGroup.removeAttributes === 'remove') {
         stub[SELECTOR].removeAttributes = true;

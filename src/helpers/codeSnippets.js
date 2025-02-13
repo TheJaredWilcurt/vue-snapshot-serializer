@@ -262,7 +262,10 @@ export const TOP_LEVEL_API_DETAILS = Object.freeze([
   {
     setting: '<code>stubs</code>',
     default: '<code class="hljs-literal">{}</code>',
-    description: 'Allows targeting specific DOM nodes in the snapshot to optionally replace their tag name and/or remove attributes and/or innerHTML.'
+    description: [
+      'Allows targeting specific DOM nodes in the snapshot to optionally replace their tag name and/or remove attributes and/or innerHTML.',
+      'See the <a href="#stubs">Stubs section</a> below for more information and a live demo.'
+    ].join(' ')
   },
   {
     setting: '<code>postProcessor</code>',
