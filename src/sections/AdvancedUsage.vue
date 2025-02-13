@@ -24,11 +24,10 @@
       This means you can freely override these settings in specific tests, like so:
     </p>
 
-    <div
-      v-html="SPECIFIC_TEST_EXAMPLE"
-      data-applied-style-tokens="codeBoxContainer"
-      aria-label="Code example"
-    ></div>
+    <DoxenCodeBox
+      :code="SPECIFIC_TEST_EXAMPLE"
+      :copy="false"
+    />
 
     <hr id="external-use" />
 
@@ -120,15 +119,14 @@
       Below we add a comment to import the type definition for the library's API, into the <code class="hljs hljs-number">setup.js</code> file,
       and store the type definition in the <code class="hljs hljs-variable">SETTINGS</code> name space.
       Then we create a variable for our desired settings, and assign the <code class="hljs hljs-variable">SETTINGS</code> type to it.
-      At this point you can get hover text, auto-complete and if you add <code class="hljs hljs-comment">//&nbsp;<span class="at">@</span>ts&#8209;check</code> to the top of the file
+      At this point you can get hover text, auto-complete and if you add <code class="hljs hljs-comment">//&nbsp;@ts&#8209;check</code> to the top of the file
       you'll get type checking (if your editor has the TS Engine built in). All this with <strong>normal</strong> JavaScript.
     </p>
 
-    <div
-      v-html="TYPES_IMPORT_EXAMPLE"
-      data-applied-style-tokens="codeBoxContainer"
-      aria-label="Code example"
-    ></div>
+    <DoxenCodeBox
+      :code="TYPES_IMPORT_EXAMPLE"
+      :copy="false"
+    />
 
     <p>
       Other available type definitions are
