@@ -63,6 +63,7 @@ export default {
         return data;
       } catch {
         this.error = true;
+        return [];
       }
     },
     getContributors: async function () {
