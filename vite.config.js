@@ -15,7 +15,7 @@ export default defineConfig({
           lodash: ['lodash.xor'],
           parse5: ['parse5'],
           vue: ['vue'],
-          'vtu': ['@vue/test-utils'],
+          vtu: ['@vue/test-utils'],
           'vue-doxen': ['vue-doxen'],
           'vue3-snapshot-serializer': ['vue3-snapshot-serializer']
         }
