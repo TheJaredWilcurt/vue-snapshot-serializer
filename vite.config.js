@@ -22,6 +22,10 @@ export default defineConfig({
     sourcemap: true
   },
   plugins: [vue()],
+  optimizeDeps: {
+    // Ensures this doesn't get shipped to prod
+    include: ['axe-core']
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

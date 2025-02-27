@@ -41,7 +41,7 @@ export const VITEST_CONFIG_EXAMPLE = unindent(`
   });
 `);
 
-export const WRAPPER_TEST_EXAMPLE = unindent(`
+export const WRAPPER_TEST_VTU_EXAMPLE = unindent(`
   import { mount } from '@vue/test-utils';
 
   import MyComponent from '@/components/MyComponent.vue';
@@ -49,6 +49,33 @@ export const WRAPPER_TEST_EXAMPLE = unindent(`
   test('My test', async () => {
     const wrapper = await mount(MyComponent);
     const button = wrapper.find('[data-test="myButton"]');
+
+    // GOOD
+    expect(wrapper)
+      .toMatchSnapshot();
+
+    // GOOD
+    expect(button)
+      .toMatchSnapshot();
+
+    // BAD
+    expect(wrapper.html())
+      .toMatchSnapshot();
+
+    // BAD
+    expect(button.html())
+      .toMatchSnapshot();
+  });
+`);
+
+export const WRAPPER_TEST_TLV_EXAMPLE = unindent(`
+  import { render } from '@testing-library/vue';
+
+  import MyComponent from '@/components/MyComponent.vue';
+
+  test('My test', async () => {
+    const wrapper = await render(MyComponent);
+    const button = wrapper.container.querySelector('[data-test="myButton"]');
 
     // GOOD
     expect(wrapper)
@@ -105,7 +132,7 @@ export const TOP_LEVEL_API_DETAILS = Object.freeze([
       '<code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">input</span>&gt;</span></code>',
       'becomes',
       '<code class="hljs"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"\'whatever\'"</span>&gt;</span></code>.',
-      '<strong>Requires passing in the VTU <code class="hljs hljs-attr">wrapper</code></strong>,',
+      '<strong>Requires passing in a component <code class="hljs hljs-attr">wrapper</code></strong>,',
       'not',
       '<code class="hljs hljs-attr">wrapper.html()</code>.'
     ].join(' ')
@@ -128,7 +155,7 @@ export const TOP_LEVEL_API_DETAILS = Object.freeze([
       '<code class="hljs"><span class="hljs-tag"><span class="hljs-attr">to</span>=<span class="hljs-string">"[object Object]"</span></span></code>',
       'becomes',
       '<code class="hljs"><span class="hljs-tag"><span class="hljs-attr">to</span>=<span class="hljs-string">"{ name: \'home\' }"</span></span></code>.',
-      '<strong>Requires passing in the VTU <code class="hljs hljs-attr">wrapper</code></strong>, not',
+      '<strong>Requires passing in a component <code class="hljs hljs-attr">wrapper</code></strong>, not',
       '<code class="hljs hljs-attr">wrapper.html()</code>.'
     ].join(' ')
   },
@@ -477,13 +504,13 @@ export const GLOBAL_SETUP_EXAMPLE = unindent(`
 
 export const DEBUG_EXAMPLE = unindent(`
   global.beforeEach(() => {
-    globalThis.vueSnapshots = {
+    global.vueSnapshots = {
       debug: true
     };
   });
 `);
 
-export const SPECIFIC_TEST_EXAMPLE = unindent(`
+export const SPECIFIC_TEST_VTU_EXAMPLE = unindent(`
   // /tests/components/MyComponent.test.js
   import { mount } from '@vue/test-utils';
 
@@ -492,6 +519,25 @@ export const SPECIFIC_TEST_EXAMPLE = unindent(`
   describe('MyComponent', () => {
     test('My test', async () => {
       const wrapper = await mount(MyComponent);
+
+      // Test-specific settings that override the defaults in setup.js
+      global.vueSnapshots.attributesToClear = ['data-uuid'];
+
+      expect(wrapper)
+        .toMatchSnapshot();
+    });
+  });
+`);
+
+export const SPECIFIC_TEST_TLV_EXAMPLE = unindent(`
+  // /tests/components/MyComponent.test.js
+  import { render } from '@testing-library/vue';
+
+  import MyComponent from '@/components/MyComponent.vue';
+
+  describe('MyComponent', () => {
+    test('My test', async () => {
+      const wrapper = await render(MyComponent);
 
       // Test-specific settings that override the defaults in setup.js
       global.vueSnapshots.attributesToClear = ['data-uuid'];
@@ -536,10 +582,10 @@ export const API_DESCRIPTIONS = Object.freeze({
   verbose: 'Logs to the console errors or other messages if true.',
   debug: 'Logs to the console as internal functions are called, including relevant data to help in troubleshooting.',
   attributesToClear: 'Takes an array of attribute strings, like `[\'title\', \'id\']`, to remove the values from these attributes. `<i title="9:04:55 AM" id="uuid_48a50d28cb453f94" class="current-time"></i>` becomes `<i title id class="current-time"></i>`.',
-  addInputValues: 'Display current internal element value on `input`, `textarea`, and `select` fields. `<input>` becomes `<input value="\'whatever\'">`. **Requires passing in the VTU `wrapper`**, not `wrapper.html()`.',
+  addInputValues: 'Display current internal element value on `input`, `textarea`, and `select` fields. `<input>` becomes `<input value="\'whatever\'">`. **Requires passing in a component `wrapper`**, not `wrapper.html()`.',
   sortAttributes: 'Sorts the attributes inside HTML elements in the snapshot. This greatly reduces snapshot noise, making diffs easier to read.',
   sortClasses: 'Sorts the classes inside the `class` attribute on all HTML elements in the snapshot. This greatly reduces snapshot noise, making diffs easier to read.',
-  stringifyAttributes: 'Injects the real values of dynamic attributes/props into the snapshot. `to="[object Object]"` becomes `to="{ name: \'home\' }"`. **Requires passing in the VTU `wrapper`**, not `wrapper.html()`.',
+  stringifyAttributes: 'Injects the real values of dynamic attributes/props into the snapshot. `to="[object Object]"` becomes `to="{ name: \'home\' }"`. **Requires passing in a component `wrapper`**, not `wrapper.html()`.',
   removeServerRendered: 'Removes `data-server-rendered="true"` from your snapshots if true.',
   removeDataVId: 'Removes `data-v-1234abcd=""` from your snapshots if true. Useful if 3rd-party components use scoped styles to reduce snapshot noise when updating dependencies.',
   removeDataTest: 'Removes `data-test="whatever"` from your snapshots if true. To also remove these from your production builds, <a href="https://github.com/cogor/vite-plugin-vue-remove-attributes">see here</a>.',
