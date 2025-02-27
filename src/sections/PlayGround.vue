@@ -37,7 +37,7 @@
           :name="value"
           :title="descriptions[key]"
         />
-        <p><strong>*</strong> Requires a Vue-Test-Utils wrapper, not HTML string.</p>
+        <p><strong>*</strong> Requires a component wrapper, not HTML string.</p>
         <fieldset :title="descriptions.attributesToClear">
           <label>
             Attributes to clear:
