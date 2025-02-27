@@ -27,9 +27,11 @@
     "@eslint/js": "^9.21.0",
     "@stylistic/eslint-plugin-js": "^4.1.0",
     "@vitejs/plugin-vue": "^5.2.1",
+    "axe-core": "^4.10.2",
     "eslint": "^9.21.0",
     "eslint-config-tjw-base": "^3.1.0",
     "vite": "^6.2.0",
+    "vue-axe": "^3.1.2",
     "vue3-snapshot-serializer": "^2.6.0"
   },
   "repository": {
