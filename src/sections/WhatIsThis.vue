@@ -87,14 +87,7 @@
         </p>
       </blockquote>
 
-      <p style="text-align: center;">
-        <img
-          alt="Difference between the snapshot settings, my version makes the formatting cleaner and easier to see what actually changed in a failing snapshot"
-          src="https://user-images.githubusercontent.com/4629794/96301398-22b20c80-0fc5-11eb-8d71-195f56b556e0.gif"
-        />
-      </p>
-
-      <DiffCompare />
+      <DiffCompare v-if="false" />
     </div>
   </section>
 </template>
