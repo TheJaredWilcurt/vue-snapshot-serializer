@@ -77,9 +77,9 @@
       </p>
 
       <blockquote>
-        <big><big><big><q><em>This looks fantastic! This might sell me on testing.</em></q></big></big></big>
-        <p>
-          &nbsp;&nbsp;&mdash;
+        <q><em>This looks fantastic! This might sell me on testing.</em></q>
+        <p style="text-align: right;">
+          &nbsp;&nbsp;&ndash;
           <a
             v-text="'Views on Vue podcast (#99)'"
             href="https://topenddevs.com/podcasts/views-on-vue/episodes/vov-099-testing-in-vue-with-the-jared-wilcurt"
@@ -87,10 +87,12 @@
         </p>
       </blockquote>
 
-      <img
-        alt="Difference between the snapshot settings, my version makes the formatting cleaner and easier to see what actually changed in a failing snapshot"
-        src="https://user-images.githubusercontent.com/4629794/96301398-22b20c80-0fc5-11eb-8d71-195f56b556e0.gif"
-      >
+      <p style="text-align: center;">
+        <img
+          alt="Difference between the snapshot settings, my version makes the formatting cleaner and easier to see what actually changed in a failing snapshot"
+          src="https://user-images.githubusercontent.com/4629794/96301398-22b20c80-0fc5-11eb-8d71-195f56b556e0.gif"
+        />
+      </p>
 
     </div>
   </section>
