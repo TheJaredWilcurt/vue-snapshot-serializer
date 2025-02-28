@@ -55,6 +55,9 @@ button {
   color: #CCD;
   background: #121238;
 }
+button:focus {
+  outline: 1px solid #EEF;
+}
 
 hr {
   width: 100%;
@@ -69,6 +72,9 @@ p,
 li {
   margin-top: 6px;
   font-size: 1.2rem;
+}
+p {
+  line-height: 1.2;
 }
 
 input,
