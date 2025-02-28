@@ -13,6 +13,9 @@
 
   <IntroSection />
 
+  <hr id="wait-what">
+  <WhatIsThis />
+
   <hr id="playground">
   <PlayGround />
 
@@ -46,6 +49,7 @@ import GettingStarted from '@/sections/GettingStarted.vue';
 import GitHubContributors from '@/sections/GitHubContributors.vue';
 import IntroSection from '@/sections/IntroSection.vue';
 import PlayGround from '@/sections/PlayGround.vue';
+import WhatIsThis from '@/sections/WhatIsThis.vue';
 
 export default {
   name: 'App',
@@ -58,7 +62,8 @@ export default {
     GitHubCorner,
     IntroSection,
     PlayGround,
-    StubsDemo
+    StubsDemo,
+    WhatIsThis
   },
   created: function () {
     setTimeout(() => {
