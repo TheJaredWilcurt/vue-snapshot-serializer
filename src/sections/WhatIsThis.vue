@@ -94,11 +94,18 @@
         />
       </p>
 
+      <DiffCompare />
     </div>
   </section>
 </template>
+
 <script>
+import DiffCompare from '@/components/DiffCompare.vue';
+
 export default {
-  name: 'WhatIsThis'
+  name: 'WhatIsThis',
+  components: {
+    DiffCompare
+  }
 };
 </script>
