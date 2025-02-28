@@ -7,8 +7,8 @@
       </h1>
 
       <p>
-        Oh yeah, we should start here. First off, do not confuse "snapshot" testing with
-        "screenshot" testing.
+        Oh yeah, we should start here. First off, do not confuse <strong>"snapshot
+        testing"</strong> with <strong>"screenshot testing"</strong>.
       </p>
 
       <strong>TLDR:</strong>
@@ -30,7 +30,7 @@
             <li>
               <small>This sounds great in theory but unfortunately every computer is slightly
               different (browser, OS, font legibility settings, screen resolutions, HDPI, UI
-              scaling, default fonts, anti-aliasing, etc) so a screenshot taken on one machine
+              scaling, default fonts, anti-aliasing, etc.) so a screenshot taken on one machine
               will almost never match up pixel-for-pixel with one on another machine. The only
               way to get this approach to work is to have it handled entirely by your CI tool,
               which is dramatically more complex to set up than usual testing tooling. Or to
@@ -41,6 +41,13 @@
           </ul>
         </li>
       </ul>
+
+      <p>Here's an example of an inline snapshot:</p>
+
+      <DoxenCodeBox
+        :code="INLINE_SNAPSHOT_EXAMPLE"
+        :copy="false"
+      />
 
       <strong>Why?</strong>
 
@@ -65,40 +72,88 @@
 
       <p>
         Though you could write a bunch of tests validating every attribute on every DOM element,
-        this is tedious, error-prone, and a pain to maintain. So our tools (Jest/Vitest) provide
+        this is tedious, error-prone, and a pain to maintain. Fortunately, our tools (Jest/Vitest) provide
         us with a better alternative, <em>snapshots</em>.
       </p>
 
+      <hr id="whats-a-serializer" />
+
+      <h2>
+        So what's a serializer for?
+        <a href="#whats-a-serializer">#</a>
+      </h2>
+
       <p>
-        By default, a DOM snapshot will just be a raw output of the virtual DOM converted to a
-        string of HTML. This isn't super useful or fun to read. So we pass it through a
-        "serializer" to help clean it up. I could spend a whole hour talking about
-        all this stuff, and infact, I did, on a podcast, check it out:
+        If a snapshot's goal is to capture the DOM to make sure nothing unintentionally changes,
+        then a serializer's goal is to make that DOM snapshot easier to read and see the changes.
       </p>
 
-      <blockquote>
-        <q><em>This looks fantastic! This might sell me on testing.</em></q>
-        <p style="text-align: right;">
-          &nbsp;&nbsp;&ndash;
-          <a
-            v-text="'Views on Vue podcast (#99)'"
-            href="https://topenddevs.com/podcasts/views-on-vue/episodes/vov-099-testing-in-vue-with-the-jared-wilcurt"
-          ></a>
-        </p>
-      </blockquote>
+      <p>
+        A large chunk of DOM markup is proned to having a "signal-to-noise" problem. The serializer's
+        job is to remove the noise, increasing the value a snapshot gives. We achieve this, by
+        formatting the markup in a manner that works better with the testing tool's built in diffs.
+        Here is an example of what snapshots look like by default, versus when using this library.
+      </p>
 
-      <DiffCompare v-if="false" />
+      <DiffCompare />
+
+      <p>
+        In the above example, it looks like we changed some text. If this was unintended, we can
+        go to the component and fix the bug. If that change was intentional then we can update
+        the snapshot to match our new code. You can do this by hand, but Jest
+        and Vitest both have a command you can use to do it automatically. Just run
+        <code>vitest -u</code> or <code>jest -u</code>. The <code>-u</code> is short for
+        <code>--update-snapshots</code>.
+      </p>
+
+      <p>
+        There are tons of other features offered by <strong>Vue3-Snapshot-Serializer</strong>, like being able to stub out DOM nodes,
+        removing testing tokens, adding in input values into snapshots, and more.
+      </p>
+
+      <p>
+        I could spend a whole hour talking about all this stuff, and in fact, I did, on a podcast,
+        <a
+          v-text="'check it out'"
+          href="https://topenddevs.com/podcasts/views-on-vue/episodes/vov-099-testing-in-vue-with-the-jared-wilcurt"
+        ></a>.
+      </p>
     </div>
   </section>
 </template>
 
 <script>
+import { DoxenCodeBox } from 'vue-doxen';
+
 import DiffCompare from '@/components/DiffCompare.vue';
+
+const INLINE_SNAPSHOT_EXAMPLE = `
+test('Home link is active', async () => {
+  const wrapper = await mount(MyNavigation);
+  const homeLink = wrapper.find('[data-test="home-link"]');
+
+  expect(homeLink)
+    .toMatchInlineSnapshot(\`
+      <a
+        aria-current
+        class="active"
+        href="/"
+        title="Home"
+      >
+        Home
+      </a>
+    \`);
+});
+`.trim();
 
 export default {
   name: 'WhatIsThis',
   components: {
-    DiffCompare
+    DiffCompare,
+    DoxenCodeBox
+  },
+  constants: {
+    INLINE_SNAPSHOT_EXAMPLE
   }
 };
 </script>

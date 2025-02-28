@@ -13,6 +13,9 @@
 
   <IntroSection />
 
+  <hr id="quotes">
+  <BlockQuotes />
+
   <hr id="wait-what">
   <WhatIsThis />
 
@@ -44,6 +47,7 @@ import GitHubCorner from '@/components/GitHubCorner.vue';
 import StubsDemo from '@/components/StubsDemo.vue';
 import AdvancedUsage from '@/sections/AdvancedUsage.vue';
 import ApiFeatures from '@/sections/ApiFeatures.vue';
+import BlockQuotes from '@/sections/BlockQuotes.vue';
 import FooterSection from '@/sections/FooterSection.vue';
 import GettingStarted from '@/sections/GettingStarted.vue';
 import GitHubContributors from '@/sections/GitHubContributors.vue';
@@ -56,6 +60,7 @@ export default {
   components: {
     AdvancedUsage,
     ApiFeatures,
+    BlockQuotes,
     FooterSection,
     GettingStarted,
     GitHubContributors,

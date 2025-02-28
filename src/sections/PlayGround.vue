@@ -2,7 +2,7 @@
   <section>
     <div class="wrapper">
       <h2>
-        Try it out
+        Playground &ndash; Try it out!
         <a href="#playground">#</a>
       </h2>
     </div>

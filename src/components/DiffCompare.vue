@@ -1,27 +1,35 @@
 <template>
-  <p style="text-align: center;">
-    <img
-      alt="Difference between the snapshot settings, my version makes the formatting cleaner and easier to see what actually changed in a failing snapshot"
-      src="https://user-images.githubusercontent.com/4629794/96301398-22b20c80-0fc5-11eb-8d71-195f56b556e0.gif"
-    />
-  </p>
-
-  <div>
-    Diff comparison
-    <DoxenCodeBox
-      :code="OLD_DIFF"
-      :copy="false"
-    />
-    <DoxenCodeBox
-      :code="NEW_DIFF"
-      :copy="false"
-    />
+  <div class="diff-compare">
+    <div class="controls">
+      <div>
+        <button
+          :data-applied-style-tokens="'tabButton ' + (!showNew ? 'tabButtonSelected' : '')"
+          @click="autoPlay = false; showNew = false"
+        >
+          Default Snapshots
+        </button>
+        <button
+          :data-applied-style-tokens="'tabButton ' + (showNew ? 'tabButtonSelected' : '')"
+          @click="autoPlay = false; showNew = true"
+        >
+          Vue3-Snapshot-Serializer
+        </button>
+      </div>
+      <DoxenCheckbox
+        v-model="autoPlay"
+        name="Auto-Play"
+      />
+    </div>
+    <DiffOldNew :showNew="showNew" />
   </div>
 </template>
 
 <script>
-import { DoxenCodeBox } from 'vue-doxen';
+import { DoxenCheckbox } from 'vue-doxen';
 
+import DiffOldNew from '@/components/DiffOldNew.vue';
+
+/*
 const OLD_DIFF = `
 * BaseTitle.vue > Renders Create New and Spinner
 
@@ -86,15 +94,67 @@ Spinner"
 67 | });
 68 |
 `;
+*/
 
 export default {
   name: 'DiffCompare',
   components: {
-    DoxenCodeBox
+    DiffOldNew,
+    DoxenCheckbox
   },
-  constants: {
-    OLD_DIFF,
-    NEW_DIFF
+  data: function () {
+    return {
+      autoPlay: true,
+      showNew: false
+    };
+  },
+  methods: {
+    initializeAutoPlay: function () {
+      setInterval(() => {
+        if (this.autoPlay) {
+          this.showNew = !this.showNew;
+        }
+      }, 2000);
+    }
+  },
+  created: function () {
+    this.initializeAutoPlay();
   }
 };
 </script>
+
+<style>
+.diff-compare  {
+  .controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  [data-applied-style-tokens="tabButton "],
+  [data-applied-style-tokens="tabButton tabButtonSelected"] {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+  [data-applied-style-tokens="formFieldFieldset"] {
+    display: flex;
+    justify-content: end;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    text-align: right;
+  }
+  [data-applied-style-tokens="formFieldCheckboxNameLabel"] {
+    margin-left: 0.5rem;
+  }
+  .hljs-comment {
+    font-style: normal;
+  }
+}
+
+@media (width < 505px) {
+  [data-applied-style-tokens="formFieldFieldset"] {
+    width: 100%;
+  }
+}
+</style>
