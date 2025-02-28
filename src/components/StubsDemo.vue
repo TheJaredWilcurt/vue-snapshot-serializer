@@ -519,3 +519,66 @@ export default {
   }
 };
 </script>
+
+<style>
+/* Stubs Demo */
+
+.stubs-demo {
+  .wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0px auto;
+  }
+  .code-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  fieldset {
+    border: 0px;
+    margin: 3px 10px 0px 10px;
+    padding: 0px;
+  }
+  legend {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  [data-applied-style-tokens="formFieldError"] {
+    color: #CE4F4F;
+    font-size: 16px;
+  }
+  [data-applied-style-tokens="formFieldCheckboxNameLabel"] {
+    display: inline-block;
+    margin-top: 5px;
+    margin-left: 5px;
+  }
+  .box {
+    margin-right: 10px;
+    padding: 15px;
+    vertical-align: top;
+  }
+  .box,
+  .code-boxes {
+    display: inline-block;
+  }
+  .code-boxes {
+    margin-right: 10px;
+    vertical-align: top;
+  }
+  .code-box pre {
+    margin-top: 7px;
+  }
+  .code-box * {
+    font-size: 1rem;
+  }
+}
+@media (width < 400px) {
+  .stubs-demo {
+    .code-box * {
+      font-size: 0.5rem;
+    }
+  }
+}
+</style>

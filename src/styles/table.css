@@ -1,6 +1,6 @@
 table {
   display: block;
-  background: #2C2C45;
+  background: #242556;
 }
 
 tr,
@@ -18,7 +18,7 @@ tr {
   padding-bottom: 10px;
 }
 tr:nth-of-type(even) {
-  background: #242439;
+  background: #1D1D42;
 }
 
 td {
@@ -49,7 +49,7 @@ th {
 }
 
 thead th {
-  background-color: #202932;
+  background-color: #081119;
   border: 1px solid #202932;
   color: #FFF;
 }
@@ -100,7 +100,7 @@ tfoot th {
   }
 
   td {
-    border: 1px solid #28333F;
+    border: 1px solid #18395E;
   }
   td:before {
     display: none;
@@ -112,7 +112,7 @@ tfoot th {
   }
 
   tr:nth-child(2n+2) td {
-    background-color: #242439;
+    background-color: #1D1D42;
   }
 
   tfoot th {

@@ -30,10 +30,12 @@
           />
         </li>
         <li>
-          In tests, make sure to always pass in the Vue-Test-Utils wrapper containing the VNode so advanced features will work. If you pass in the HTML string instead, most features will still work, but not all.
-          <DoxenCodeBox
-            :code="WRAPPER_TEST_EXAMPLE"
-            :copy="false"
+          In tests, make sure to always pass in the mounted component wrapper containing the VNode so advanced features will work. If you pass in the HTML string instead, most features will still work, but not all.
+          <DoxenCodeSwapper
+            :codeTypes="{
+              'Vue-Test-Utils': WRAPPER_TEST_VTU_EXAMPLE,
+              '@Testing-Library/Vue': WRAPPER_TEST_TLV_EXAMPLE
+            }"
           />
         </li>
       </ol>
@@ -70,7 +72,8 @@ import {
   GLOBAL_SETUP_EXAMPLE,
   JEST_CONFIG_EXAMPLE,
   VITEST_CONFIG_EXAMPLE,
-  WRAPPER_TEST_EXAMPLE
+  WRAPPER_TEST_TLV_EXAMPLE,
+  WRAPPER_TEST_VTU_EXAMPLE
 } from '@/helpers/codeSnippets.js';
 
 export default {
@@ -84,7 +87,8 @@ export default {
     GLOBAL_SETUP_EXAMPLE,
     JEST_CONFIG_EXAMPLE,
     VITEST_CONFIG_EXAMPLE,
-    WRAPPER_TEST_EXAMPLE
+    WRAPPER_TEST_TLV_EXAMPLE,
+    WRAPPER_TEST_VTU_EXAMPLE
   }
 };
 </script>
@@ -92,10 +96,17 @@ export default {
 <style>
 .getting-started-section {
   background: #272865;
+  background: #126C8A;
   border: 1px solid #111129;
   border-width: 1px 0px;
   padding-bottom: 1rem;
   color: #CCD;
+  a,
+  a:active,
+  a:hover,
+  a:visited {
+    color: #ECECC3;
+  }
 }
 @media (width < 900px) {
   .getting-started-section ol,

@@ -1,4 +1,9 @@
-import { createApp } from 'vue';
+import {
+  createApp,
+  Fragment,
+  h as hyperscript
+} from 'vue';
+import VueAxe, { VueAxePopup } from 'vue-axe';
 import constantsPlugin from 'vue-options-api-constants-plugin';
 
 import App from '@/App.vue';
@@ -10,6 +15,24 @@ import '@/styles/fonts.css';
 import '@/styles/main.css';
 import '@/styles/table.css';
 
-const app = createApp(App);
+let app;
+
+if (process.env.NODE_ENV === 'development') {
+  app = createApp({
+    render: function () {
+      return hyperscript(
+        Fragment,
+        [
+          hyperscript(App),
+          hyperscript(VueAxePopup)
+        ]
+      );
+    }
+  });
+  app.use(VueAxe);
+} else {
+  app = createApp(App);
+}
+
 app.use(constantsPlugin);
 app.mount('#app');
