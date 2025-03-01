@@ -2,7 +2,7 @@
   <section>
     <div class="wrapper wrapper-flex">
       <h2>
-        Try it out
+        Playground &ndash; Try it out!
         <a href="#playground">#</a>
       </h2>
       <div>
@@ -53,7 +53,7 @@
           :name="value"
           :title="descriptions[key]"
         />
-        <p><strong>*</strong> Requires a Vue-Test-Utils wrapper, not HTML string.</p>
+        <p><strong>*</strong> Requires a component wrapper, not HTML string.</p>
         <fieldset :title="descriptions.attributesToClear">
           <label>
             Attributes to clear:

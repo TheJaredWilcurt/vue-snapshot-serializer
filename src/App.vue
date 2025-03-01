@@ -13,6 +13,12 @@
 
   <IntroSection />
 
+  <hr id="quotes">
+  <BlockQuotes />
+
+  <hr id="wait-what">
+  <WhatIsThis />
+
   <hr id="playground">
   <PlayGround />
 
@@ -41,24 +47,28 @@ import GitHubCorner from '@/components/GitHubCorner.vue';
 import StubsDemo from '@/components/StubsDemo.vue';
 import AdvancedUsage from '@/sections/AdvancedUsage.vue';
 import ApiFeatures from '@/sections/ApiFeatures.vue';
+import BlockQuotes from '@/sections/BlockQuotes.vue';
 import FooterSection from '@/sections/FooterSection.vue';
 import GettingStarted from '@/sections/GettingStarted.vue';
 import GitHubContributors from '@/sections/GitHubContributors.vue';
 import IntroSection from '@/sections/IntroSection.vue';
 import PlayGround from '@/sections/PlayGround.vue';
+import WhatIsThis from '@/sections/WhatIsThis.vue';
 
 export default {
   name: 'App',
   components: {
     AdvancedUsage,
     ApiFeatures,
+    BlockQuotes,
     FooterSection,
     GettingStarted,
     GitHubContributors,
     GitHubCorner,
     IntroSection,
     PlayGround,
-    StubsDemo
+    StubsDemo,
+    WhatIsThis
   },
   created: function () {
     setTimeout(() => {

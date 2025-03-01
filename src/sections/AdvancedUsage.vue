@@ -24,9 +24,11 @@
       This means you can freely override these settings in specific tests, like so:
     </p>
 
-    <DoxenCodeBox
-      :code="SPECIFIC_TEST_EXAMPLE"
-      :copy="false"
+    <DoxenCodeSwapper
+      :codeTypes="{
+        'Vue-Test-Utils': SPECIFIC_TEST_VTU_EXAMPLE,
+        '@Testing-Library/Vue': SPECIFIC_TEST_TLV_EXAMPLE
+      }"
     />
 
     <hr id="external-use" />
@@ -146,11 +148,15 @@
 </template>
 
 <script>
-import { DoxenCodeBox } from 'vue-doxen';
+import {
+  DoxenCodeBox,
+  DoxenCodeSwapper
+} from 'vue-doxen';
 
 import {
   GLOBAL_SETUP_EXAMPLE,
-  SPECIFIC_TEST_EXAMPLE,
+  SPECIFIC_TEST_TLV_EXAMPLE,
+  SPECIFIC_TEST_VTU_EXAMPLE,
   TYPES_IMPORT_EXAMPLE,
   VUE_MARKUP_FORMATTER_EXAMPLE
 } from '@/helpers/codeSnippets.js';
@@ -158,11 +164,13 @@ import {
 export default {
   name: 'AdvancedUsage',
   components: {
-    DoxenCodeBox
+    DoxenCodeBox,
+    DoxenCodeSwapper
   },
   constants: {
     GLOBAL_SETUP_EXAMPLE,
-    SPECIFIC_TEST_EXAMPLE,
+    SPECIFIC_TEST_TLV_EXAMPLE,
+    SPECIFIC_TEST_VTU_EXAMPLE,
     TYPES_IMPORT_EXAMPLE,
     VUE_MARKUP_FORMATTER_EXAMPLE
   }
