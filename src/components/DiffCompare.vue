@@ -148,7 +148,11 @@ export default {
     margin-left: 0.5rem;
   }
   .hljs-comment {
+    color: #4FC93B;
     font-style: normal;
+  }
+  .hljs-string {
+    color: #F41F31;
   }
 }
 

@@ -22,7 +22,7 @@
     "vue": "^3.5.13",
     "vue-doxen": "^0.4.8",
     "vue-options-api-constants-plugin": "^1.0.3",
-    "vue3-snapshot-serializer": "^2.7.0",
+    "vue3-snapshot-serializer": "^2.7.1",
     "zenscroll": "^4.0.2"
   },
   "devDependencies": {
