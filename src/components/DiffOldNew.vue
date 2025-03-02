@@ -11,7 +11,7 @@
       data-style-tokens="codeBox"
     ><code class="hljs javascript" tabindex="0"><span class="hljs-string">● BaseTitle.vue &gt; Renders spinner while loading</span>
 
-  expect(<span class="hljs-string">value</span>).toMatchSnapshot()
+  expect(<span class="hljs-keyword">value</span>).toMatchSnapshot()
 
 <span class="hljs-string">Received value</span> does not match <span class="hljs-comment">stored snapshot "BaseTitle.vue &gt; Renders spinner
 while loading"</span>
@@ -48,9 +48,9 @@ ml-md primary"&gt;&lt;i class="fa fa-plus mr-sm"&gt;&lt;/i&gt;</span>
     &lt;/span&gt;
   &lt;/span&gt;
 </span>
-<span class="hljs-number">64</span> |     expect(wrapper.find(<span class="hljs-string">'[data-test="base-title"]'</span>))
+<span class="hljs-number">64</span> |     expect(wrapper.find(<span class="hljs-keyword">'[data-test="base-title"]'</span>))
 <span class="hljs-number">65</span> |       .toMatchSnapshot();
-   |        ^
+   |        <span class="hljs-string">^</span>
 <span class="hljs-number">66</span> |   });
 <span class="hljs-number">67</span> | });
 <span class="hljs-number">68</span> |

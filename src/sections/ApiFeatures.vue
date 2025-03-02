@@ -5,7 +5,6 @@
       <a href="#api">#</a>
     </h2>
 
-
     <p>
       <code class="hljs">
         <span class="hljs-variable">global</span>

@@ -34,7 +34,8 @@
           <DoxenCodeSwapper
             :codeTypes="{
               'Vue-Test-Utils': WRAPPER_TEST_VTU_EXAMPLE,
-              '@Testing-Library/Vue': WRAPPER_TEST_TLV_EXAMPLE
+              '@Testing-Library/Vue': WRAPPER_TEST_TLV_EXAMPLE,
+              '@Testing-Library/Vue (container)': CONTAINER_TEST_TLV_EXAMPLE
             }"
           />
         </li>
@@ -68,6 +69,7 @@ import {
 } from 'vue-doxen';
 
 import {
+  CONTAINER_TEST_TLV_EXAMPLE,
   DEBUG_EXAMPLE,
   GLOBAL_SETUP_EXAMPLE,
   JEST_CONFIG_EXAMPLE,
@@ -83,6 +85,7 @@ export default {
     DoxenCodeSwapper
   },
   constants: {
+    CONTAINER_TEST_TLV_EXAMPLE,
     DEBUG_EXAMPLE,
     GLOBAL_SETUP_EXAMPLE,
     JEST_CONFIG_EXAMPLE,
