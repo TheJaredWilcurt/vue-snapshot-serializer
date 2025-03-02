@@ -27,7 +27,8 @@
     <DoxenCodeSwapper
       :codeTypes="{
         'Vue-Test-Utils': SPECIFIC_TEST_VTU_EXAMPLE,
-        '@Testing-Library/Vue': SPECIFIC_TEST_TLV_EXAMPLE
+        '@Testing-Library/Vue': SPECIFIC_TEST_TLV_EXAMPLE,
+        '@Testing-Library/Vue (container)': SPECIFIC_TEST_TLV_CONTAINER_EXAMPLE
       }"
     />
 
@@ -155,6 +156,7 @@ import {
 
 import {
   GLOBAL_SETUP_EXAMPLE,
+  SPECIFIC_TEST_TLV_CONTAINER_EXAMPLE,
   SPECIFIC_TEST_TLV_EXAMPLE,
   SPECIFIC_TEST_VTU_EXAMPLE,
   TYPES_IMPORT_EXAMPLE,
@@ -169,6 +171,7 @@ export default {
   },
   constants: {
     GLOBAL_SETUP_EXAMPLE,
+    SPECIFIC_TEST_TLV_CONTAINER_EXAMPLE,
     SPECIFIC_TEST_TLV_EXAMPLE,
     SPECIFIC_TEST_VTU_EXAMPLE,
     TYPES_IMPORT_EXAMPLE,

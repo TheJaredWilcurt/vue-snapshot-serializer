@@ -32,7 +32,7 @@
     "eslint-config-tjw-base": "^3.1.0",
     "vite": "^6.2.0",
     "vue-axe": "^3.1.2",
-    "vue3-snapshot-serializer": "^2.6.0"
+    "vue3-snapshot-serializer": "^2.7.1"
   },
   "repository": {
     "type": "git",

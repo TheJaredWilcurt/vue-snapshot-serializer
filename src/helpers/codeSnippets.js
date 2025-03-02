@@ -90,7 +90,34 @@ export const WRAPPER_TEST_TLV_EXAMPLE = unindent(`
       .toMatchSnapshot();
 
     // BAD
-    expect(button.html())
+    expect(button.toString())
+      .toMatchSnapshot();
+  });
+`);
+
+export const CONTAINER_TEST_TLV_EXAMPLE = unindent(`
+  import { render } from '@testing-library/vue';
+
+  import MyComponent from '@/components/MyComponent.vue';
+
+  test('My test', async () => {
+    const { container } = await render(MyComponent);
+    const button = container.querySelector('[data-test="myButton"]');
+
+    // GOOD
+    expect(container)
+      .toMatchSnapshot();
+
+    // GOOD
+    expect(button)
+      .toMatchSnapshot();
+
+    // BAD
+    expect(container.toString())
+      .toMatchSnapshot();
+
+    // BAD
+    expect(button.toString())
       .toMatchSnapshot();
   });
 `);
@@ -543,6 +570,25 @@ export const SPECIFIC_TEST_TLV_EXAMPLE = unindent(`
       global.vueSnapshots.attributesToClear = ['data-uuid'];
 
       expect(wrapper)
+        .toMatchSnapshot();
+    });
+  });
+`);
+
+export const SPECIFIC_TEST_TLV_CONTAINER_EXAMPLE = unindent(`
+  // /tests/components/MyComponent.test.js
+  import { render } from '@testing-library/vue';
+
+  import MyComponent from '@/components/MyComponent.vue';
+
+  describe('MyComponent', () => {
+    test('My test', async () => {
+      const { container } = await render(MyComponent);
+
+      // Test-specific settings that override the defaults in setup.js
+      global.vueSnapshots.attributesToClear = ['data-uuid'];
+
+      expect(container)
         .toMatchSnapshot();
     });
   });
