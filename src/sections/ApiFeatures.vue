@@ -66,7 +66,7 @@
       </p>
     </div>
 
-    <p>
+    <p id="default-settings">
       The below settings are all the defaults,
       so if you like them, you don't need to pass them in.
     </p>
