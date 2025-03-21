@@ -1,10 +1,26 @@
 <template>
   <section>
-    <div class="wrapper">
+    <div class="wrapper wrapper-flex">
       <h2>
         Playground &ndash; Try it out!
         <a href="#playground">#</a>
       </h2>
+      <div>
+        <button
+          class="tab-button"
+          :class="{ active: !showComponent }"
+          @click="showComponent = false"
+        >
+          Playground
+        </button>
+        <button
+          class="tab-button"
+          :class="{ active: showComponent }"
+          @click="showComponent = true"
+        >
+          Live component demo
+        </button>
+      </div>
     </div>
     <div class="playground">
       <aside class="playground-controls">
@@ -121,7 +137,28 @@
           class="playground-container"
           :class="{ 'playground-stacked': stacked }"
         >
+          <div
+            v-if="showComponent"
+            class="playground-box playground-box-input"
+            :style="size"
+          >
+            <p>Example component template:</p>
+            <DoxenCodeBox
+              class="playground-box-example-code"
+              :code="EXAMPLE_COMPONENT_TEMPLATE"
+              :copy="false"
+              :styleTokens="{ codeBox: 'playground-output' }"
+              :key="outputKey"
+            />
+            <p>Live component demo</p>
+            <ExampleComponent
+              name="Component Example"
+              @content="exampleContentChanged"
+              @toggle="exampleToggled"
+            />
+          </div>
           <textarea
+            v-else
             v-model="input"
             class="playground-box playground-box-input"
             :style="size"
@@ -133,6 +170,7 @@
             :copy="false"
             :style="size"
             :styleTokens="{ codeBox: 'playground-output' }"
+            :key="outputKey"
           />
         </div>
         <DoxenCodeBox
@@ -146,14 +184,18 @@
 </template>
 
 <script>
+import { flushPromises, mount } from '@vue/test-utils';
 import _xor from 'lodash.xor';
 import {
   DoxenCheckbox,
   DoxenCodeBox
 } from 'vue-doxen';
-import { vueMarkupFormatter } from 'vue3-snapshot-serializer';
+import { vueMarkupFormatter, print } from 'vue3-snapshot-serializer';
+
+import ExampleComponent from '@/components/ExampleComponent.vue';
 import {
   API_DESCRIPTIONS,
+  EXAMPLE_COMPONENT_TEMPLATE,
   PLAYGROUND_EXAMPLE_CODE
 } from '@/helpers/codeSnippets.js';
 
@@ -194,10 +236,12 @@ export default {
   name: 'PlayGround',
   components: {
     DoxenCheckbox,
-    DoxenCodeBox
+    DoxenCodeBox,
+    ExampleComponent
   },
   constants: {
     descriptions: API_DESCRIPTIONS,
+    EXAMPLE_COMPONENT_TEMPLATE,
     TOP_LEVEL_BOOLEANS: {
       verbose: 'Verbose',
       debug: 'Debug',
@@ -221,6 +265,9 @@ export default {
   },
   data: function () {
     return {
+      showComponent: true,
+      wrapper: mount(ExampleComponent),
+      outputKey: 0,
       fontSize: 100,
       heightSize: 200,
       input: PLAYGROUND_EXAMPLE_CODE,
@@ -260,6 +307,45 @@ export default {
         }
       }
     };
+  },
+  methods: {
+    exampleToggled: async function () {
+      await this.wrapper.find('[data-test="toggle"]').trigger('click');
+      await flushPromises();
+      this.updateOutput();
+    },
+    exampleContentChanged: async function (value) {
+      const textarea = await this.wrapper.find('[data-test="content"]');
+      textarea.element.value = value;
+      await textarea.trigger('input');
+      await flushPromises();
+      this.updateOutput();
+    },
+    updateOutput: function () {
+      window.vueSnapshots = {
+        ...this.vueSnapshots,
+        attributesToClear: this.clearableAttributes,
+        formatting: undefined
+      };
+      if (this.vueSnapshots.formatter === 'diffable') {
+        window.vueSnapshots.formatting = {
+          ...this.vueSnapshots.formatting,
+          tagsWithWhitespacePreserved: this.whitespaceTags
+        }
+      }
+      if (this.vueSnapshots.postProcessor) {
+        window.vueSnapshots.postProcessor = function (markup) {
+          return markup.toUpperCase();
+        };
+      }
+
+      if (this.showComponent) {
+        this.output = print(this.wrapper);
+      } else {
+        this.output = print(this.input.trim());
+      }
+      this.outputKey++;
+    }
   },
   computed: {
     whitespaceTags: function () {
@@ -394,31 +480,46 @@ export default {
         'font-size: ' + this.fontSize + '%',
         'height: calc(100vh - ' + this.heightSize + 'px)'
       ].join(';');
-    },
-    output: function () {
-      window.vueSnapshots = {
-        ...this.vueSnapshots,
-        attributesToClear: this.clearableAttributes,
-        formatting: undefined
-      };
-      if (this.vueSnapshots.formatter === 'diffable') {
-        window.vueSnapshots.formatting = {
-          ...this.vueSnapshots.formatting,
-          tagsWithWhitespacePreserved: this.whitespaceTags
-        }
-      }
-      if (this.vueSnapshots.postProcessor) {
-        window.vueSnapshots.postProcessor = function (markup) {
-          return markup.toUpperCase();
-        };
-      }
-      return vueMarkupFormatter(this.input.trim());
     }
+  },
+  watch: {
+    vueSnapshots: {
+      deep: true,
+      handler: function () {
+        this.updateOutput();
+      }
+    },
+    clearableAttributes: function () {
+      this.updateOutput();
+    },
+    whitespaceTagsList: function () {
+      this.updateOutput();
+    },
+    showComponent: function () {
+      this.updateOutput();
+    }
+  },
+  created: function () {
+    this.updateOutput();
   }
 };
 </script>
 
 <style>
+.wrapper-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.wrapper-flex button {
+  margin-bottom: 6px;
+}
+.tab-button {
+  background: #15152A;
+}
+.tab-button.active {
+  background: #383871;
+}
 .playground {
   display: flex;
 }
@@ -428,7 +529,8 @@ export default {
   align-items: start;
   justify-content: start;
   flex-wrap: wrap;
-  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
 }
 .playground-controls fieldset {
   border: 0px;
@@ -454,7 +556,8 @@ export default {
   flex-direction: row;
 }
 .playground-box {
-  width: 50%;
+  min-width: calc(50% - 150px);
+  max-width: calc(50% - 150px);
   overflow: auto;
 }
 .playground-box-input {
@@ -482,6 +585,22 @@ export default {
 .playground-box code,
 .playground-box pre {
   font-size: 1em;
+}
+
+.playground-box-output {
+  position: relative;
+}
+.playground-box-output:before {
+  content: 'Snapshot Preview';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background: #2C2C3D;
+  border: 1px solid #121238;
+  border-radius: 4px;
+  padding: 3px 7px;
+  color: #FFF;
+  opacity: 0.8;
 }
 
 @media (width < 900px) {

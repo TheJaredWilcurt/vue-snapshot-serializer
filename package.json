@@ -16,6 +16,7 @@
     "@fontsource/fira-mono": "^5.2.5",
     "@fontsource/lato": "^5.2.5",
     "@highlightjs/cdn-assets": "^11.11.1",
+    "@vue/test-utils": "^2.4.6",
     "lodash.xor": "^4.5.0",
     "normalize.css": "^8.0.1",
     "vue": "^3.5.13",
