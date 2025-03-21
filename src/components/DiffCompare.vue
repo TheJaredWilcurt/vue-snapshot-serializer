@@ -45,7 +45,7 @@ Spinner"
 -  <h3 class="inline-block">Create New and Spinner</h3> <span><i class="fa
 fa-spinner fa-pulse fa-lg fa-fw"></i> <span class="sr-only">Page is
 loading...</span></span><a><button type="button" class="pmr-btn ml-md primary"><i
-class="fa fa-plus mr-sm"></i>
+class="fa mr-sm"></i>
 +  <h3 class="inline-block">Create New and Spinner</h3> <span><i class="fa
 fa-spinner fa-pulse fa-lg fa-fw"></i> <span
 class="sr-only">Loading...</span></span><a><button type="button" class="pmr-btn
