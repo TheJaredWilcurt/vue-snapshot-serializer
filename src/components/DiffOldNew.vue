@@ -21,7 +21,7 @@ while loading"</span>
 <span v-if="!showNew">
   &lt;div data-test="base-title"&gt;
 <span class="hljs-comment">-   &lt;h3 class="inline-block"&gt;Create New and Spinner&lt;/h3&gt; &lt;span&gt;&lt;i class="fa
-fa-spinner fa-pulse fa-lg fa-fw"&gt;&lt;/i&gt; &lt;span class="sr-only"&gt;Page is
+fa-spinner fa-lg fa-fw"&gt;&lt;/i&gt; &lt;span class="sr-only"&gt;Page is
 loading...&lt;/span&gt;&lt;/span&gt;&lt;a&gt;&lt;button type="button" class="pmr-btn ml-md primary"&gt;&lt;i
 class="fa fa-plus mr-sm"&gt;&lt;/i&gt;</span>
 <span class="hljs-string">+   &lt;h3 class="inline-block"&gt;Create New and Spinner&lt;/h3&gt; &lt;span&gt;&lt;i class="fa
@@ -39,7 +39,7 @@ ml-md primary"&gt;&lt;i class="fa fa-plus mr-sm"&gt;&lt;/i&gt;</span>
       fa
       fa-fw
       fa-lg
-      fa-pulse
+<span class="hljs-string">+     fa-pulse</span>
       fa-spinner
     "&gt;&lt;/i&gt;
     &lt;span class="sr-only"&gt;

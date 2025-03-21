@@ -12,27 +12,27 @@
     "fix": "npm run lint -- --fix"
   },
   "dependencies": {
-    "@fontsource-variable/lora": "^5.1.1",
-    "@fontsource/fira-mono": "^5.1.1",
-    "@fontsource/lato": "^5.1.1",
+    "@fontsource-variable/lora": "^5.2.5",
+    "@fontsource/fira-mono": "^5.2.5",
+    "@fontsource/lato": "^5.2.5",
     "@highlightjs/cdn-assets": "^11.11.1",
     "@vue/test-utils": "^2.4.6",
     "lodash.xor": "^4.5.0",
     "normalize.css": "^8.0.1",
     "vue": "^3.5.13",
-    "vue-doxen": "^0.4.8",
+    "vue-doxen": "^0.4.9",
     "vue-options-api-constants-plugin": "^1.0.3",
-    "vue3-snapshot-serializer": "^2.7.1",
+    "vue3-snapshot-serializer": "^2.9.0",
     "zenscroll": "^4.0.2"
   },
   "devDependencies": {
-    "@eslint/js": "^9.21.0",
-    "@stylistic/eslint-plugin-js": "^4.1.0",
-    "@vitejs/plugin-vue": "^5.2.1",
-    "axe-core": "^4.10.2",
-    "eslint": "^9.21.0",
+    "@eslint/js": "^9.22.0",
+    "@stylistic/eslint-plugin-js": "^4.2.0",
+    "@vitejs/plugin-vue": "^5.2.3",
+    "axe-core": "^4.10.3",
+    "eslint": "^9.22.0",
     "eslint-config-tjw-base": "^3.1.0",
-    "vite": "^6.2.0",
+    "vite": "^6.2.2",
     "vue-axe": "^3.1.2"
   },
   "repository": {
@@ -46,7 +46,7 @@
   },
   "homepage": "https://github.com/TheJaredWilcurt/vue-snapshot-serializer#readme",
   "volta": {
-    "node": "23.9.0",
-    "npm": "11.1.0"
+    "node": "23.10.0",
+    "npm": "11.2.0"
   }
 }

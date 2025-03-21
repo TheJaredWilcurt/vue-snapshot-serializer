@@ -23,9 +23,10 @@
           will compare the test results to the stored snapshots with a per-character text diff.
         </li>
         <li>
-          <strong>Screenshot testing</strong> is where you run the code in an actual browser,
-          then take a screenshot and save it in a lossless format like PNG. Future runs of
-          the test will do a pixel-for-pixel comparison to the "known good" PNG.
+          <strong>Screenshot testing</strong> (sometimes called "Visual Regression Testing")
+          is where you run the code in an actual browser, then take a screenshot and save it in
+          a lossless format like PNG. Future runs of the test will do a pixel-for-pixel
+          comparison to the "known good" PNG.
           <ul>
             <li>
               <small>This sounds great in theory but unfortunately every computer is slightly

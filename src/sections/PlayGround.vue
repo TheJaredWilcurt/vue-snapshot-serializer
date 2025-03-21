@@ -53,6 +53,12 @@
           :name="value"
           :title="descriptions[key]"
         />
+        <fieldset :title="descriptions.attributesNotToStringify">
+          <label>
+            Attributes not to Stringify*:
+            <input v-model="vueSnapshots.attributesNotToStringify" placeholder="Comma separated list of attributes">
+          </label>
+        </fieldset>
         <p><strong>*</strong> Requires a component wrapper, not HTML string.</p>
         <fieldset :title="descriptions.attributesToClear">
           <label>
@@ -197,6 +203,7 @@ const defaults = Object.freeze({
   addInputValues: true,
   attributesPerLine: 1,
   attributesToClear: [],
+  attributesNotToStringify: ['style'],
   classesPerLine: 1,
   clearInlineFunctions: false,
   debug: false,
@@ -269,6 +276,7 @@ export default {
       vueSnapshots: {
         addInputValues: defaults.addInputValues,
         attributesToClear: '',
+        attributesNotToStringify: 'style',
         stringifyAttributes: defaults.stringifyAttributes,
         clearInlineFunctions: defaults.clearInlineFunctions,
         debug: defaults.debug,
@@ -363,6 +371,14 @@ export default {
         })
         .filter(Boolean)));
     },
+    skippableAttributes: function () {
+      return Array.from(new Set(this.vueSnapshots.attributesNotToStringify
+        .split(',')
+        .map((attribute) => {
+          return attribute.trim();
+        })
+        .filter(Boolean)));
+    },
     printableSettings: function () {
       let snapshotSettings = {};
       if (this.vueSnapshots.formatter !== defaults.formatter) {
@@ -418,6 +434,10 @@ export default {
       if (this.clearableAttributes.length) {
         snapshotSettings.attributesToClear = this.clearableAttributes;
       }
+      if (_xor(this.skippableAttributes, defaults.attributesNotToStringify).length) {
+        snapshotSettings.attributesNotToStringify = this.skippableAttributes;
+      }
+
       if (this.vueSnapshots.postProcessor) {
         snapshotSettings.postProcessor = true;
       }
