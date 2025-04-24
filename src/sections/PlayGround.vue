@@ -108,6 +108,12 @@
               <input v-model.number="vueSnapshots.formatting.classesPerLine" type="number" min="0">
             </label>
           </fieldset>
+          <fieldset :title="descriptions.inlineStylesPerLine">
+            <label>
+              Inline Styles Per Line:
+              <input v-model.number="vueSnapshots.formatting.inlineStylesPerLine" type="number" min="0">
+            </label>
+          </fieldset>
           <fieldset :title="descriptions.tagsWithWhitespacePreserved">
             <label>
               Tags to preserve whitespace in:
@@ -169,6 +175,7 @@ const defaults = Object.freeze({
   escapeAttributes: false,
   escapeInnerText: true,
   formatter: 'diffable',
+  inlineStylesPerLine: 1,
   postProcessor: false,
   removeComments: false,
   removeServerRendered: true,
@@ -255,6 +262,7 @@ export default {
           emptyAttributes: defaults.emptyAttributes,
           escapeAttributes: defaults.escapeAttributes,
           escapeInnerText: defaults.escapeInnerText,
+          inlineStylesPerLine: defaults.inlineStylesPerLine,
           selfClosingTag: defaults.selfClosingTag,
           voidElements: defaults.voidElements
         }
@@ -312,6 +320,10 @@ export default {
         if (this.vueSnapshots.formatting.classesPerLine !== defaults.classesPerLine) {
           setFormattingObject();
           snapshotSettings.formatting.classesPerLine = this.vueSnapshots.formatting.classesPerLine || 0;
+        }
+        if (this.vueSnapshots.formatting.inlineStylesPerLine !== defaults.inlineStylesPerLine) {
+          setFormattingObject();
+          snapshotSettings.formatting.inlineStylesPerLine = this.vueSnapshots.formatting.inlineStylesPerLine || 0;
         }
         if (this.vueSnapshots.formatting.escapeAttributes !== defaults.escapeAttributes) {
           setFormattingObject();
@@ -429,6 +441,8 @@ export default {
   justify-content: start;
   flex-wrap: wrap;
   width: 300px;
+  max-height: 77vh;
+  overflow: auto;
 }
 .playground-controls fieldset {
   border: 0px;
