@@ -423,6 +423,11 @@ export const FORMATTING_API_DETAILS = Object.freeze([
     ].join(' ')
   },
   {
+    setting: '<code>inlineStylesPerLine</code>',
+    default: '<code class="hljs-number">1</code>',
+    description: 'How many styles are allowed on the same line as the <span class="hljs-attr">style</span> attribute.'
+  },
+  {
     setting: '<code>selfClosingTag</code>',
     default: '<code class="hljs-literal">false</code>',
     description: [
@@ -521,6 +526,7 @@ export const ALL_SETTINGS_OBJECT = unindent(`
       emptyAttributes: true,
       escapeAttributes: false,
       escapeInnerText: true,
+      inlineStylesPerLine: 1,
       selfClosingTag: false,
       tagsWithWhitespacePreserved: ['a', 'pre'],
       voidElements: 'xhtml'
@@ -664,6 +670,7 @@ export const API_DESCRIPTIONS = Object.freeze({
   emptyAttributes: 'Determines whether empty attributes will include `=""`. If `false` then `<span class="" id=""></span>` becomes `<span class id></span>`.',
   escapeAttributes: 'Retains or discards named HTML entity encodings, like `&lt;` instead of `<` in HTML attributes.',
   escapeInnerText: 'Retains or discards named HTML entity encodings, like `&lt;` instead of `<` in HTML text nodes.',
+  inlineStylesPerLine: 'How many styles are allowed on the same line as the `style` attribute.',
   selfClosingTag: 'Converts `<div></div>` to `<div />` or `<p class="x"></p>` to `<p class="x" />`. Does not affect void elements (like `<input>`), use the `voidElements` setting for them.',
   tagsWithWhitespacePreserved: 'Does not add returns and indentation to the inner content of these tags. Accepts an array of tags, like `[\'a\', \'pre\']`',
   voidElements: 'Determines how void elements are closed. Accepts `\'html\'` for `<input>`, `\'xhtml\'` for `<input />`, and `\'xml\'` for `<input></input>`.'
