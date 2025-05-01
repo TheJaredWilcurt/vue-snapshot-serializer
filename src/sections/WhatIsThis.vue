@@ -117,7 +117,7 @@
         I could spend a whole hour talking about all this stuff, and in fact, I did, on a podcast,
         <a
           v-text="'check it out'"
-          href="https://topenddevs.com/podcasts/views-on-vue/episodes/vov-099-testing-in-vue-with-the-jared-wilcurt"
+          href="https://www.youtube.com/watch?v=wb_K0s0YO7Y"
         ></a>.
       </p>
 
