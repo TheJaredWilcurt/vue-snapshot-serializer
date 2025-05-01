@@ -117,9 +117,28 @@
         I could spend a whole hour talking about all this stuff, and in fact, I did, on a podcast,
         <a
           v-text="'check it out'"
-          href="https://topenddevs.com/podcasts/views-on-vue/episodes/vov-099-testing-in-vue-with-the-jared-wilcurt"
+          href="https://www.youtube.com/watch?v=wb_K0s0YO7Y"
         ></a>.
       </p>
+
+      <hr id="craft" />
+
+      <h2>
+        How I get the most out of snapshots
+        <a href="#craft">#</a>
+      </h2>
+
+      <iframe
+        width="100%"
+        height="400"
+        src="https://www.youtube-nocookie.com/embed/PVqMzrt9r-Q?si=NW0oqe5-SxgtWNFQ"
+        title="Vue 3 Snapshot Testing Tutorial - YouTube"
+        frameborder="0"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+      ></iframe>
+
     </div>
   </section>
 </template>
