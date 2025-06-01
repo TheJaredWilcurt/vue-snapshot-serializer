@@ -344,6 +344,11 @@ export const TOP_LEVEL_API_DETAILS = Object.freeze([
     description: 'This is a custom function you can pass in. It will be handed a string of markup and must return a string (not a promise). It runs right after the formatter.'
   },
   {
+    setting: '<code>regexToRemoveAttributes</code>',
+    default: '<code>undefined</code>',
+    description: 'You can provide a regex pattern to match HTML attributes against to have them removed from the snapshot. Example: <code>global.vueSnapshots.regexToRemoveAttributes = new RegExp(/data-.*/);</code>'
+  },
+  {
     setting: '<code>formatter</code>',
     default: '<code class="hljs-string">\'diffable\'</code>',
     description: [
@@ -519,6 +524,9 @@ export const ALL_SETTINGS_OBJECT = unindent(`
       // Your custom code goes here
       return markup;
     },
+    // Example regex:
+    // regexToRemoveAttributes: new RegExp(/data-.*/),
+    regexToRemoveAttributes: undefined,
     formatter: 'diffable',
     formatting: {
       attributesPerLine: 1,
@@ -662,6 +670,7 @@ export const API_DESCRIPTIONS = Object.freeze({
   clearInlineFunctions: 'Replaces `<div title="function () { return true; }"></div>` or `<div title="(x) => !x"></div>` with this placeholder `<div title="[function]"></div>`.',
   stubs: 'Allows targeting specific DOM nodes in the snapshot to optionally replace their tag name and/or remove attributes and/or innerHTML.',
   postProcessor: 'This is a custom function you can pass in. It will be handed a string of markup and must return a string (not a promise). It runs right after the formatter.',
+  regexToRemoveAttributes: 'You can provide a regex pattern to match HTML attributes against to have them removed from the snapshot. Example: `global.vueSnapshots.regexToRemoveAttributes = new RegExp(/data-.*/);`',
   formatter: 'Function to use for formatting the markup output. See examples below. Accepts `\'none\'`, `\'diffable\'`, or \'classic\'.',
   formatting: 'An object containing settings specific to the "diffable" formatter.',
   classicFormatting: 'An object containing settings specific to the "classic" formatter.',
