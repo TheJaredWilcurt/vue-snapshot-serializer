@@ -55,6 +55,12 @@
           name="Post Processor"
           :title="descriptions.postProcessor"
         />
+        <fieldset :title="descriptions.regexToRemoveAttributes">
+          <label>
+            Regex to remove Attributes
+            <input v-model="vueSnapshots.regexToRemoveAttributes" placeholder="data-id-.*">
+          </label>
+        </fieldset>
         <fieldset :title="descriptions.formatter">
           <label>
             Formatter:
@@ -177,6 +183,7 @@ const defaults = Object.freeze({
   formatter: 'diffable',
   inlineStylesPerLine: 1,
   postProcessor: false,
+  regexToRemoveAttributes: undefined,
   removeComments: false,
   removeServerRendered: true,
   removeDataVId: true,
@@ -256,6 +263,7 @@ export default {
         sortClasses: defaults.sortClasses,
         verbose: defaults.verbose,
         postProcessor: defaults.postProcessor,
+        regexToRemoveAttributes: defaults.regexToRemoveAttributes,
         formatting: {
           attributesPerLine: defaults.attributesPerLine,
           classesPerLine: defaults.classesPerLine,
@@ -368,6 +376,10 @@ export default {
         snapshotSettings.postProcessor = true;
       }
 
+      if (this.vueSnapshots.regexToRemoveAttributes) {
+        snapshotSettings.regexToRemoveAttributes = true;
+      }
+
       snapshotSettings = JSON
         .stringify(snapshotSettings, null, 2)
         .split('\n')
@@ -379,6 +391,10 @@ export default {
           return line;
         })
         .join('\n')
+        .replace(
+          'regexToRemoveAttributes: true',
+          'regexToRemoveAttributes: new RegExp(/' + this.vueSnapshots.regexToRemoveAttributes + '/)'
+        )
         .replace(
           'postProcessor: true',
           [
@@ -418,6 +434,10 @@ export default {
           ...this.vueSnapshots.formatting,
           tagsWithWhitespacePreserved: this.whitespaceTags
         }
+      }
+      if (this.vueSnapshots.regexToRemoveAttributes) {
+        let input = this.vueSnapshots.regexToRemoveAttributes;
+        window.vueSnapshots.regexToRemoveAttributes = new RegExp(input);
       }
       if (this.vueSnapshots.postProcessor) {
         window.vueSnapshots.postProcessor = function (markup) {
