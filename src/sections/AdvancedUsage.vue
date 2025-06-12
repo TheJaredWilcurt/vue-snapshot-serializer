@@ -55,6 +55,64 @@
       <code class="hljs hljs-name">vueSnapshots</code> settings object depending on your JavaScript environment.
     </p>
 
+    <hr id="scoped-v-bind">
+
+    <h3>
+      Scoped V-Bind styles in snapshots
+      <a href="#scoped-v-bind">#</a>
+    </h3>
+
+    <p>
+      For convience, you can bind CSS properties to reactive values in Vue. It looks like this:
+    </p>
+
+    <DoxenCodeSwapper
+      :codeTypes="{
+        'Options API': VUE_VBIND_CSS_OPTIONS_API_EXAMPLE,
+        'Composition API': VUE_VBIND_CSS_COMPOSITION_API_EXAMPLE,
+        'Script Setup': VUE_VBIND_CSS_SCRIPT_SETUP_EXAMPLE
+      }"
+      :copy="false"
+      fileName="VBindExample.vue"
+    />
+
+    <p>
+      This will produce a DOM that looks like:
+    </p>
+
+    <DoxenCodeBox
+      :code="VUE_VBIND_CSS_DOM_EXAMPLE"
+      :copy="false"
+    />
+
+    <p>
+      However, by default, your snapshots will not include these inline styles.
+      To enable them in your snapshots add this to your <code>vite.config.js</code>.
+    </p>
+
+    <DoxenCodeBox
+      :code="VITE_CONFIG_ENABLE_INLINE_SCOPED_CSS"
+    />
+
+    <p>
+      With that, the dynamic inline styles will start appearing in your snapshots.
+      The custom property begins with an 8 character random ID. To clean this up
+      you can enable this setting:
+      <code>global.vueSnapshots.renameScopedVBindCSS = true;</code>.
+    </p>
+    <p>
+      With that setting enabled, it will produce this snapshot:
+    </p>
+
+    <DoxenCodeBox
+      :code="VUE_VBIND_CSS_DOM_CLEANED_EXAMPLE"
+      :copy="false"
+    />
+
+    <p>
+      Note that <code>279c5a3b</code> was replaced with <code>scoped</code>.
+    </p>
+
     <hr id="types">
 
     <h3>
@@ -160,7 +218,13 @@ import {
   SPECIFIC_TEST_TLV_EXAMPLE,
   SPECIFIC_TEST_VTU_EXAMPLE,
   TYPES_IMPORT_EXAMPLE,
-  VUE_MARKUP_FORMATTER_EXAMPLE
+  VITE_CONFIG_ENABLE_INLINE_SCOPED_CSS,
+  VUE_MARKUP_FORMATTER_EXAMPLE,
+  VUE_VBIND_CSS_COMPOSITION_API_EXAMPLE,
+  VUE_VBIND_CSS_DOM_EXAMPLE,
+  VUE_VBIND_CSS_DOM_CLEANED_EXAMPLE,
+  VUE_VBIND_CSS_OPTIONS_API_EXAMPLE,
+  VUE_VBIND_CSS_SCRIPT_SETUP_EXAMPLE
 } from '@/helpers/codeSnippets.js';
 
 export default {
@@ -175,7 +239,13 @@ export default {
     SPECIFIC_TEST_TLV_EXAMPLE,
     SPECIFIC_TEST_VTU_EXAMPLE,
     TYPES_IMPORT_EXAMPLE,
-    VUE_MARKUP_FORMATTER_EXAMPLE
+    VITE_CONFIG_ENABLE_INLINE_SCOPED_CSS,
+    VUE_MARKUP_FORMATTER_EXAMPLE,
+    VUE_VBIND_CSS_COMPOSITION_API_EXAMPLE,
+    VUE_VBIND_CSS_DOM_EXAMPLE,
+    VUE_VBIND_CSS_DOM_CLEANED_EXAMPLE,
+    VUE_VBIND_CSS_OPTIONS_API_EXAMPLE,
+    VUE_VBIND_CSS_SCRIPT_SETUP_EXAMPLE
   }
 };
 </script>

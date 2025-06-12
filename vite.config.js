@@ -15,7 +15,9 @@ export default defineConfig({
           parse5: ['parse5'],
           vue: ['vue'],
           'vue-doxen': ['vue-doxen'],
-          'vue3-snapshot-serializer': ['vue3-snapshot-serializer']
+          'vue-options-api-constants-plugin': ['vue-options-api-constants-plugin'],
+          'vue3-snapshot-serializer': ['vue3-snapshot-serializer'],
+          zenscroll: ['zenscroll']
         }
       }
     },
