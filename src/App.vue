@@ -37,10 +37,15 @@
 
   <GitHubContributors />
 
+  <hr id="more-vue-projects" />
+
+  <VueProjects :includeId="false" />
+
   <FooterSection />
 </template>
 
 <script>
+import VueProjects from 'vue-projects/VpCards.vue';
 import zenscroll from 'zenscroll';
 
 import GitHubCorner from '@/components/GitHubCorner.vue';
@@ -68,6 +73,7 @@ export default {
     IntroSection,
     PlayGround,
     StubsDemo,
+    VueProjects,
     WhatIsThis
   },
   created: function () {
