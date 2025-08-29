@@ -26,7 +26,7 @@
     "vue-doxen": "^0.9.7",
     "vue-options-api-constants-plugin": "^1.0.3",
     "vue-projects": "github:TheJaredWilcurt/vue-projects",
-    "vue3-snapshot-serializer": "^2.12.0",
+    "vue3-snapshot-serializer": "^2.13.0",
     "zenscroll": "^4.0.2"
   },
   "devDependencies": {
