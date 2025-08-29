@@ -173,7 +173,7 @@ const defaults = Object.freeze({
   addInputValues: true,
   attributesPerLine: 1,
   attributesToClear: [],
-  attributesNotToStringify: ['style'],
+  attributesNotToStringify: ['class', 'style'],
   classesPerLine: 1,
   clearInlineFunctions: false,
   debug: false,
@@ -245,7 +245,7 @@ export default {
       vueSnapshots: {
         addInputValues: defaults.addInputValues,
         attributesToClear: '',
-        attributesNotToStringify: 'style',
+        attributesNotToStringify: 'class, style',
         stringifyAttributes: defaults.stringifyAttributes,
         clearInlineFunctions: defaults.clearInlineFunctions,
         debug: defaults.debug,
