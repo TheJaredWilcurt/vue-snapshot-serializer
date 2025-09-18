@@ -435,7 +435,7 @@ export const FORMATTING_API_DETAILS = Object.freeze([
   {
     setting: '<code>inlineStylesPerLine</code>',
     default: '<code class="hljs-number">1</code>',
-    description: 'How many styles are allowed on the same line as the <span class="hljs-attr">style</span> attribute.'
+    description: 'How many styles are allowed on the same line as the <code class="hljs hljs-attr">style</code> attribute.'
   },
   {
     setting: '<code>selfClosingTag</code>',
