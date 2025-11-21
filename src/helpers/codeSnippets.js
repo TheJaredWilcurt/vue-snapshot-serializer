@@ -321,7 +321,7 @@ export const TOP_LEVEL_API_DETAILS = Object.freeze([
   {
     setting: '<code>renameScopedVBindCSS</code>',
     default: '<code class="hljs-literal">false</code>',
-    description: 'This renames <code class="hljs"><span class="hljs-attr">style</span>=<span class="hljs-string">"--abcd1234-color: #F00;"</span></code> to <code class="hljs"><span class="hljs-attr">style</span>=<span class="hljs-string">"--scoped-color: #F00;"</span></code>. This come from using <code class="hljs"><span class="hljs-string">background: v-bind(color);</span></code> in your scoped styles. See: <a href="#scoped-v-bind">Advanced</a> section for details.'
+    description: 'This renames <code class="hljs"><span class="hljs-attr">style</span>=<span class="hljs-string">"--abcd1234-color: #F00;"</span></code> to <code class="hljs"><span class="hljs-attr">style</span>=<span class="hljs-string">"--scoped-color: #F00;"</span></code>. This comes from using <code class="hljs"><span class="hljs-string">background: v-bind(color);</span></code> in your scoped styles. See: <a href="#scoped-v-bind">Advanced</a> section for details.'
   },
   {
     setting: '<code>clearInlineFunctions</code>',
@@ -673,7 +673,7 @@ export const API_DESCRIPTIONS = Object.freeze({
   removeIdTest: 'Removes `id="test-whatever"` or `id="testWhatever"` from snapshots. **Warning:** You should never use ID\'s for test tokens, as they can also be used by JS and CSS, making them more brittle and their intent less clear. Use `data-test-id` instead.',
   removeClassTest: 'Removes all CSS classes that start with "test", like `class="test-whatever"`. **Warning:** Don\'t use this approach. Use `data-test` instead. It is better suited for this because it doesn\'t conflate CSS and test tokens.',
   removeComments: 'Removes all HTML comments from your snapshots. This is false by default, as sometimes these comments can infer important information about how your DOM was rendered. However, this is mostly just personal preference.',
-  renameScopedVBindCSS: 'This renames `style="--abcd1234-color: #F00;"` to `style="--scoped-color: #F00;"`. This come from using `background: v-bind(color);` in your scoped styles.',
+  renameScopedVBindCSS: 'This renames `style="--abcd1234-color: #F00;"` to `style="--scoped-color: #F00;"`. This comes from using `background: v-bind(color);` in your scoped styles.',
   clearInlineFunctions: 'Replaces `<div title="function () { return true; }"></div>` or `<div title="(x) => !x"></div>` with this placeholder `<div title="[function]"></div>`.',
   stubs: 'Allows targeting specific DOM nodes in the snapshot to optionally replace their tag name and/or remove attributes and/or innerHTML.',
   postProcessor: 'This is a custom function you can pass in. It will be handed a string of markup and must return a string (not a promise). It runs right after the formatter.',
