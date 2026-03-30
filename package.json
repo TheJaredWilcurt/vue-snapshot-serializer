@@ -49,8 +49,14 @@
     "url": "https://github.com/TheJaredWilcurt/vue-snapshot-serializer/issues"
   },
   "homepage": "https://github.com/TheJaredWilcurt/vue-snapshot-serializer#readme",
-  "volta": {
-    "node": "24.6.0",
-    "npm": "11.5.2"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "25.8.2"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": "11.11.1"
+    }
   }
 }
