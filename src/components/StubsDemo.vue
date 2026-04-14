@@ -157,8 +157,9 @@
 
         <div class="boxes">
           <div
-            v-for="selector in selectors"
+            v-for="(selector, selectorIndex) in selectors"
             class="box"
+            :key="'selector' + selectorIndex"
           >
             <DoxenTextField
               v-model="selector.selector"
@@ -249,7 +250,7 @@ const ARRAY_RESULT_EXAMPLE = `
 <!-- will become -->
 
 <artichoke-stub />
-`.trim()
+`.trim();
 
 const OBJECT_SHORT_EXAMPLE = `
 globalThis.vueSnapshots.stubs = {
@@ -390,7 +391,7 @@ export default {
         });
       if (parenthesis) {
         this.selectors[index].selectorValid = false;
-        return
+        return;
       }
 
       this.selectors[index].selectorValid = true;
@@ -454,7 +455,7 @@ export default {
           stubs = {
             ...stubs,
             ...this.createStub(1)
-          }
+          };
         }
       }
       if (this.syntax === 'array') {

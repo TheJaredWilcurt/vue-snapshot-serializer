@@ -9,7 +9,7 @@
     </em>
 
     <div style="margin-top: 14px; font-size: 80%; line-height: 1.6;">
-      MIT Licensed<br>
+      MIT Licensed<br />
       &copy;2024
     </div>
   </footer>

@@ -54,7 +54,7 @@ export default {
   methods: {
     getData: async function (repo) {
       try {
-        let data =  await fetch('https://api.github.com/repos/' + repo + '/contributors');
+        let data = await fetch('https://api.github.com/repos/' + repo + '/contributors');
         data = await data.json();
         data = data
           .filter((contributor) => {

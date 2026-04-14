@@ -2,7 +2,7 @@
   <section>
     <div class="wrapper">
       <h2>
-        Playground &ndash; Try it out!
+        <label for="playground-input">Playground</label> &ndash; Try it out!
         <a href="#playground">#</a>
       </h2>
     </div>
@@ -14,7 +14,12 @@
         >
           <label>
             Font size ({{ fontSize }}%)
-            <input v-model.number="fontSize" type="range" min="50" max="200">
+            <input
+              v-model.number="fontSize"
+              type="range"
+              min="50"
+              max="200"
+            />
           </label>
         </fieldset>
         <fieldset
@@ -23,7 +28,12 @@
         >
           <label>
             <code class="playground-height-offset-label">height: calc(100vh - {{ heightSize }}px)</code>
-            <input v-model.number="heightSize" type="range" min="50" max="600">
+            <input
+              v-model.number="heightSize"
+              type="range"
+              min="50"
+              max="600"
+            />
           </label>
         </fieldset>
         <DoxenCheckbox
@@ -36,18 +46,19 @@
           v-model="vueSnapshots[key]"
           :name="value"
           :title="descriptions[key]"
+          :key="'topLeveBooleans-' + key"
         />
         <fieldset :title="descriptions.attributesNotToStringify">
           <label>
             Attributes not to Stringify*:
-            <input v-model="vueSnapshots.attributesNotToStringify" placeholder="Comma separated list of attributes">
+            <input v-model="vueSnapshots.attributesNotToStringify" placeholder="Comma separated list of attributes" />
           </label>
         </fieldset>
         <p><strong>*</strong> Requires a component wrapper, not HTML string.</p>
         <fieldset :title="descriptions.attributesToClear">
           <label>
             Attributes to clear:
-            <input v-model="vueSnapshots.attributesToClear" placeholder="Comma separated list of attributes">
+            <input v-model="vueSnapshots.attributesToClear" placeholder="Comma separated list of attributes" />
           </label>
         </fieldset>
         <DoxenCheckbox
@@ -58,7 +69,7 @@
         <fieldset :title="descriptions.regexToRemoveAttributes">
           <label>
             Regex to remove Attributes
-            <input v-model="vueSnapshots.regexToRemoveAttributes" placeholder="data-id-.*">
+            <input v-model="vueSnapshots.regexToRemoveAttributes" placeholder="data-id-.*" />
           </label>
         </fieldset>
         <fieldset :title="descriptions.formatter">
@@ -105,25 +116,25 @@
           <fieldset :title="descriptions.attributesPerLine">
             <label>
               Attributes Per Line:
-              <input v-model.number="vueSnapshots.formatting.attributesPerLine" type="number" min="0">
+              <input v-model.number="vueSnapshots.formatting.attributesPerLine" type="number" min="0" />
             </label>
           </fieldset>
           <fieldset :title="descriptions.classesPerLine">
             <label>
               Classes Per Line:
-              <input v-model.number="vueSnapshots.formatting.classesPerLine" type="number" min="0">
+              <input v-model.number="vueSnapshots.formatting.classesPerLine" type="number" min="0" />
             </label>
           </fieldset>
           <fieldset :title="descriptions.inlineStylesPerLine">
             <label>
               Inline Styles Per Line:
-              <input v-model.number="vueSnapshots.formatting.inlineStylesPerLine" type="number" min="0">
+              <input v-model.number="vueSnapshots.formatting.inlineStylesPerLine" type="number" min="0" />
             </label>
           </fieldset>
           <fieldset :title="descriptions.tagsWithWhitespacePreserved">
             <label>
               Tags to preserve whitespace in:
-              <input v-model="whitespaceTagsList" placeholder="Comma separated list of tags">
+              <input v-model="whitespaceTagsList" placeholder="Comma separated list of tags" />
             </label>
           </fieldset>
         </template>
@@ -135,6 +146,7 @@
         >
           <textarea
             v-model="input"
+            id="playground-input"
             class="playground-box playground-box-input"
             :style="size"
             :rows="input.split('\n').length"
@@ -164,6 +176,7 @@ import {
   DoxenCodeBox
 } from 'vue-doxen';
 import { vueMarkupFormatter } from 'vue3-snapshot-serializer';
+
 import {
   API_DESCRIPTIONS,
   PLAYGROUND_EXAMPLE_CODE
@@ -436,7 +449,7 @@ export default {
         window.vueSnapshots.formatting = {
           ...this.vueSnapshots.formatting,
           tagsWithWhitespacePreserved: this.whitespaceTags
-        }
+        };
       }
       if (this.vueSnapshots.regexToRemoveAttributes) {
         let input = this.vueSnapshots.regexToRemoveAttributes;
