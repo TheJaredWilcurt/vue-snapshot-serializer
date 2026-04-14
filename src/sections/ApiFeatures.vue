@@ -91,14 +91,14 @@
 <script>
 import { DoxenCodeBox } from 'vue-doxen';
 
-import ApiTable from '@/components/ApiTable.vue';
-
 import {
   ALL_SETTINGS_OBJECT,
   CLASSIC_FORMATTING_DEFAULTS,
   FORMATTING_API_DETAILS,
   TOP_LEVEL_API_DETAILS
 } from '@/helpers/codeSnippets.js';
+
+import ApiTable from '@/components/ApiTable.vue';
 
 export default {
   name: 'ApiFeatures',

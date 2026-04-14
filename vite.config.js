@@ -1,11 +1,13 @@
+/* eslint-disable import-x/no-extraneous-dependencies */
 import { fileURLToPath, URL } from 'node:url';
 
+/* eslint-disable-next-line import-x/no-unresolved */
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import vueDevTools from 'vite-plugin-vue-devtools';
 import vueDevToolsAccessibility from 'vue-dev-tools-accessibility';
 
-export default defineConfig({
+const config = defineConfig({
   base: '/vue-snapshot-serializer',
   build: {
     rollupOptions: {
@@ -36,3 +38,5 @@ export default defineConfig({
     }
   }
 });
+
+export default config;
