@@ -216,9 +216,7 @@ const config = [
           viteConfig: {
             resolve: {
               alias: {
-                '@': resolve(__dirname, 'src'),
-                '@@': resolve(__dirname, 'tests'),
-                '@@@': resolve(__dirname, 'docs')
+                '@': resolve(__dirname, 'src')
               }
             }
           }
