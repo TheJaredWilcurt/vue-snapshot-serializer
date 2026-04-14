@@ -13,24 +13,24 @@
 
   <IntroSection />
 
-  <hr id="quotes">
+  <hr id="quotes" />
   <BlockQuotes />
 
-  <hr id="wait-what">
+  <hr id="wait-what" />
   <WhatIsThis />
 
-  <hr id="playground">
+  <hr id="playground" />
   <PlayGround />
 
-  <hr id="getting-started">
+  <hr id="getting-started" />
   <GettingStarted />
 
-  <hr id="api">
+  <hr id="api" />
   <ApiFeatures />
 
   <StubsDemo />
 
-  <hr id="advanced">
+  <hr id="advanced" />
   <AdvancedUsage />
 
   <hr id="contributors" />

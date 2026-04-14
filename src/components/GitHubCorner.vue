@@ -1,4 +1,5 @@
 <template>
+  <!-- eslint-disable-next-line vuejs-accessibility/anchor-has-content -->
   <a
     href="http://github.com/tjw-lint/vue3-snapshot-serializer"
     class="github-corner-link"

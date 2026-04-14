@@ -7,8 +7,9 @@
       </h1>
 
       <p>
-        Oh yeah, we should start here. First off, do not confuse <strong>"snapshot
-        testing"</strong> with <strong>"screenshot testing"</strong>.
+        Oh yeah, we should start here. First off, do not confuse
+        <strong>"snapshot testing"</strong> with
+        <strong>"screenshot testing"</strong>.
       </p>
 
       <strong>TLDR:</strong>
@@ -29,15 +30,17 @@
           comparison to the "known good" PNG.
           <ul>
             <li>
-              <small>This sounds great in theory but unfortunately every computer is slightly
-              different (browser, OS, font legibility settings, screen resolutions, HDPI, UI
-              scaling, default fonts, anti-aliasing, etc.) so a screenshot taken on one machine
-              will almost never match up pixel-for-pixel with one on another machine. The only
-              way to get this approach to work is to have it handled entirely by your CI tool,
-              which is dramatically more complex to set up than usual testing tooling. Or to
-              pay a company like Chromatic to handle it for you, which works, but can get
-              expensive and you will become vendor locked. Not great for something as
-              tedious as testing.</small>
+              <small>
+                This sounds great in theory but unfortunately every computer is slightly
+                different (browser, OS, font legibility settings, screen resolutions, HDPI, UI
+                scaling, default fonts, anti-aliasing, etc.) so a screenshot taken on one machine
+                will almost never match up pixel-for-pixel with one on another machine. The only
+                way to get this approach to work is to have it handled entirely by your CI tool,
+                which is dramatically more complex to set up than usual testing tooling. Or to
+                pay a company like Chromatic to handle it for you, which works, but can get
+                expensive and you will become vendor locked. Not great for something as
+                tedious as testing.
+              </small>
             </li>
           </ul>
         </li>

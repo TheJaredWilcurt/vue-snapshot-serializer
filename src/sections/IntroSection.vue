@@ -32,7 +32,7 @@
     </h2>
 
     <p class="explainer">
-      This library provides the <strong>best snapshots possible</strong> for Vue components.<br>
+      This library provides the <strong>best snapshots possible</strong> for Vue components.<br />
       It is the official successor to <a href="https://github.com/tjw-lint/jest-serializer-vue-tjw">Jest-Serializer-Vue-TJW</a> (Vue 2, Jest, CJS).
     </p>
 

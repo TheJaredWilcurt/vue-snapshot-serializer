@@ -55,7 +55,7 @@
       <code class="hljs hljs-name">vueSnapshots</code> settings object depending on your JavaScript environment.
     </p>
 
-    <hr id="scoped-v-bind">
+    <hr id="scoped-v-bind" />
 
     <h3>
       Scoped V-Bind styles in snapshots
@@ -113,7 +113,7 @@
       Note that <code>279c5a3b</code> was replaced with <code>scoped</code>.
     </p>
 
-    <hr id="types">
+    <hr id="types" />
 
     <h3>
       Type inference
