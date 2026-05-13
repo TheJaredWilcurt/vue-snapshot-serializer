@@ -16,7 +16,7 @@
 
     <ApiTable :features="TOP_LEVEL_API_DETAILS" />
 
-    <p>
+    <p id="formatting">
       <code class="hljs">
         <span class="hljs-variable">global</span>
         <span>.</span>
@@ -33,7 +33,7 @@
 
     <ApiTable :features="FORMATTING_API_DETAILS" />
 
-    <div class="box">
+    <div id="classic-formatting" class="box">
       <p>
         For the <code class="hljs hljs-string">'classic'</code> formatter,
         you can use
@@ -76,7 +76,7 @@
       :copy="false"
     />
 
-    <p>
+    <p id="api-defaults">
       <strong>Note:</strong>
       In your global
       <code class="hljs hljs-variable">beforeEach</code>,
