@@ -62,7 +62,7 @@
       </p>
       <p>
         <strong>Note:</strong> The classic formatter is only intended to be used as migration tool from <code>jest-serializer-vue-tjw</code>.
-        Once migrated, it is recommended to switch the the "diffable" formatter, which is more customizable.
+        Once migrated, it is recommended to switch to the "diffable" formatter, which has better defaults and is much more customizable.
       </p>
     </div>
 
